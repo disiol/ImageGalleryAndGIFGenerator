@@ -1,18 +1,15 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api;
 
-public class Image {
+public class ImageTests {
     void addedImages(){
-        //TODO
 
     }
 
     void addANewImage(){
-        //TODO
 
     }
 
     void generateGIF(){
-        //TODO
 
     }
 }
