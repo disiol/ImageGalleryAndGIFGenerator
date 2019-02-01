@@ -1,6 +1,7 @@
-Description
-API works as an image gallery.
+Image gallery
+-------------
 As a user, using a client application, I can:
+
     • sign up;
     • sign in;
     • view added images;
