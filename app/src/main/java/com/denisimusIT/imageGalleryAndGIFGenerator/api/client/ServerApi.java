@@ -5,23 +5,25 @@ import java.util.LinkedHashSet;
 
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 //Authorization
 public interface ServerApi {
-    @POST("http://api.doitserver.in.ua/create")
-    void createNewUser(String username, String email, String password, File avatar);
+    @POST("create")
+    String createNewUser(@Query("username") String username, @Query("email") String email,
+                       @Query("password")String password, @Query("avatar") File avatar);
 
-    @POST("http://api.doitserver.in.ua/login")
-    void login(String email, String password);
+    @POST("login")
+    String login(@Query("email") String email, @Query("password") String password);
 
     //Image
-    @GET("http://api.doitserver.in.ua/all")
+    @GET("all")
     LinkedHashSet<String> getAllUserImages();
 
-    @GET("http://api.doitserver.in.ua/gif")
+    @GET("gif")
     String getGif();
 
-    @POST("http://api.doitserver.in.ua/create")
-    void addImage(File image, String description, String hashtag, float latitude, float longitude);
+    @POST("create")
+    String addImage(File image, String description, String hashtag, float latitude, float longitude);
 
 }
