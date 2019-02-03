@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
-public class RetrofitClientImagesAuthorizationTest {
+public class RetrofitClientAuthorizationTest {
 
     @Test
     public void CrateNewUserErrorEmptyFieldsTest() throws IOException {
