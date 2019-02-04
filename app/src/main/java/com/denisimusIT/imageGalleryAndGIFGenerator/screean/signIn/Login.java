@@ -18,6 +18,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //TODO проверку на зполненость обязательніх полей и вод ошибок
         try {
             Response<LinkedHashSet<String>> getAddedImages = new Image().getAddedImages();
             Log.d("My_log", String.valueOf(getAddedImages));
