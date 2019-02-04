@@ -90,34 +90,38 @@ public class RetrofitClientAuthorizationTest {
     }
 
 
-
-     @Test
+    @Test
     public void Login_Incorrect_email_or_password_test() throws IOException {
 
-         String expected = "{\"error\":\"Incorrect email or password\"}";
+        String email = "denisimus_games@ukr.ne";
+        String password = "password";
 
-         Call<UserDTO> login = retrofitClient.serverApi.login("denisimus_games@ukr.ne", "password");
+        String expected = "{\"error\":\"Incorrect email or password\"}";
 
-         String actual =login.execute().errorBody().string();
-         assertEquals("Login_Incorrect_email_or_password_test", expected, actual);
+        Call<UserDTO> login = retrofitClient.serverApi.login(email, password);
+
+        String actual = login.execute().errorBody().string();
+        assertEquals("Login_Incorrect_email_or_password_test", expected, actual);
 
 
-     }
-@Test
+    }
+
+    @Test
     public void Login_Ok_test() throws IOException {
 
-         String expected = "{\"creation_time\":\"2019-02-02 17:30:04\",\"token\":\"7fb2235a56e9d2da72e3bb0be7743689\"," +
-                 "\"avatar\":\"http:\\/\\/api.doitserver.in.ua\\/upload\\/avatars\\/ff6f2733c9529ea7c7f752d5813d61a7.jpeg\"}";
+        String expected = "UserDTO{creationTime='2019-02-02 17:30:04', " +
+                "avatarImageLink='http://api.doitserver.in.ua/upload/avatars/ff6f2733c9529ea7c7f752d5813d61a7.jpeg', " +
+                "token='7fb2235a56e9d2da72e3bb0be7743689'}";
 
-         Call<UserDTO> login = retrofitClient.serverApi.login("denisimus_games@ukr.ne", "password");
+        String email = "denisimus_games@ukr.net";
+        String password = "password";
+        Call<UserDTO> login = retrofitClient.serverApi.login(email, password);
 
-         String actual =login.execute().errorBody().string();
-         assertEquals("Login_Ok_test", expected, actual);
+        String actual = login.execute().body().toString();
+        assertEquals("Login_Ok_test", expected, actual);
 
 
-     }
-
-
+    }
 
 
 }

@@ -6,10 +6,10 @@ import java.util.List;
 
 
 
-public class ImageResponseListDTO {
+public class GetAllUserImages {
 //TODO
 
-    public ImageResponseListDTO(){}
+    public GetAllUserImages(){}
 
     @SerializedName("images")
     private List<ImageDTO> imageDTOList;
@@ -24,7 +24,7 @@ public class ImageResponseListDTO {
 
     @Override
     public String toString() {
-        return "ImageResponseListDTO{" +
+        return "GetAllUserImages{" +
                 "imageDTOList=" + imageDTOList +
                 '}';
     }

@@ -1,6 +1,7 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.App;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GetAllUserImages;
 
 import java.io.IOException;
 import java.util.LinkedHashSet;
@@ -9,11 +10,10 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class Image {
-   public Response<LinkedHashSet<String>> getAddedImages() throws IOException {
+   public Response<GetAllUserImages> getAddedImages(String token) throws IOException {
        //TODO
 
-       LinkedHashSet <Call> LinkedHashSetAddedImages = new LinkedHashSet<>();
-        Response<LinkedHashSet<String>> actual = App.getApi().getAllUserImages().execute();
+        Response<GetAllUserImages> actual = App.getApi().getAllUserImages(token).execute();
 
        return actual;
    }

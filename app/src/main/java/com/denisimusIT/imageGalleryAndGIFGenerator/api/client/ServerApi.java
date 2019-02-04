@@ -1,9 +1,9 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GetAllUserImages;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
 
 import java.io.File;
-import java.util.LinkedHashSet;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -12,6 +12,7 @@ import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -30,7 +31,7 @@ public interface ServerApi {
 
     //Image
     @GET("all")
-    Call<LinkedHashSet<String>> getAllUserImages();
+    Call<GetAllUserImages> getAllUserImages(@Header("token") String token);
 
     @GET("gif")
     Call<String> getGif();
