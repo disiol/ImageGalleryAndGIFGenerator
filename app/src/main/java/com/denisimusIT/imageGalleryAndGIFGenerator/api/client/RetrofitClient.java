@@ -4,12 +4,12 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class RetrofitClient {
-    String baseUrl = "http://api.doitserver.in.ua/";
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.BASE_API_URL;
 
+public class RetrofitClient {
 
     Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(BASE_API_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 

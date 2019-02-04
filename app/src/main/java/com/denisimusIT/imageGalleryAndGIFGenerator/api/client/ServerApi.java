@@ -10,6 +10,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -23,9 +24,9 @@ public interface ServerApi {
                                           @Part("email") RequestBody email,
                                           @Part("password") RequestBody password,
                                           @Part MultipartBody.Part  file);
-
+    @FormUrlEncoded
     @POST("login")
-    Call<String> login(@Field("email") String email, @Field("password") String password);
+    Call<UserDTO> login(@Field("email") String email, @Field("password") String password);
 
     //Image
     @GET("all")
