@@ -40,7 +40,7 @@ public interface ServerApi {
     @Multipart
     @POST("image")
         //TODO
-    Call<String> addImage(@Part("image") File image, @Part("description") String description,
+    Call<String> addImage(@Header("token") String token, @Part("image") File image, @Part("description") String description,
                           @Part("hashtag") String hashtag, @Part("latitude") float latitude,
                           @Part("longitude") float longitude);
 

@@ -53,9 +53,9 @@ public class RetrofitClientImagesTest {
         assertEquals("getGifTest",expected, actual);
     }
 
-    @Ignore
+
     @Test
-    public void addImageTestErrorIdntLogin() throws IOException {
+    public void addImageTestErrorInvalid_access_token() throws IOException {
         //TODO
         RetrofitClient retrofitClient = new RetrofitClient();
         File image = null;
@@ -66,8 +66,27 @@ public class RetrofitClientImagesTest {
 
         String expected = "{\"error\":\"Invalid access token\"}";
 
-        String actual = retrofitClient.serverApi.addImage(image, description, hashtag, latitude, longitude).toString();
-        assertEquals("addImageTestErrorIdntLogin",expected, actual);
+        String token = "7fb2235a56e9d2da72e3bb0be774368";
+        String actual = retrofitClient.serverApi.addImage(token,image, description, hashtag, latitude, longitude).execute().errorBody().string();
+        assertEquals("addImageTestError Invalid access token",expected, actual);
+    }
+
+
+    @Test
+    public void addImageTestErrorInvalid_This_value_should_not_be_blank() throws IOException {
+        //TODO
+        RetrofitClient retrofitClient = new RetrofitClient();
+        File image = null;
+        String description = "";
+        String hashtag = "";
+        int latitude = 0;
+        int longitude = 0;
+
+        String expected = "{\"children\":{\"image\":{\"errors\":[\"Please, upload the image.\"]},\"description\":{},\"hashtag\":{},\"latitude\":{},\"longitude\":{}}}";
+
+        String token = "7fb2235a56e9d2da72e3bb0be7743689";
+        String actual = retrofitClient.serverApi.addImage(token,image, description, hashtag, latitude, longitude).execute().errorBody().string();
+        assertEquals("addImageTestError This value should not be blank",expected, actual);
     }
 
 }
