@@ -1,24 +1,31 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
-import java.io.File;
-import java.lang.ref.Reference;
-import java.util.LinkedHashSet;
-import java.util.List;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
 
+import java.io.File;
+import java.util.LinkedHashSet;
+
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
+import retrofit2.http.Part;
 
 //Authorization
 public interface ServerApi {
+    @Multipart
     @POST("create")
-        //TODO
-    Call<String> createNewUser(@Query("username") String username, @Query("email") String email,
-                               @Query("password") String password, @Query("avatar") File avatar);
+    Call<Response<UserDTO>> createNewUser(@Part("username") RequestBody userName,
+                                          @Part("email") RequestBody email,
+                                          @Part("password") RequestBody password,
+                                          @Part MultipartBody.Part  file);
 
     @POST("login")
-    Call<String> login(@Query("email") String email, @Query("password") String password);
+    Call<String> login(@Field("email") String email, @Field("password") String password);
 
     //Image
     @GET("all")
@@ -27,10 +34,11 @@ public interface ServerApi {
     @GET("gif")
     Call<String> getGif();
 
+    @Multipart
     @POST("image")
         //TODO
-    Call<String> addImage(@Query("image") File image, @Query("description") String description,
-                          @Query("hashtag") String hashtag, @Query("latitude") float latitude,
-                          @Query("longitude") float longitude);
+    Call<String> addImage(@Part("image") File image, @Part("description") String description,
+                          @Part("hashtag") String hashtag, @Part("latitude") float latitude,
+                          @Part("longitude") float longitude);
 
 }

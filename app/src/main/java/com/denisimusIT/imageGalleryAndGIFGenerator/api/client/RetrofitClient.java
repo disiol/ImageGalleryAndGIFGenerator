@@ -5,7 +5,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
-    String baseUrl = "http://api.doitserver.in.ua";
+    String baseUrl = "http://api.doitserver.in.ua/";
 
 
     Retrofit retrofit = new Retrofit.Builder()
