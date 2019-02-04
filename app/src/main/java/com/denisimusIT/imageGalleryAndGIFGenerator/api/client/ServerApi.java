@@ -1,6 +1,7 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GetAllUserImages;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GifDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
 
 import java.io.File;
@@ -34,7 +35,7 @@ public interface ServerApi {
     Call<GetAllUserImages> getAllUserImages(@Header("token") String token);
 
     @GET("gif")
-    Call<String> getGif();
+    Call<GifDTO> getGif(@Header("token") String token);
 
     @Multipart
     @POST("image")
