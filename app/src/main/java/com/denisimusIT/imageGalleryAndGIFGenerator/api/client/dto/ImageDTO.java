@@ -4,7 +4,6 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto;
 import com.google.gson.annotations.SerializedName;
 
 public class ImageDTO {
-//TODO
     public ImageDTO() {
     }
 

@@ -7,8 +7,6 @@ import java.util.List;
 
 
 public class GetAllUserImages {
-//TODO
-
     public GetAllUserImages(){}
 
     @SerializedName("images")

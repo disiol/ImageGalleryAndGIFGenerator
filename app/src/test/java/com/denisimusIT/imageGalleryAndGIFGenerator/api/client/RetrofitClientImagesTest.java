@@ -56,7 +56,6 @@ public class RetrofitClientImagesTest {
 
     @Test
     public void addImageTestErrorInvalid_access_token() throws IOException {
-        //TODO
         RetrofitClient retrofitClient = new RetrofitClient();
         File image = null;
         String description = "";
@@ -74,7 +73,6 @@ public class RetrofitClientImagesTest {
 
     @Test
     public void addImageTestErrorInvalid_This_value_should_not_be_blank() throws IOException {
-        //TODO
         RetrofitClient retrofitClient = new RetrofitClient();
         File image = null;
         String description = "";
