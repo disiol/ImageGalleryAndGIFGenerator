@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ImageGalleryAndGIFGenerator</string>
+
+    <string name="ent_mail">Entry e-mail</string>
+    <string name="ent_pass">Entry password</string>
+    <string name="accept">Accept</string>
+    <string name="apply">Apply</string>
+    <string name="action_settings">Settings</string>
+    <string name="textViewUserNameHint">UserName</string>
+
 </resources>
