@@ -35,7 +35,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        authorization.login(emailLogin.toString(),passwordLogin.toString());
+        authorization.login(emailLogin.getText().toString(),passwordLogin.getText().toString());
 
     }
 }
