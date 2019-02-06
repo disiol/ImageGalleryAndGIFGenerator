@@ -19,7 +19,7 @@ public class DbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String SQL_CREATE_LOGIN_TABLE = "CREATE TABLE " + Contract.LoginData.TABLE_NAME + " ("
                 + Contract.LoginData._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + Contract.LoginData.COLUMN_TOCEN + " TEXT , "
+                + Contract.LoginData.COLUMN_TOKEN + " TEXT , "
                 + Contract.LoginData.COLUMN_AVATAR + " TEXT );";
 
         db.execSQL(SQL_CREATE_LOGIN_TABLE);
