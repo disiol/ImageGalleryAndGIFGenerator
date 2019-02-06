@@ -2,29 +2,40 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.signIn;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.Image;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.Authorization;
 
-import java.io.IOException;
-import java.util.LinkedHashSet;
+public class Login extends AppCompatActivity implements View.OnClickListener {
 
-import retrofit2.Response;
-
-public class Login extends AppCompatActivity {
+    private EditText emailLogin;
+    private EditText passwordLogin;
+    private TextView textViewUserName;
+    private Button buttonAccept;
+    private Authorization authorization;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //TODO проверку на зполненость обязательніх полей и вод ошибок
-//        try {
-//            Response<LinkedHashSet<String>> getAddedImages = new Image().getAddedImages();
-//            Log.d("My_log", String.valueOf(getAddedImages));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+
+        textViewUserName = findViewById(R.id.textViewUserName);
+        emailLogin = findViewById(R.id.login_edit_text_mail);
+        passwordLogin = findViewById(R.id.login_edit_text_password);
+        buttonAccept = findViewById(R.id.button_accept);
+        buttonAccept.setOnClickListener(this);
+
+        authorization = new Authorization();
+    }
+
+    @Override
+    public void onClick(View v) {
+        authorization.login(emailLogin.toString(),passwordLogin.toString());
 
     }
 }
