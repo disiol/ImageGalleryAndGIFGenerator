@@ -1,9 +1,12 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api;
 
+import android.net.Uri;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -19,7 +22,7 @@ public class Authorization {
     private String responseLogin;
 
 
-    public String login(String email, String password) {
+    public String login(String email, String password, final ImageView imageViewAvatar) {
         //TODO
         retrofitClient.serverApi.login(email, password).enqueue(new Callback<UserDTO>() {
             @Override
@@ -27,7 +30,8 @@ public class Authorization {
                 if (response.isSuccessful()) {
                     //TODO add response to db
                     responseLogin = response.body().toString();
-                    Log.d(MY_LOG, "login response: " + responseLogin);
+                    Uri imageURI = Uri.parse(response.body().getAvatarImageLink());
+                    getImageForAvatar(imageURI, imageViewAvatar);
 
                 } else {
                     try {
@@ -44,7 +48,7 @@ public class Authorization {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
-                    //TODO how err ni internet
+                //TODO how err ni internet
                 Log.e(MY_LOG, "login errorBody: " + t.toString());
 
             }
@@ -53,6 +57,12 @@ public class Authorization {
 
         return responseLogin;  // for tests;
     }
+
+    private void getImageForAvatar(Uri imageURI, ImageView imageViewAvatar) {
+        Picasso.get().load(imageURI).into(imageViewAvatar);
+        Log.d(MY_LOG, "login response: " + responseLogin);
+    }
+
 
     void signIn() {
         //TODO
