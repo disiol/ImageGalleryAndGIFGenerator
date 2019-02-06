@@ -11,9 +11,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.MY_LOG;
+
 public class Authorization {
-    public static final String MY_LOG = "MyLog";
-    RetrofitClient retrofitClient = new RetrofitClient();
+    private RetrofitClient retrofitClient = new RetrofitClient();
 
     private String responseLogin;
 
@@ -25,7 +26,7 @@ public class Authorization {
             public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
                 if (response.isSuccessful()) {
                     //TODO add response to db
-                    responseLogin = response.message();
+                    responseLogin = response.body().toString();
                     Log.d(MY_LOG, "login response: " + responseLogin);
 
                 } else {
@@ -43,7 +44,8 @@ public class Authorization {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
-                //TODO обработать ошибки
+                    //TODO how err ni internet
+                Log.e(MY_LOG, "login errorBody: " + t.toString());
 
             }
 

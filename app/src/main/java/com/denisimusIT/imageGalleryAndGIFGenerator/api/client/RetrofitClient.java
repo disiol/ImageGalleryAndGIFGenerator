@@ -13,7 +13,6 @@ public class RetrofitClient {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    public ServerApi serverApi = retrofit.create(ServerApi.class); //Создаем объект, при помощи которого будем выполнять запросы
-
+    public ServerApi serverApi = retrofit.create(ServerApi.class);
 
 }
