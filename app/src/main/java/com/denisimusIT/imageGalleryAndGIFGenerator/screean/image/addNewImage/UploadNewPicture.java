@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.screean.addNewImage;
+package com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.addNewImage;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

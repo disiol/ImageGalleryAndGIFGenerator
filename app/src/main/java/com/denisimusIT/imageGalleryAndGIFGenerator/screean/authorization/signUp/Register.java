@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.screean.signUp;
+package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

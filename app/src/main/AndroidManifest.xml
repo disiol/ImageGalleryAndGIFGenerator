@@ -11,11 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".screean.viewAddedImages.PicturesList"></activity>
-        <activity android:name=".screean.signUp.Register" />
-        <activity android:name=".screean.generateGIF.GIFImagesGeneration" />
-        <activity android:name=".screean.addNewImage.UploadNewPicture" />
-        <activity android:name=".screean.signIn.Login">
+        <activity android:name=".screean.image.viewAddedImages.PicturesList"></activity>
+        <activity android:name=".screean.authorization.signUp.Register" />
+        <activity android:name=".screean.image.generateGIF.GIFImagesGeneration" />
+        <activity android:name=".screean.image.addNewImage.UploadNewPicture" />
+        <activity android:name=".screean.authorization.signIn.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

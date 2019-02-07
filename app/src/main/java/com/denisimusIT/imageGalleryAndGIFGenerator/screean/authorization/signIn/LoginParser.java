@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api;
+package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn;
 
 import android.net.Uri;
 import android.util.Log;
@@ -17,7 +17,7 @@ import retrofit2.Response;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.MY_LOG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
-public class Authorization {
+public class LoginParser {
     private RetrofitClient retrofitClient = new RetrofitClient();
 
     private String responseLogin;

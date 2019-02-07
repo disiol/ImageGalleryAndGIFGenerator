@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.screean.signIn;
+package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.Authorization;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -17,7 +16,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private EditText passwordLogin;
     private TextView textViewUserName;
     private Button buttonAccept;
-    private Authorization authorization;
+    private LoginParser loginParser;
     private ImageView imageViewAvatar;
 
     @Override
@@ -33,12 +32,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         buttonAccept = findViewById(R.id.button_accept);
         buttonAccept.setOnClickListener(this);
 
-        authorization = new Authorization();
+        loginParser = new LoginParser();
     }
 
     @Override
     public void onClick(View v) {
-        authorization.login(emailLogin.getText().toString(),passwordLogin.getText().toString(),imageViewAvatar);
+        loginParser.login(emailLogin.getText().toString(),passwordLogin.getText().toString(),imageViewAvatar);
 
     }
 }
