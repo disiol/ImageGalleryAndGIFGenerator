@@ -3,6 +3,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
@@ -23,7 +24,7 @@ public class LoginParser {
     private String responseLogin;
 
 
-    public String login(String email, String password, final ImageView imageViewAvatar) {
+    public String login(String email, String password, final ImageView imageViewAvatar, final Login login) {
         //TODO
         retrofitClient.serverApi.login(email, password).enqueue(new Callback<UserDTO>() {
             @Override
@@ -38,7 +39,12 @@ public class LoginParser {
 
                 } else {
                     try {
+
                         responseLogin = response.errorBody().string();
+                        //TODO finish the text of an error
+                        Toast toast = Toast.makeText(login.getApplicationContext(),
+                                responseLogin, Toast.LENGTH_SHORT);
+                        toast.show();
                         Log.e(MY_LOG, "login errorBody: " + responseLogin);
 
                     } catch (IOException e) {
@@ -51,7 +57,10 @@ public class LoginParser {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
-                //TODO  err no internet
+                //TODO  finish the text of an error err connect to internet
+                Toast toast = Toast.makeText(login.getApplicationContext(),
+                        t.toString(), Toast.LENGTH_SHORT);
+                toast.show();
                 Log.e(MY_LOG, "login errorBody: " + t.toString());
 
             }
