@@ -37,7 +37,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        loginParser.login(emailLogin.getText().toString(),passwordLogin.getText().toString(),imageViewAvatar);
+        //TODO add progresBar
+        loginParser.login(emailLogin.getText().toString(),passwordLogin.getText().toString(),imageViewAvatar, (Login) this.getApplicationContext());
 
     }
 }

@@ -1,5 +1,6 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn;
 
+import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
@@ -7,7 +8,6 @@ import android.widget.Toast;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -15,10 +15,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtill.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.MY_LOG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
-public class LoginParser {
+class LoginParser {
     private RetrofitClient retrofitClient = new RetrofitClient();
 
     private String responseLogin;
@@ -42,9 +43,7 @@ public class LoginParser {
 
                         responseLogin = response.errorBody().string();
                         //TODO finish the text of an error
-                        Toast toast = Toast.makeText(login.getApplicationContext(),
-                                responseLogin, Toast.LENGTH_SHORT);
-                        toast.show();
+                        showToastError(login, responseLogin);
                         Log.e(MY_LOG, "login errorBody: " + responseLogin);
 
                     } catch (IOException e) {
@@ -58,9 +57,7 @@ public class LoginParser {
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
                 //TODO  finish the text of an error err connect to internet
-                Toast toast = Toast.makeText(login.getApplicationContext(),
-                        t.toString(), Toast.LENGTH_SHORT);
-                toast.show();
+                showToastError(login, t.toString());
                 Log.e(MY_LOG, "login errorBody: " + t.toString());
 
             }
@@ -69,6 +66,7 @@ public class LoginParser {
 
         return responseLogin;  // for tests;
     }
+
 
 
 
