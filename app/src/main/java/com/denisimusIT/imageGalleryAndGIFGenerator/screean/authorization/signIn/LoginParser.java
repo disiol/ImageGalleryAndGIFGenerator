@@ -62,7 +62,5 @@ public class LoginParser {
     }
 
 
-    void signUp() {
-        //TODO
-    }
+
 }
