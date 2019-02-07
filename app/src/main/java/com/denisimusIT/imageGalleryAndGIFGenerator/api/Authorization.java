@@ -15,6 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.MY_LOG;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
 public class Authorization {
     private RetrofitClient retrofitClient = new RetrofitClient();
@@ -30,6 +31,8 @@ public class Authorization {
                 if (response.isSuccessful()) {
                     //TODO add response to db
                     responseLogin = response.body().toString();
+                    Log.d(MY_LOG, "login response: " + responseLogin);
+
                     Uri imageURI = Uri.parse(response.body().getAvatarImageLink());
                     getImageForAvatar(imageURI, imageViewAvatar);
 
@@ -48,7 +51,7 @@ public class Authorization {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
-                //TODO how err ni internet
+                //TODO  err no internet
                 Log.e(MY_LOG, "login errorBody: " + t.toString());
 
             }
@@ -58,13 +61,8 @@ public class Authorization {
         return responseLogin;  // for tests;
     }
 
-    private void getImageForAvatar(Uri imageURI, ImageView imageViewAvatar) {
-        Picasso.get().load(imageURI).into(imageViewAvatar);
-        Log.d(MY_LOG, "login response: " + responseLogin);
-    }
 
-
-    void signIn() {
+    void signUp() {
         //TODO
     }
 }
