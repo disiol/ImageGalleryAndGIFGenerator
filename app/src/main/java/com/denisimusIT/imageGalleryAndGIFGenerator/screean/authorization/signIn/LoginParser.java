@@ -25,7 +25,7 @@ class LoginParser {
     private String responseLogin;
 
 
-    public String login(String email, String password, final ImageView imageViewAvatar, final Login login) {
+    public String login(String email, String password, final ImageView imageViewAvatar, final Context login) {
         //TODO
         retrofitClient.serverApi.login(email, password).enqueue(new Callback<UserDTO>() {
             @Override
@@ -37,6 +37,7 @@ class LoginParser {
 
                     Uri imageURI = Uri.parse(response.body().getAvatarImageLink());
                     getImageForAvatar(imageURI, imageViewAvatar);
+                    //TODO вызвать PicturesList
 
                 } else {
                     try {
