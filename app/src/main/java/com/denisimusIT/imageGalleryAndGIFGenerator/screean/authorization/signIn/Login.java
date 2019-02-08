@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
+import com.denisimusIT.imageGalleryAndGIFGenerator.db.ImageGalleryAndGIFGeneratorDbHelper;
+
+import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.crateDataBase;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -18,6 +21,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private Button buttonAccept;
     private LoginParser loginParser;
     private ImageView imageViewAvatar;
+
+    private ImageGalleryAndGIFGeneratorDbHelper imageGalleryAndGIFGeneratorDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +37,14 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         buttonAccept = findViewById(R.id.button_accept);
         buttonAccept.setOnClickListener(this);
 
+        // создаем объект для создания и управления версиями БД
+        crateDataBase(this);
+
         loginParser = new LoginParser();
+
     }
+
+
 
     @Override
     public void onClick(View v) {
