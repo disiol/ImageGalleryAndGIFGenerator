@@ -6,22 +6,22 @@
     android:layout_height="match_parent"
     android:background="@drawable/sidebar_login"
     tools:context=".screean.authorization.signIn.Login">
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageViewAvatar"
-        android:layout_width="96dp"
-        android:layout_height="96dp"
-        android:layout_margin="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="@dimen/layout_width"
+        android:layout_height="@dimen/layout_height"
         android:background="@drawable/user_profile_image_background"
         android:clickable="true"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.37"
-        app:srcCompat="@mipmap/profile" />
+        app:srcCompat="@mipmap/profile"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/textViewUserName"
@@ -32,9 +32,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:background="@color/gray_tint"
         android:drawableLeft="@drawable/user"
         android:hint="@string/textViewUserNameHint"
-        android:background="@color/gray_tint"
         android:textColor="@color/white"
         android:textColorHint="@color/orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,12 +50,12 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:background="@color/gray_tint"
         android:drawableLeft="@drawable/user"
         android:hint="@string/ent_mail"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
         android:textColorHint="@color/orange_dark"
-        android:background="@color/gray_tint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewUserName" />
@@ -69,12 +69,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:background="@color/gray_tint"
         android:drawableLeft="@drawable/lock"
         android:hint="@string/ent_pass"
-        android:textColorHint="@color/orange_dark"
         android:inputType="textPassword"
         android:textColor="@color/white"
-        android:background="@color/gray_tint"
+        android:textColorHint="@color/orange_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_edit_text_mail" />
