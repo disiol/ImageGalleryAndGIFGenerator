@@ -36,6 +36,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         passwordLogin = findViewById(R.id.login_edit_text_password);
         buttonAccept = findViewById(R.id.button_accept);
         buttonAccept.setOnClickListener(this);
+        imageViewAvatar.setOnClickListener(this); //TODO strat image laiyt if user textViewUserName dint = null
 
         // создаем объект для создания и управления версиями БД
         crateDataBase(this);
@@ -47,8 +48,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        //TODO add progresBar
+        //TODO add progressBar
         loginParser.login(emailLogin.getText().toString(), passwordLogin.getText().toString(), imageViewAvatar, textViewUserName,this.getApplicationContext());
+        //TODO add tsrat image laiyt if user textViewUserName dint = null
+        //TODO add tsrat register asck
 
     }
 }
