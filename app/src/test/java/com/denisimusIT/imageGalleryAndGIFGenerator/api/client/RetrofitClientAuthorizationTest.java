@@ -72,7 +72,7 @@ public class RetrofitClientAuthorizationTest {
         assertEquals("CrateNewUserErrorEmptyFields_password_avatar_Test", expected, actual);
     }
 
-    @Ignore  //TODO
+
     @Test
     public void CrateNewUserError_This_value_is_already_used_Test() throws IOException {
 

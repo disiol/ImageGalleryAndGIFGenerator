@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
@@ -14,10 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.addDataToTableLoginData;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.clearTable;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getAllDataFromTableLoginData;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getAvatarDataFromTableLoginData;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.*;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtill.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
@@ -28,7 +26,7 @@ class LoginParser {
     private String responseLogin;
 
 
-    public String login(String email, String password, final ImageView imageViewAvatar, final Context login) {
+    public String login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName, final Context login) {
         //TODO
         retrofitClient.serverApi.login(email, password).enqueue(new Callback<UserDTO>() {
             @Override
@@ -40,14 +38,17 @@ class LoginParser {
                     Log.d(LOG_TAG, "login response: " + responseLogin);
 
                     String avatarImageLink = response.body().getAvatarImageLink();//TODO get from table user data;
+                    String creationTime = response.body().getCreationTime();
                     String token = response.body().getToken();
-                    addDataToTableLoginData(login, avatarImageLink, token);
+
+                    addDataToTableLoginData(login, avatarImageLink, creationTime, token);
                     getAllDataFromTableLoginData(login);
 
                     String avatarDataFromTableLoginData = getAvatarDataFromTableLoginData(login);
 
-                    Uri imageURI = Uri.parse(avatarImageLink);
+                    Uri imageURI = Uri.parse(avatarDataFromTableLoginData);
                     getImageForAvatar(imageURI, imageViewAvatar);
+                    textViewUserName.setText(getCreationTimeDataFromTableLoginData(login));
                     //TODO вызвать PicturesList
 
                 } else {
