@@ -17,7 +17,7 @@
         android:paddingBottom="@dimen/activity_padding">
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/circleImageView_sign_up"
             android:layout_width="@dimen/layout_width"
             android:layout_height="@dimen/layout_height"
