@@ -6,14 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn.Login;
-
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
 public class DatabaseComands {
     private static ImageGalleryAndGIFGeneratorDbHelper imageGalleryAndGIFGeneratorDbHelper;
 
-    public final static void crateDataBase(Login login) {
+    public final static void crateDataBase(Context login) {
         Log.d(LOG_TAG, "--- crateDataBase: ---");
         imageGalleryAndGIFGeneratorDbHelper = new ImageGalleryAndGIFGeneratorDbHelper(login);
         SQLiteDatabase db = imageGalleryAndGIFGeneratorDbHelper.getReadableDatabase();
