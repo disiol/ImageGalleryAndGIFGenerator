@@ -1,8 +1,10 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,8 +13,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
+import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.Register;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.crateDataBase;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,13 +59,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.button_accept:
                 loginParser.login(emailLogin.getText().toString(), passwordLogin.getText().toString(),
-                        imageViewAvatar, textViewUserName, this.getApplicationContext(),buttonAccept, progressBar);
+                        imageViewAvatar, textViewUserName, this.getApplicationContext(), buttonAccept, progressBar);
                 break;
             case R.id.imageViewAvatar:
-                if(textViewUserName.getText() != null){
+                Log.d(LOG_TAG, "imageViewAvatar click");
+                if (textViewUserName.getText() != null) {
                     //TODO вызвать PicturesList
-                }else{
-                    //TODO вызвать Register
+                } else {
+                    Intent intent = new Intent(this, Register.class);
+                    startActivity(intent);
+
                 }
 
                 break;

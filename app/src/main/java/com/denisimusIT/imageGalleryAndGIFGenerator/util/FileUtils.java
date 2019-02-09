@@ -26,8 +26,11 @@ public class FileUtils {
     }
 
     public final static void getImageForAvatar(Uri imageURI, ImageView imageView) {
-        Picasso.get().setIndicatorsEnabled(true);
-        Picasso.get().load(imageURI).into(imageView);
+        int radius = 0;
+        Picasso.get()
+                .load(imageURI)
+                .transform(new CircularTransformation(radius))
+                .into(imageView);
         Log.d(LOG_TAG, "FileUtils getImageForAvatar: " + imageURI);
     }
 

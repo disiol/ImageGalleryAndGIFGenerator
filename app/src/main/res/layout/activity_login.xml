@@ -7,7 +7,7 @@
     android:background="@drawable/sidebar_login"
     tools:context=".screean.authorization.signIn.Login">
 
-    <de.hdodenhof.circleimageview.CircleImageView
+    <ImageView
         android:id="@+id/imageViewAvatar"
         android:layout_width="@dimen/layout_width"
         android:layout_height="@dimen/layout_height"
