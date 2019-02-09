@@ -63,7 +63,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.imageViewAvatar:
                 Log.d(LOG_TAG, "imageViewAvatar click");
-                if (textViewUserName.getText() != null) {
+                if (!textViewUserName.getText().toString().isEmpty()) {
                     //TODO вызвать PicturesList
                 } else {
                     Intent intent = new Intent(this, Register.class);
