@@ -52,10 +52,24 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        loginParser.login(emailLogin.getText().toString(), passwordLogin.getText().toString(), imageViewAvatar, textViewUserName, this.getApplicationContext(),progressBar);
+        switch (v.getId()) {
+            case R.id.button_accept:
+                loginParser.login(emailLogin.getText().toString(), passwordLogin.getText().toString(),
+                        imageViewAvatar, textViewUserName, this.getApplicationContext(),buttonAccept, progressBar);
+                break;
+            case R.id.imageViewAvatar:
+                if(textViewUserName.getText() != null){
+                    //TODO вызвать PicturesList
+                }else{
+                    //TODO вызвать Register
+                }
 
-        //TODO add tsrat image laiyt if user textViewUserName dint = null
-        //TODO add tsrat register asck
+                break;
+
+        }
 
     }
+    //TODO add tsrat register asck
+
 }
+
