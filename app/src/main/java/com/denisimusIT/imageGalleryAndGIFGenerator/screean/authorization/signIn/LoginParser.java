@@ -89,7 +89,8 @@ class LoginParser {
                 public void onFailure(Call<UserDTO> call, Throwable t) {
                     //TODO  finish the text of an error err connect to internet
                     showToastError(context, t.toString());
-                    Log.e(LOG_TAG, "context errorBody: " + t.toString());
+                    Log.e(LOG_TAG, "context errorBody: " + t.getMessage());
+                    progressBar.setVisibility(ProgressBar.INVISIBLE);
 
 
                 }
