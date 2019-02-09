@@ -3,6 +3,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,10 +33,16 @@ class LoginParser {
     private String responseLogin;
 
 
-    public String login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName, final Context context, final ProgressBar progressBar) {
+    public String login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName,
+                        final Context context, final Button buttonAccept, final ProgressBar progressBar) {
+
+        buttonAccept.setClickable(false);
 
         if (email.isEmpty() || password.isEmpty()) {
+            buttonAccept.setClickable(true);
+
             showToastError(context, context.getString(R.string.eror_empty_fileds));
+
         } else {
             //TODO dSet up progress before call
 
@@ -65,6 +72,7 @@ class LoginParser {
                         textViewUserName.setText(getCreationTimeDataFromTableLoginData(context));
                         //TODO вызвать PicturesList
                         progressBar.setVisibility(ProgressBar.INVISIBLE);
+                        buttonAccept.setClickable(true);
 
 
                     } else {
@@ -75,6 +83,8 @@ class LoginParser {
                             showToastError(context, responseLogin);
                             Log.e(LOG_TAG, "context errorBody: " + responseLogin);
                             progressBar.setVisibility(ProgressBar.INVISIBLE);
+                            buttonAccept.setClickable(true);
+
 
 
                         } catch (IOException e) {
