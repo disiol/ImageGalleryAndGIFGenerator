@@ -16,6 +16,7 @@
     <string name="registration_user_password">password</string>
     <string name="registration_user_confirm_password">confirm password</string>
     <string name="registration_sign_up">sign up</string>
-    <string name="eror_empty_fileds">fields cannot be empty</string>
+    <string name="eror_empty_fileds"><b>fields cannot be empty</b></string>
+    <string name="textView_circle_ImageView_sign_up_text">Click for the choice of an avatar</string>
 
 </resources>

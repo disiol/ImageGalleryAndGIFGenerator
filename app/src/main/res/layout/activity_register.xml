@@ -22,8 +22,9 @@
             android:layout_width="@dimen/layout_width"
             android:layout_height="@dimen/layout_height"
             android:layout_margin="30dp"
+            android:background="@drawable/user_profile_image_background"
+            android:clickable="true"
             android:scaleType="centerCrop"
-            android:src="@drawable/sign_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -128,6 +129,17 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView_circle_ImageView_sign_up"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/textView_circle_ImageView_sign_up_text"
+            android:textColor="@color/red_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/circleImageView_sign_up"
+            app:layout_constraintEnd_toEndOf="@+id/circleImageView_sign_up"
+            app:layout_constraintStart_toStartOf="@+id/circleImageView_sign_up"
+            app:layout_constraintTop_toTopOf="@+id/circleImageView_sign_up" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
