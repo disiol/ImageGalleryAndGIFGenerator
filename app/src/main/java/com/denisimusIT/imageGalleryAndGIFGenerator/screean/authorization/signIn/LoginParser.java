@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
@@ -31,42 +32,50 @@ class LoginParser {
     private String responseLogin;
 
 
-    public String login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName, final Context login) {
+    public String login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName, final Context context, final ProgressBar progressBar) {
 
         if (email.isEmpty() || password.isEmpty()) {
-            showToastError(login, login.getString(R.string.eror_empty_fileds));
+            showToastError(context, context.getString(R.string.eror_empty_fileds));
         } else {
-            //TODO
+            //TODO dSet up progress before call
+
+
+            progressBar.setVisibility(ProgressBar.VISIBLE);
             retrofitClient.serverApi.login(email, password).enqueue(new Callback<UserDTO>() {
                 @Override
                 public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
                     if (response.isSuccessful()) {
+                        progressBar.setVisibility(ProgressBar.INVISIBLE);
 
-                        clearTable(login);
+                        clearTable(context);
                         responseLogin = response.body().toString();
-                        Log.d(LOG_TAG, "login response: " + responseLogin);
+                        Log.d(LOG_TAG, "context response: " + responseLogin);
 
                         String avatarImageLink = response.body().getAvatarImageLink();
                         String creationTime = response.body().getCreationTime();
                         String token = response.body().getToken();
 
-                        addDataToTableLoginData(login, avatarImageLink, creationTime, token);
-                        getAllDataFromTableLoginData(login);
+                        addDataToTableLoginData(context, avatarImageLink, creationTime, token);
+                        getAllDataFromTableLoginData(context);
 
-                        String avatarDataFromTableLoginData = getAvatarDataFromTableLoginData(login);
+                        String avatarDataFromTableLoginData = getAvatarDataFromTableLoginData(context);
 
                         Uri imageURI = Uri.parse(avatarDataFromTableLoginData);
                         getImageForAvatar(imageURI, imageViewAvatar);
-                        textViewUserName.setText(getCreationTimeDataFromTableLoginData(login));
+                        textViewUserName.setText(getCreationTimeDataFromTableLoginData(context));
                         //TODO вызвать PicturesList
+                        progressBar.setVisibility(ProgressBar.INVISIBLE);
+
 
                     } else {
                         try {
 
                             responseLogin = response.errorBody().string();
                             //TODO finish the text of an error
-                            showToastError(login, responseLogin);
-                            Log.e(LOG_TAG, "login errorBody: " + responseLogin);
+                            showToastError(context, responseLogin);
+                            Log.e(LOG_TAG, "context errorBody: " + responseLogin);
+                            progressBar.setVisibility(ProgressBar.INVISIBLE);
+
 
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -79,8 +88,9 @@ class LoginParser {
                 @Override
                 public void onFailure(Call<UserDTO> call, Throwable t) {
                     //TODO  finish the text of an error err connect to internet
-                    showToastError(login, t.toString());
-                    Log.e(LOG_TAG, "login errorBody: " + t.toString());
+                    showToastError(context, t.toString());
+                    Log.e(LOG_TAG, "context errorBody: " + t.toString());
+
 
                 }
 
