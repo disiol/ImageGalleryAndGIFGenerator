@@ -33,9 +33,9 @@ class LoginParser {
 
     public String login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName, final Context login) {
 
-        if (email.isEmpty() || password.isEmpty()){
-            showToastError(login,login.getString(R.string.eror_empty_fileds));
-        }else {
+        if (email.isEmpty() || password.isEmpty()) {
+            showToastError(login, login.getString(R.string.eror_empty_fileds));
+        } else {
             //TODO
             retrofitClient.serverApi.login(email, password).enqueue(new Callback<UserDTO>() {
                 @Override
