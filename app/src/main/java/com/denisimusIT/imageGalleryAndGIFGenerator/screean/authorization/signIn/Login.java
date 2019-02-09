@@ -52,8 +52,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        //TODO add progressBar
-       // progressBar.setVisibility(ProgressBar.VISIBLE);
         loginParser.login(emailLogin.getText().toString(), passwordLogin.getText().toString(), imageViewAvatar, textViewUserName, this.getApplicationContext(),progressBar);
 
         //TODO add tsrat image laiyt if user textViewUserName dint = null

@@ -25,8 +25,9 @@ public class FileUtils {
         return FilePath;
     }
 
-    public final static void getImageForAvatar(Uri imageURI, ImageView imageViewAvatar) {
-        Picasso.get().load(imageURI).into(imageViewAvatar);
+    public final static void getImageForAvatar(Uri imageURI, ImageView imageView) {
+        Picasso.get().setIndicatorsEnabled(true);
+        Picasso.get().load(imageURI).into(imageView);
         Log.d(LOG_TAG, "FileUtils getImageForAvatar: " + imageURI);
     }
 
