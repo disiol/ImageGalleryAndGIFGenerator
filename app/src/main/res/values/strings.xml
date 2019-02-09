@@ -16,5 +16,6 @@
     <string name="registration_user_password">password</string>
     <string name="registration_user_confirm_password">confirm password</string>
     <string name="registration_sign_up">sign up</string>
+    <string name="eror_empty_fileds">fields cannot be empty</string>
 
 </resources>
