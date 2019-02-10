@@ -2,6 +2,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.ErrorAlertDialog;
 
 import java.io.IOException;
 
@@ -34,7 +36,7 @@ class LoginParser {
     private RetrofitClient retrofitClient = new RetrofitClient();
 
     private String responseLogin;
-    private CreateTheNewUserAlertDialog myDialogFragment;
+    private DialogFragment dialogFragment;
     private Context context;
 
     public void login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName,
@@ -103,6 +105,7 @@ class LoginParser {
                 @Override
                 public void onFailure(Call<UserDTO> call, Throwable t) {
                     //TODO  finish the text of an error err connect to internet
+                    showErrorAlertDialog(supportFragmentManager);
                     showToastError(context, t.toString());
                     Log.e(LOG_TAG, "view errorBody: " + t.getMessage());
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
@@ -122,8 +125,17 @@ class LoginParser {
         //TODO made res String
         String message = "Create the new user?";
         String yes = "Yes";
-        myDialogFragment = new CreateTheNewUserAlertDialog(responseLogin, message, yes, "No",context);
-        myDialogFragment.show(supportFragmentManager, "dialog");
+        String no = "No";
+        dialogFragment = new CreateTheNewUserAlertDialog(responseLogin, message, yes, no,context);
+        dialogFragment.show(supportFragmentManager, "dialog");
+    }
+
+    private void showErrorAlertDialog(FragmentManager supportFragmentManager) {
+        //TODO made res String
+        String message = "There is no connection to the Internet, please check connection";
+        String yes = "Ok";
+        dialogFragment = new ErrorAlertDialog(responseLogin, message, yes);
+        dialogFragment.show(supportFragmentManager, "dialog");
     }
 
 
