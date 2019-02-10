@@ -106,6 +106,8 @@ class LoginParser {
                     showToastError(context, t.toString());
                     Log.e(LOG_TAG, "view errorBody: " + t.getMessage());
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
+                    buttonAccept.setClickable(true);
+
 
 
                 }
