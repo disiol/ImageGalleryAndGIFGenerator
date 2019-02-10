@@ -2,7 +2,9 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn
 
 import android.content.Context;
 import android.net.Uri;
+import android.support.v4.app.FragmentManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
 
 import java.io.IOException;
 
@@ -31,10 +34,13 @@ class LoginParser {
     private RetrofitClient retrofitClient = new RetrofitClient();
 
     private String responseLogin;
+    private CreateTheNewUserAlertDialog myDialogFragment;
+    private Context context;
 
+    public void login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName,
+                        final View view, final Button buttonAccept, final ProgressBar progressBar, final FragmentManager supportFragmentManager) {
+        context = view.getContext();
 
-    public String login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName,
-                        final Context context, final Button buttonAccept, final ProgressBar progressBar) {
 
         buttonAccept.setClickable(false);
 
@@ -56,7 +62,7 @@ class LoginParser {
 
                         clearTable(context);
                         responseLogin = response.body().toString();
-                        Log.d(LOG_TAG, "context response: " + responseLogin);
+                        Log.d(LOG_TAG, "view response: " + responseLogin);
 
                         String avatarImageLink = response.body().getAvatarImageLink();
                         String creationTime = response.body().getCreationTime();
@@ -80,11 +86,10 @@ class LoginParser {
 
                             responseLogin = response.errorBody().string();
                             //TODO finish the text of an error
-                            showToastError(context, responseLogin);
-                            Log.e(LOG_TAG, "context errorBody: " + responseLogin);
+                            showCreateTheNewUserAlertDialog(supportFragmentManager);
+                            Log.e(LOG_TAG, "view errorBody: " + responseLogin);
                             progressBar.setVisibility(ProgressBar.INVISIBLE);
                             buttonAccept.setClickable(true);
-
 
 
                         } catch (IOException e) {
@@ -99,7 +104,7 @@ class LoginParser {
                 public void onFailure(Call<UserDTO> call, Throwable t) {
                     //TODO  finish the text of an error err connect to internet
                     showToastError(context, t.toString());
-                    Log.e(LOG_TAG, "context errorBody: " + t.getMessage());
+                    Log.e(LOG_TAG, "view errorBody: " + t.getMessage());
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
 
 
@@ -109,7 +114,11 @@ class LoginParser {
 
         }
 
-        return responseLogin;  // for tests;
+    }
+
+    private void showCreateTheNewUserAlertDialog(FragmentManager supportFragmentManager) {
+        myDialogFragment = new CreateTheNewUserAlertDialog(responseLogin, "Create the new user?", "Yes", "No",context);
+        myDialogFragment.show(supportFragmentManager, "dialog");
     }
 
 

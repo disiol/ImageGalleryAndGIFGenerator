@@ -2,7 +2,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -27,8 +27,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     private LoginParser loginParser;
     private ImageView imageViewAvatar;
     private ProgressBar progressBar;
+    private FragmentManager supportFragmentManager;
 
-    private Handler handler = new Handler();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +49,19 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         crateDataBase(this);
         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
+        supportFragmentManager = getSupportFragmentManager();
+
         loginParser = new LoginParser();
 
     }
 
 
     @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View view) {
+        switch (view.getId()) {
             case R.id.button_accept:
                 loginParser.login(emailLogin.getText().toString(), passwordLogin.getText().toString(),
-                        imageViewAvatar, textViewUserName, this.getApplicationContext(), buttonAccept, progressBar);
+                        imageViewAvatar, textViewUserName, view, buttonAccept, progressBar, supportFragmentManager);
                 break;
             case R.id.imageViewAvatar:
                 Log.d(LOG_TAG, "imageViewAvatar click");
