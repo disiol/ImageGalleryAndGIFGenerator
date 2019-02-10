@@ -119,7 +119,10 @@ class LoginParser {
     }
 
     private void showCreateTheNewUserAlertDialog(FragmentManager supportFragmentManager) {
-        myDialogFragment = new CreateTheNewUserAlertDialog(responseLogin, "Create the new user?", "Yes", "No",context);
+        //TODO made res String
+        String message = "Create the new user?";
+        String yes = "Yes";
+        myDialogFragment = new CreateTheNewUserAlertDialog(responseLogin, message, yes, "No",context);
         myDialogFragment.show(supportFragmentManager, "dialog");
     }
 
