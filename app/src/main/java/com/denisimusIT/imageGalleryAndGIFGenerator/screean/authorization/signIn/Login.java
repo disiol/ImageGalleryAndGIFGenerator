@@ -78,7 +78,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
 
     }
-    //TODO add tsrat register asck
 
 }
 
