@@ -19,4 +19,7 @@
     <string name="eror_empty_fileds"><b>fields cannot be empty</b></string>
     <string name="textView_circle_ImageView_sign_up_text">Click for the choice of an avatar</string>
 
+    <string name="permission_necessary">Access to storage</string>
+    <string name="storage_permission_is_encessary_to_wrote_event">It is necessary to provide access to storage for correct operation of application</string>
+
 </resources>
