@@ -54,9 +54,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         }
 
 
-
     }
-
 
 
     private static final int PERMISSION_REQUEST_CODE = 200;
@@ -124,7 +122,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-
     private void openActivity() {
         setContentView(R.layout.activity_login);
         imageViewAvatar = findViewById(R.id.imageViewAvatar);
@@ -150,13 +147,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
 
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_accept:
-                loginParser.login(emailLogin.getText().toString(), passwordLogin.getText().toString(),
-                        imageViewAvatar, textViewUserName, view, buttonAccept, progressBar, supportFragmentManager);
+                loginParser.login(emailLogin, passwordLogin, imageViewAvatar, textViewUserName,
+                        view, buttonAccept, progressBar, supportFragmentManager);
                 break;
             case R.id.imageViewAvatar:
                 Log.d(LOG_TAG, "imageViewAvatar click");

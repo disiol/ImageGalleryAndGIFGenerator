@@ -32,6 +32,8 @@ public class FileUtils {
                 .transform(new CircularTransformation(radius))
                 .into(imageView);
         Log.d(LOG_TAG, "FileUtils getImageForAvatar: " + imageURI);
+
+
     }
 
 }

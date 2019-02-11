@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -25,7 +27,6 @@ import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.addDataToTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.clearTableLoginData;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getAllDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getAvatarDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getCreationTimeDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtill.showToastError;
@@ -38,18 +39,41 @@ class LoginParser {
     private String responseLogin;
     private DialogFragment dialogFragment;
     private Context context;
+    private boolean cancel;
 
-    public void login(String email, String password, final ImageView imageViewAvatar, final TextView textViewUserName,
-                        final View view, final Button buttonAccept, final ProgressBar progressBar, final FragmentManager supportFragmentManager) {
+    public void login(EditText emailLogin, EditText passwordLogin, final ImageView imageViewAvatar, final TextView textViewUserName,
+                      final View view, final Button buttonAccept, final ProgressBar progressBar, final FragmentManager supportFragmentManager) {
+
         context = view.getContext();
 
+        resetErrors(emailLogin, passwordLogin);
+
+        String email = emailLogin.getText().toString();
+        String password = passwordLogin.getText().toString();
+
+        cancel = false;
+        View focusView = null;
 
         buttonAccept.setClickable(false);
 
         if (email.isEmpty() || password.isEmpty()) {
             buttonAccept.setClickable(true);
-
             showToastError(context, context.getString(R.string.eror_empty_fileds));
+
+        }
+        if (TextUtils.isEmpty(email)) {
+            emailLogin.setError(context.getString(R.string.error_field_required));
+            focusView = emailLogin;
+            cancel = true;
+        } else if (!isEmailValid(email)) {
+            emailLogin.setError(context.getString(R.string.error_invalid_email));
+            focusView = emailLogin;
+            cancel = true;
+        }
+
+        if (cancel) {
+            focusView.requestFocus();
+            buttonAccept.setClickable(true);
 
         } else {
 
@@ -89,6 +113,7 @@ class LoginParser {
                             showCreateTheNewUserAlertDialog(supportFragmentManager);
                             Log.e(LOG_TAG, "view errorBody: " + responseLogin);
                             progressBar.setVisibility(ProgressBar.INVISIBLE);
+                            cancel = true;
                             buttonAccept.setClickable(true);
 
 
@@ -110,7 +135,6 @@ class LoginParser {
                     buttonAccept.setClickable(true);
 
 
-
                 }
 
             });
@@ -119,12 +143,26 @@ class LoginParser {
 
     }
 
+    private void resetErrors(EditText emailLogin, EditText passwordLogin) {
+        emailLogin.setError(null);
+        passwordLogin.setError(null);
+    }
+
+    private boolean isEmailValid(String email) {
+        return email.contains("@");
+    }
+
+    private boolean isPasswordValid(String password) {
+        //TODO: Replace this with your own logic
+        return password.length() > 4;
+    }
+
     private void showCreateTheNewUserAlertDialog(FragmentManager supportFragmentManager) {
         //TODO made res String
         String message = "Create the new user?";
         String yes = "Yes";
         String no = "No";
-        dialogFragment = new CreateTheNewUserAlertDialog(responseLogin, message, yes, no,context);
+        dialogFragment = new CreateTheNewUserAlertDialog(responseLogin, message, yes, no, context);
         dialogFragment.show(supportFragmentManager, "dialog");
     }
 

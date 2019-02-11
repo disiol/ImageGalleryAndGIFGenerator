@@ -20,7 +20,7 @@ public class RecvestsParser {
         return RequestBody.create(MediaType.parse("text/plain"), string);
     }
 
-    public static RequestBody getImageRequestBody(File imageFile) {
+    public static RequestBody getImageRequestBody(String imageFile) {
         return RequestBody.create(MediaType.parse(IMAGE_MEDIA_TYPE), imageFile);
     }
 

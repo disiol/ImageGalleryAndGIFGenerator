@@ -80,7 +80,7 @@ public class RetrofitClientAuthorizationTest {
         RequestBody username = parseStringIntoRequestBody("Denis");
         RequestBody email = parseStringIntoRequestBody("disiol@mail.ru");
         RequestBody password = parseStringIntoRequestBody("password");
-        MultipartBody.Part avatar = MultipartBody.Part.create(getImageRequestBody(file));
+        MultipartBody.Part avatar = MultipartBody.Part.create(getImageRequestBody(file.getPath()));
 
         String expected = "{\"children\":{\"username\":{},\"email\":{\"errors\":[\"This value is already used.\"]},\"password\":{},\"avatar\":{}}}";
 
