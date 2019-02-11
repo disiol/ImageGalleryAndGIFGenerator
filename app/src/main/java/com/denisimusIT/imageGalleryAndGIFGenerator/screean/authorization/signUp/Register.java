@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 
 public class Register extends AppCompatActivity implements View.OnClickListener  {
-    TextView textViewImageViewSignUp;
     EditText editTextUserName, editTextEmail, editTextPassword, editTextConfimPassWord;
     ImageView imageViewRegister;
     Button buttonRegistrationSignUp;
