@@ -52,7 +52,6 @@ class LoginParser {
             showToastError(context, context.getString(R.string.eror_empty_fileds));
 
         } else {
-            //TODO dSet up progress before call
 
 
             progressBar.setVisibility(ProgressBar.VISIBLE);
@@ -71,7 +70,6 @@ class LoginParser {
                         String token = response.body().getToken();
 
                         addDataToTableLoginData(context, avatarImageLink, creationTime, token);
-                        getAllDataFromTableLoginData(context);
 
                         String avatarDataFromTableLoginData = getAvatarDataFromTableLoginData(context);
 
