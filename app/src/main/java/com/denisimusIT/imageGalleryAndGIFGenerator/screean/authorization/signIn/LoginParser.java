@@ -24,7 +24,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.addDataToTableLoginData;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.clearTable;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.clearTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getAllDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getAvatarDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getCreationTimeDataFromTableLoginData;
@@ -62,7 +62,7 @@ class LoginParser {
                     if (response.isSuccessful()) {
                         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
-                        clearTable(context);
+                        clearTableLoginData(context);
                         responseLogin = response.body().toString();
                         Log.d(LOG_TAG, "view response: " + responseLogin);
 

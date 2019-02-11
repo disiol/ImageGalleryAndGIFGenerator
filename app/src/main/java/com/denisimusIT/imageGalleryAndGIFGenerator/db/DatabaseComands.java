@@ -11,9 +11,9 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG
 public class DatabaseComands {
     private static ImageGalleryAndGIFGeneratorDbHelper imageGalleryAndGIFGeneratorDbHelper;
 
-    public final static void crateDataBase(Context login) {
+    public final static void crateDataBase(Context context) {
         Log.d(LOG_TAG, "--- crateDataBase: ---");
-        imageGalleryAndGIFGeneratorDbHelper = new ImageGalleryAndGIFGeneratorDbHelper(login);
+        imageGalleryAndGIFGeneratorDbHelper = new ImageGalleryAndGIFGeneratorDbHelper(context);
         SQLiteDatabase db = imageGalleryAndGIFGeneratorDbHelper.getReadableDatabase();
         imageGalleryAndGIFGeneratorDbHelper.close();
     }
@@ -38,8 +38,8 @@ public class DatabaseComands {
         imageGalleryAndGIFGeneratorDbHelper.close();
     }
 
-    public final static void getAllDataFromTableLoginData(Context login) {
-        SQLiteDatabase db = connectToDB(login);
+    public final static void getAllDataFromTableLoginData(Context context) {
+        SQLiteDatabase db = connectToDB(context);
         // создаем объект для данных
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- Rows in mytable: ---");
@@ -72,8 +72,8 @@ public class DatabaseComands {
     }
 
 
-    public final static String getAvatarDataFromTableLoginData(Context login) {
-        SQLiteDatabase db = connectToDB(login);
+    public final static String getAvatarDataFromTableLoginData(Context context) {
+        SQLiteDatabase db = connectToDB(context);
         // создаем объект для данных
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- Rows in mytable: ---");
@@ -102,8 +102,8 @@ public class DatabaseComands {
         imageGalleryAndGIFGeneratorDbHelper.close();
         return null;
     }
-    public final static String getCreationTimeDataFromTableLoginData(Context login) {
-        SQLiteDatabase db = connectToDB(login);
+    public final static String getCreationTimeDataFromTableLoginData(Context context) {
+        SQLiteDatabase db = connectToDB(context);
         // создаем объект для данных
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- Rows in mytable: ---");
@@ -164,16 +164,16 @@ public class DatabaseComands {
         return null;
     }
 
-    public static void clearTable(Context login) {
+    public static void clearTableLoginData(Context context) {
         Log.d(LOG_TAG, "--- Clear " + LoginContract.LoginData.TABLE_NAME + "---");
-        SQLiteDatabase db = connectToDB(login);
+        SQLiteDatabase db = connectToDB(context);
         // удаляем все записи
         int clearCount = db.delete(LoginContract.LoginData.TABLE_NAME, null, null);
         Log.d(LOG_TAG, "deleted rows count = " + clearCount);
     }
 
-    private static SQLiteDatabase connectToDB(Context login) {
-        imageGalleryAndGIFGeneratorDbHelper = new ImageGalleryAndGIFGeneratorDbHelper(login);
+    private static SQLiteDatabase connectToDB(Context context) {
+        imageGalleryAndGIFGeneratorDbHelper = new ImageGalleryAndGIFGeneratorDbHelper(context);
         return imageGalleryAndGIFGeneratorDbHelper.getWritableDatabase();
     }
 
