@@ -29,7 +29,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.add
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.clearTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getAvatarDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getCreationTimeDataFromTableLoginData;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtill.showToastError;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
