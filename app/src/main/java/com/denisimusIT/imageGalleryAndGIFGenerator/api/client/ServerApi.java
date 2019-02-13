@@ -4,10 +4,9 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GetAllUserImag
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GifDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
 
-import java.io.File;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Field;
@@ -25,7 +24,8 @@ public interface ServerApi {
     Call<Response<UserDTO>> createNewUser(@Part("username") RequestBody userName,
                                           @Part("email") RequestBody email,
                                           @Part("password") RequestBody password,
-                                          @Part MultipartBody.Part  file);
+                                          @Part MultipartBody.Part file);
+
     @FormUrlEncoded
     @POST("login")
     Call<UserDTO> login(@Field("email") String email, @Field("password") String password);
@@ -40,8 +40,11 @@ public interface ServerApi {
     @Multipart
     @POST("image")
         //TODO
-    Call<String> addImage(@Header("token") String token, @Part("image") File image, @Part("description") String description,
-                          @Part("hashtag") String hashtag, @Part("latitude") float latitude,
-                          @Part("longitude") float longitude);
+    Call<ResponseBody> addImage(@Header("token") String token,
+                                @Part MultipartBody.Part image,
+                                @Part("description") RequestBody description,
+                                @Part("hashtag") RequestBody hashtag,
+                                @Part("latitude") RequestBody latitude,
+                                @Part("longitude") RequestBody longitude);
 
 }
