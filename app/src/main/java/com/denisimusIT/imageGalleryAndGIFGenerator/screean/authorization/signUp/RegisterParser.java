@@ -41,7 +41,7 @@ public class RegisterParser {
 
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
-        String ConfimPassWord = editTextConfimPassWord.getText().toString();
+        String confimPassWord = editTextConfimPassWord.getText().toString();
 
         cancel = true;
         View focusView = null;
@@ -49,7 +49,7 @@ public class RegisterParser {
         buttonRegistrationSignUp.setClickable(false);
         imageViewRegister.setClickable(false);
 
-        if (email.isEmpty() && password.isEmpty() && ConfimPassWord.isEmpty() && imageViewRegister.getDrawable() == null) {
+        if (email.isEmpty() && password.isEmpty() && confimPassWord.isEmpty() && imageViewRegister.getDrawable() == null) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
             showToastError(context, context.getString(R.string.error_empty_files_email_password_confim_pass_word_avatar));
@@ -61,7 +61,7 @@ public class RegisterParser {
 
             cancel = true;
 
-        } else if (email.isEmpty() && password.isEmpty() && ConfimPassWord.isEmpty()) {
+        } else if (email.isEmpty() && password.isEmpty() && confimPassWord.isEmpty()) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
             showToastError(context, context.getString(R.string.error_empty_files_email_password));
@@ -74,7 +74,7 @@ public class RegisterParser {
             cancel = true;
 
 
-        } else if (password.isEmpty() && ConfimPassWord.isEmpty()) {
+        } else if (password.isEmpty() && confimPassWord.isEmpty()) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
             showToastError(context, context.getString(R.string.error_password_confim_pass_word));
@@ -97,7 +97,7 @@ public class RegisterParser {
             cancel = true;
 
 
-        }else if (ConfimPassWord.isEmpty()) {
+        }else if (confimPassWord.isEmpty()) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
             showToastError(context, context.getString(R.string.error_confim_pass_word));
@@ -123,9 +123,13 @@ public class RegisterParser {
             editTextEmail.setError(context.getString(R.string.error_invalid_email));
             focusView = editTextEmail;
             cancel = true;
-        }
-
-        if (cancel) {
+        } else if (!password.equals(confimPassWord)) {
+            //TODO
+            editTextConfimPassWord.setError(context.getString(R.string.error_passwords_should_match));
+            editTextPassword.setError(context.getString(R.string.error_passwords_should_match));
+            focusView = editTextPassword;
+            cancel = true;
+        }if (cancel) {
             if (focusView != null) {
                 focusView.requestFocus();
             }
@@ -133,7 +137,7 @@ public class RegisterParser {
             imageViewRegister.setClickable(true);
 
 
-        } else {
+        } else { editTextConfimPassWord.setError("Reg Ok");
 
             Log.d(LOG_TAG, "reg ok");
             //TODO

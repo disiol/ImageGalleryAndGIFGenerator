@@ -37,9 +37,12 @@
     <string name="error_password_confim_pass_word"><b>fields: password, confim pass word,cannot be empty.\n </b></string>
     <string name="error_confim_pass_word"><b>fields confim password,cannot be empty.\n </b></string>
 
+    <string name="error_passwords_should_match"><b>passwords should match. </b>
+    </string>
     <string name="error_empty_avatar"><b>Please choose an avatar. </b>
     </string>
     <string name="textView_circle_ImageView_sign_up_text">Click for the choice of an avatar</string>
+
 
     <string name="permission_necessary">Access to storage</string>
     <string name="storage_permission_is_encessary_to_wrote_event">It is necessary to provide access
