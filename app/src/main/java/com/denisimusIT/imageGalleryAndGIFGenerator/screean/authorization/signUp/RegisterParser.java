@@ -3,6 +3,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp
 import android.content.Context;
 import android.support.v4.app.DialogFragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils.showToastError;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
 public class RegisterParser {
 
@@ -47,29 +49,35 @@ public class RegisterParser {
         buttonRegistrationSignUp.setClickable(false);
         imageViewRegister.setClickable(false);
 
-        if (email.isEmpty() && password.isEmpty() && ConfimPassWord.isEmpty() &&imageViewRegister.getDrawable() == null) {
+        if (email.isEmpty() && password.isEmpty() && ConfimPassWord.isEmpty() && imageViewRegister.getDrawable() == null) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
-            showToastError(context, context.getString(R.string.error_empty_files_email_password_avatar));
-
+            showToastError(context, context.getString(R.string.error_empty_files_email_password_confim_pass_word_avatar));
             focusView = imageViewRegister;
+
             editTextEmail.setError(context.getString(R.string.error_field_required));
             editTextPassword.setError(context.getString(R.string.error_field_required));
-
+            editTextConfimPassWord.setError(context.getString(R.string.error_field_required));
 
             cancel = true;
 
-        } else if (email.isEmpty() && password.isEmpty()) {
+        } else if (email.isEmpty() && password.isEmpty() && ConfimPassWord.isEmpty()) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
             showToastError(context, context.getString(R.string.error_empty_files_email_password));
+
+            focusView = editTextEmail;
+            editTextEmail.setError(context.getString(R.string.error_field_required));
+            editTextPassword.setError(context.getString(R.string.error_field_required));
+            editTextConfimPassWord.setError(context.getString(R.string.error_field_required));
+
             cancel = true;
 
 
         } else if (imageViewRegister.getDrawable() == null) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
-            showToastError(context, context.getString(R.string.error_empty_password_avatar));
+            showToastError(context, context.getString(R.string.error_empty_avatar));
             cancel = true;
 
 
@@ -89,11 +97,11 @@ public class RegisterParser {
             }
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
-            cancel = false;
 
 
         } else {
 
+            Log.d(LOG_TAG,"reg ok");
             //TODO
         }
     }

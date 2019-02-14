@@ -12,12 +12,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtill.showToastError;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
 public class PucturesListParser {
     private RetrofitClient retrofitClient = new RetrofitClient();
-    private Response<GetAllUserImages> response;
+    private Response<GetAllUserImages> getAllUserImagesResponse;
 
 
 
@@ -28,9 +28,9 @@ public class PucturesListParser {
          @Override
          public void onResponse(Call<GetAllUserImages> call, Response<GetAllUserImages> response) {
              if (response.isSuccessful()) {
-                 //TODO add response to db
-                 response = response;
-                 Log.d(LOG_TAG, "load all images response: " + response.body().toString());
+                 //TODO add getAllUserImagesResponse to db
+                 getAllUserImagesResponse = response;
+                 Log.d(LOG_TAG, "load all images getAllUserImagesResponse: " + response.body().toString());
 
 
              } else {
@@ -59,6 +59,6 @@ public class PucturesListParser {
     }
 
     public Response<GetAllUserImages> getLoadAllImagesFortest() {
-        return response;
+        return getAllUserImagesResponse;
     }
 }
