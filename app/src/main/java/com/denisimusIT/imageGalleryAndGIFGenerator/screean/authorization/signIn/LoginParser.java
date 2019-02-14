@@ -59,9 +59,9 @@ class LoginParser {
         if (email.isEmpty() || password.isEmpty()) {
             buttonAccept.setClickable(true);
             showToastError(context, context.getString(R.string.eror_empty_fileds));
+            cancel = true;
 
-        }
-        if (TextUtils.isEmpty(email)) {
+        } else if (TextUtils.isEmpty(email)) {
             emailLogin.setError(context.getString(R.string.error_field_required));
             focusView = emailLogin;
             cancel = true;
@@ -72,7 +72,9 @@ class LoginParser {
         }
 
         if (cancel) {
-            focusView.requestFocus();
+            if (focusView != null) {
+                focusView.requestFocus();
+            }
             buttonAccept.setClickable(true);
 
         } else {
