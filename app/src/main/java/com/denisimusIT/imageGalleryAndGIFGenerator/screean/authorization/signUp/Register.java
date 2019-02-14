@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.ProgressBar;
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.IMAGE_MEDIA_TYPE;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.SELECT_PICTURE;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
@@ -21,6 +23,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private ImageView imageViewRegister;
     private Button buttonRegistrationSignUp;
     private ProgressBar progressBarRegister;
+
+    RegisterParser registerParser = new RegisterParser();
 
     private String selectedImagePath;
 
@@ -38,6 +42,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         progressBarRegister = findViewById(R.id.progressBarLogin);
 
         imageViewRegister.setOnClickListener(this);
+        buttonRegistrationSignUp.setOnClickListener(this);
 
 
         //TODO проверку на зполненость обязательніх полей и вод ошибок
@@ -47,11 +52,24 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
 
-        selectImage();
+        switch (v.getId()) {
+            case R.id.bt_registration_sign_up:
+                registerParser.register(imageViewRegister, editTextUserName, editTextEmail, editTextPassword,
+                        editTextConfimPassWord, buttonRegistrationSignUp,progressBarRegister, v);
+                break;
+            case R.id.imageView_sign_up:
+                selectImage();
+
+                break;
+
+        }
+
     }
+
 
     private void selectImage() {
         //TODO refactoring
+        //TODO add select avatar frm camera
         Intent intent = new Intent();
         intent.setType(IMAGE_MEDIA_TYPE);
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -64,7 +82,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
-                getImageForAvatar(selectedImageUri,imageViewRegister);
+                getImageForAvatar(selectedImageUri, imageViewRegister);
 
             }
         }

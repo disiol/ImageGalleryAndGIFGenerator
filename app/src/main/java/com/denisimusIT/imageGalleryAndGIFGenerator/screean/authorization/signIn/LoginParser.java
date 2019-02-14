@@ -58,7 +58,7 @@ class LoginParser {
 
         if (email.isEmpty() || password.isEmpty()) {
             buttonAccept.setClickable(true);
-            showToastError(context, context.getString(R.string.eror_empty_fileds));
+            showToastError(context, context.getString(R.string.error_empty_files_email_password));
             cancel = true;
 
         } else if (TextUtils.isEmpty(email)) {

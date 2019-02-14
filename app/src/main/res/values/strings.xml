@@ -19,7 +19,18 @@
     <string name="registration_user_password">password</string>
     <string name="registration_user_confirm_password">confirm password</string>
     <string name="registration_sign_up">sign up</string>
-    <string name="eror_empty_fileds"><b>fields cannot be empty</b></string>
+    <string name="error_empty_files_email_password"><b>Fields: email,password, cannot be empty</b></string>
+    <string name="error_empty_files_email_password_avatar"><b>fields: email,password, cannot be empty.\n
+                                                                      Please choose an avatar. </b>
+    </string>
+    <string name="error_empty_email"><b>field email cannot be empty.</b>
+    </string>
+    <string name="error_empty_password"><b>fields:password, cannot be empty.\n
+                                                                      Please choose an avatar. </b>
+    </string>
+    <string name="error_empty_password_avatar"><b>fields: email,password, cannot be empty./n
+                                                                      Please choose an avatar. </b>
+    </string>
     <string name="textView_circle_ImageView_sign_up_text">Click for the choice of an avatar</string>
 
     <string name="permission_necessary">Access to storage</string>
