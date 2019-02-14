@@ -28,12 +28,14 @@
     </string>
     <string name="error_empty_email"><b>field email cannot be empty.</b>
     </string>
-    <string name="error_empty_password"><b>fields:password, cannot be empty.\n
-                                                                      Please choose an avatar. </b>
+    <string name="error_empty_password"><b>fields:password, cannot be empty.\n</b>
     </string>
     <string name="error_empty_password_avatar"><b>fields: email,password, cannot be empty.\n
                                                                       Please choose an avatar. </b>
     </string>
+
+    <string name="error_password_confim_pass_word"><b>fields: password, confim pass word,cannot be empty.\n </b></string>
+    <string name="error_confim_pass_word"><b>fields confim password,cannot be empty.\n </b></string>
 
     <string name="error_empty_avatar"><b>Please choose an avatar. </b>
     </string>

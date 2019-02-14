@@ -74,6 +74,40 @@ public class RegisterParser {
             cancel = true;
 
 
+        } else if (password.isEmpty() && ConfimPassWord.isEmpty()) {
+            buttonRegistrationSignUp.setClickable(true);
+            imageViewRegister.setClickable(true);
+            showToastError(context, context.getString(R.string.error_password_confim_pass_word));
+
+            focusView = editTextPassword;
+            editTextPassword.setError(context.getString(R.string.error_field_required));
+            editTextConfimPassWord.setError(context.getString(R.string.error_field_required));
+
+            cancel = true;
+
+
+        } else if (password.isEmpty()) {
+            buttonRegistrationSignUp.setClickable(true);
+            imageViewRegister.setClickable(true);
+            showToastError(context, context.getString(R.string.error_confim_pass_word));
+
+            focusView = editTextPassword;
+            editTextPassword.setError(context.getString(R.string.error_empty_password));
+
+            cancel = true;
+
+
+        }else if (ConfimPassWord.isEmpty()) {
+            buttonRegistrationSignUp.setClickable(true);
+            imageViewRegister.setClickable(true);
+            showToastError(context, context.getString(R.string.error_confim_pass_word));
+
+            focusView = editTextConfimPassWord;
+            editTextConfimPassWord.setError(context.getString(R.string.error_field_required));
+
+            cancel = true;
+
+
         } else if (imageViewRegister.getDrawable() == null) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
@@ -101,7 +135,7 @@ public class RegisterParser {
 
         } else {
 
-            Log.d(LOG_TAG,"reg ok");
+            Log.d(LOG_TAG, "reg ok");
             //TODO
         }
     }
