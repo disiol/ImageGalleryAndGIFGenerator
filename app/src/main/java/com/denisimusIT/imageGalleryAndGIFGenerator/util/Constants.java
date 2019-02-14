@@ -7,5 +7,6 @@ public class Constants {
 
     public static final String IMAGE_MEDIA_TYPE = "image/*";
     public static final String LOG_TAG = "MyLog";
+    public static final int SELECT_PICTURE = 1;
 
 }
