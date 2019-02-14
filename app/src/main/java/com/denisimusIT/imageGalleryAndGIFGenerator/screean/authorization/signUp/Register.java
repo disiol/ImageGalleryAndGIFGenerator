@@ -1,5 +1,7 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,15 +9,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 
-public class Register extends AppCompatActivity implements View.OnClickListener  {
-    EditText editTextUserName, editTextEmail, editTextPassword, editTextConfimPassWord;
-    ImageView imageViewRegister;
-    Button buttonRegistrationSignUp;
-    ProgressBar progressBarRegister;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.IMAGE_MEDIA_TYPE;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.SELECT_PICTURE;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
+
+public class Register extends AppCompatActivity implements View.OnClickListener {
+    private EditText editTextUserName, editTextEmail, editTextPassword, editTextConfimPassWord;
+    private ImageView imageViewRegister;
+    private Button buttonRegistrationSignUp;
+    private ProgressBar progressBarRegister;
+
+    private String selectedImagePath;
 
 
     @Override
@@ -40,5 +47,28 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
 
+        selectImage();
     }
+
+    private void selectImage() {
+        //TODO refactoring
+        Intent intent = new Intent();
+        intent.setType(IMAGE_MEDIA_TYPE);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,
+                "Select Picture"), SELECT_PICTURE);
+        startActivity(intent);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectedImageUri = data.getData();
+                getImageForAvatar(selectedImageUri,imageViewRegister);
+
+            }
+        }
+    }
+
+
 }
