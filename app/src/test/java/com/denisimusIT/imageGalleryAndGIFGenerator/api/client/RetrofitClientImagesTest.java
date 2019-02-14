@@ -1,12 +1,17 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PucturesListParser;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils;
 
 import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.parseStringIntoRequestBody;
 import static org.junit.Assert.assertEquals;
 
 public class RetrofitClientImagesTest {
@@ -57,11 +62,11 @@ public class RetrofitClientImagesTest {
     @Test
     public void addImageTestErrorInvalid_access_token() throws IOException {
         RetrofitClient retrofitClient = new RetrofitClient();
-        File image = null;
-        String description = "";
-        String hashtag = "";
-        int latitude = 0;
-        int longitude = 0;
+        MultipartBody.Part image = null;
+        RequestBody description = parseStringIntoRequestBody("");
+        RequestBody hashtag = parseStringIntoRequestBody("");
+        RequestBody latitude = parseStringIntoRequestBody("");
+        RequestBody longitude = parseStringIntoRequestBody("");
 
         String expected = "{\"error\":\"Invalid access token\"}";
 
@@ -73,17 +78,20 @@ public class RetrofitClientImagesTest {
 
     @Test
     public void addImageTestErrorInvalid_This_value_should_not_be_blank() throws IOException {
+        //TODO add fake recvest moko
         RetrofitClient retrofitClient = new RetrofitClient();
-        File image = null;
-        String description = "";
-        String hashtag = "";
-        int latitude = 0;
-        int longitude = 0;
+        String path = "/home/denis/IT/AndroidStudioProjects/Portfolio/toMarcet/ImageGalleryAndGIFGenerator/app/src/main/res/";
+        File file = new File(path, "u2.jpg");
+        MultipartBody.Part image = ApiUtils.prepareFilePart("image", file);
+        RequestBody description = parseStringIntoRequestBody("");
+        RequestBody hashtag = parseStringIntoRequestBody("den");
+        RequestBody latitude = parseStringIntoRequestBody("1");
+        RequestBody longitude = parseStringIntoRequestBody("1");
 
-        String expected = "{\"children\":{\"image\":{\"errors\":[\"Please, upload the image.\"]},\"description\":{},\"hashtag\":{},\"latitude\":{},\"longitude\":{}}}";
+        String expected = "{\"parameters\":{\"address\":\"The address is not available in this place\",\"weather\":\"Clear\"},\"smallImage\":\"http:\\/\\/api.doitserver.in.ua\\/upload\\/images\\/small\\/0b808a4ddc53745c821e6141afbfecfd.jpeg\",\"bigImage\":\"http:\\/\\/api.doitserver.in.ua\\/upload\\/images\\/big\\/c064a755ae88ce4839bdfe557c53064c.jpeg\"}";
 
         String token = "7fb2235a56e9d2da72e3bb0be7743689";
-        String actual = retrofitClient.serverApi.addImage(token, image, description, hashtag, latitude, longitude).execute().errorBody().string();
+        String actual = retrofitClient.serverApi.addImage(token, image, description, hashtag, latitude, longitude).execute().body().string();
         assertEquals("addImageTestError This value should not be blank", expected, actual);
     }
 

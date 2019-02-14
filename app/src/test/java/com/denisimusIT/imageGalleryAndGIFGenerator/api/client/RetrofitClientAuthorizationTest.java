@@ -76,11 +76,15 @@ public class RetrofitClientAuthorizationTest {
     @Test
     public void CrateNewUserError_This_value_is_already_used_Test() throws IOException {
 
-        File file = new File(getFile("/media/denis/falesL/Denis/Документи/Работа/2.jpg"));
+
         RequestBody username = parseStringIntoRequestBody("Denis");
         RequestBody email = parseStringIntoRequestBody("disiol@mail.ru");
         RequestBody password = parseStringIntoRequestBody("password");
-        MultipartBody.Part avatar = MultipartBody.Part.create(getImageRequestBody(file.getPath()));
+
+
+        String path = "/home/denis/IT/AndroidStudioProjects/Portfolio/toMarcet/ImageGalleryAndGIFGenerator/app/src/test/java/com/denisimusIT/imageGalleryAndGIFGenerator";
+        File file = new File(path, "u2.jpg");
+        MultipartBody.Part avatar = MultipartBody.Part.create(getImageRequestBody(file));
 
         String expected = "{\"children\":{\"username\":{},\"email\":{\"errors\":[\"This value is already used.\"]},\"password\":{},\"avatar\":{}}}";
 

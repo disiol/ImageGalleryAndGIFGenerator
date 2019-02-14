@@ -132,7 +132,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         progressBar = findViewById(R.id.progressBarLogin);
 
         buttonAccept.setOnClickListener(this);
-        imageViewAvatar.setOnClickListener(this); //TODO strat image laiyt if user textViewUserName dint = null
+        imageViewAvatar.setOnClickListener(this);
 
         progressBar.setVisibility(ProgressBar.VISIBLE);
         // we create an object for creation and version control of a DB
@@ -157,8 +157,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             case R.id.imageViewAvatar:
                 Log.d(LOG_TAG, "imageViewAvatar click");
                 if (!textViewUserName.getText().toString().isEmpty()) {
-                    //TODO вызвать PicturesList
-                } else {
+                    //TODO strat image laiyt if user textViewUserName dint = null
                     Intent intent = new Intent(this, Register.class);
                     startActivity(intent);
 
