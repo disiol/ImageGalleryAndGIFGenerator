@@ -85,7 +85,7 @@ class LoginParser {
                 @Override
                 public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
                     if (response.isSuccessful()) {
-                        progressBar.setVisibility(ProgressBar.INVISIBLE);
+                        progressBar.setVisibility(ProgressBar.VISIBLE);
 
                         clearTableLoginData(context);
                         responseLogin = response.body().toString();
