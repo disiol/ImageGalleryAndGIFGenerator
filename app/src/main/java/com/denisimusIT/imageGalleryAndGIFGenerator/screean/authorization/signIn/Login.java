@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.Register;
+import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -159,11 +160,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if ( imageViewAvatar.getDrawable() == null) {
 
                     Log.d(LOG_TAG, " imageViewAvatar.getDrawable() == null");
-                    Intent intent = new Intent(this, Register.class);
-                    startActivity(intent);
+                    startActivityRegister();
 
                 }else{
-                    //TODO strat image laiyt if user textViewUserName dint = null
+
+                    startPicturesListAtyvity();
                     Log.d(LOG_TAG, "strat image laiyt ");
 
                 }
@@ -172,6 +173,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         }
 
+    }
+
+    private void startActivityRegister() {
+        Intent intent = new Intent(this, Register.class);
+        startActivity(intent);
+    }
+
+    private void startPicturesListAtyvity() {
+        Intent intent = new Intent(this.getApplicationContext(), PicturesList.class);
+       startActivity(intent);
     }
 
 }
