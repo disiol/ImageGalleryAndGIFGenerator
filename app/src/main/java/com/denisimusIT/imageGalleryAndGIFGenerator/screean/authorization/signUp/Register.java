@@ -3,6 +3,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -25,8 +26,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private ProgressBar progressBarRegister;
 
     RegisterParser registerParser = new RegisterParser();
-
-    private String selectedImagePath;
+    private FragmentManager supportFragmentManager;
 
 
     @Override
@@ -44,8 +44,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         imageViewRegister.setOnClickListener(this);
         buttonRegistrationSignUp.setOnClickListener(this);
 
+        supportFragmentManager = getSupportFragmentManager();
 
-        //TODO проверку на зполненость обязательніх полей и вод ошибок
 
     }
 
@@ -55,7 +55,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.bt_registration_sign_up:
                 registerParser.register(imageViewRegister, editTextUserName, editTextEmail, editTextPassword,
-                        editTextConfimPassWord, buttonRegistrationSignUp,progressBarRegister, v);
+                        editTextConfimPassWord, buttonRegistrationSignUp,progressBarRegister, v,supportFragmentManager);
                 break;
             case R.id.imageView_sign_up:
                 selectImage();
@@ -83,6 +83,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
                 getImageForAvatar(selectedImageUri, imageViewRegister);
+                imageViewRegister.setTag(selectedImageUri);
+
 
             }
         }

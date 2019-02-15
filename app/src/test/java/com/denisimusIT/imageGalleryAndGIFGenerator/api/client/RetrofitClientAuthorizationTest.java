@@ -2,7 +2,6 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.File;
@@ -13,7 +12,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getFile;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.*;
 import static org.junit.Assert.assertEquals;
 

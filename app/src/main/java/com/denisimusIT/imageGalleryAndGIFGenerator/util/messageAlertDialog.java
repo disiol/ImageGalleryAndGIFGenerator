@@ -13,7 +13,7 @@ import android.support.v7.app.AlertDialog;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.Register;
 
 @SuppressLint("ValidFragment")
-public class ErrorAlertDialog extends DialogFragment {
+public class messageAlertDialog extends DialogFragment {
     private String title;
     private String message;
     private String setPositiveButtonText;
@@ -21,7 +21,7 @@ public class ErrorAlertDialog extends DialogFragment {
     Intent intent;
 
     @SuppressLint("ValidFragment")
-    public ErrorAlertDialog(String title, String message, String setPositiveButtonText) {
+    public messageAlertDialog(String title, String message, String setPositiveButtonText) {
         this.title = title;
         this.message = message;
         this.setPositiveButtonText = setPositiveButtonText;

@@ -1,7 +1,10 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -12,44 +15,59 @@ import android.widget.ProgressBar;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn.Login;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
+
+import java.io.File;
+
+import okhttp3.MultipartBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getFile;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.getImageRequestBody;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.parseStringIntoRequestBody;
 
 public class RegisterParser {
 
     private RetrofitClient retrofitClient = new RetrofitClient();
 
-    private String responseLogin;
     private DialogFragment dialogFragment;
     private Context context;
     private boolean cancel;
+    private String title;
 
 
-    public void register(ImageView imageViewRegister,
+    public void register(final ImageView imageViewRegister,
                          EditText editTextUserName,
                          EditText editTextEmail,
                          EditText editTextPassword,
                          EditText editTextConfimPassWord,
-                         Button buttonRegistrationSignUp,
-                         ProgressBar progressBarRegister,
-                         View view) {
+                         final Button buttonRegistrationSignUp,
+                         final ProgressBar progressBarRegister,
+                         View view, final FragmentManager supportFragmentManager) {
 
         context = view.getContext();
-
-        resetErrors(editTextEmail, editTextPassword, editTextConfimPassWord);
-
-        String email = editTextEmail.getText().toString();
-        String password = editTextPassword.getText().toString();
-        String confimPassWord = editTextConfimPassWord.getText().toString();
-
-        cancel = true;
-        View focusView = null;
-
+        cancel = false;
         buttonRegistrationSignUp.setClickable(false);
         imageViewRegister.setClickable(false);
 
-        if (email.isEmpty() && password.isEmpty() && confimPassWord.isEmpty() && imageViewRegister.getDrawable() == null) {
+
+        resetErrors(editTextEmail, editTextPassword, editTextConfimPassWord);
+
+        String userName = editTextUserName.getText().toString();
+        final String email = editTextEmail.getText().toString();
+        final String password = editTextPassword.getText().toString();
+        String confirmPassWord = editTextConfimPassWord.getText().toString();
+
+        View focusView = null;
+
+
+        if (email.isEmpty() && password.isEmpty() && confirmPassWord.isEmpty() && imageViewRegister.getDrawable() == null) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
             showToastError(context, context.getString(R.string.error_empty_files_email_password_confim_pass_word_avatar));
@@ -61,7 +79,7 @@ public class RegisterParser {
 
             cancel = true;
 
-        } else if (email.isEmpty() && password.isEmpty() && confimPassWord.isEmpty()) {
+        } else if (email.isEmpty() && password.isEmpty() && confirmPassWord.isEmpty()) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
             showToastError(context, context.getString(R.string.error_empty_files_email_password));
@@ -74,7 +92,7 @@ public class RegisterParser {
             cancel = true;
 
 
-        } else if (password.isEmpty() && confimPassWord.isEmpty()) {
+        } else if (password.isEmpty() && confirmPassWord.isEmpty()) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
             showToastError(context, context.getString(R.string.error_password_confim_pass_word));
@@ -97,7 +115,7 @@ public class RegisterParser {
             cancel = true;
 
 
-        }else if (confimPassWord.isEmpty()) {
+        } else if (confirmPassWord.isEmpty()) {
             buttonRegistrationSignUp.setClickable(true);
             imageViewRegister.setClickable(true);
             showToastError(context, context.getString(R.string.error_confim_pass_word));
@@ -123,13 +141,16 @@ public class RegisterParser {
             editTextEmail.setError(context.getString(R.string.error_invalid_email));
             focusView = editTextEmail;
             cancel = true;
-        } else if (!password.equals(confimPassWord)) {
+        } else if (!password.equals(confirmPassWord)) {
             //TODO
             editTextConfimPassWord.setError(context.getString(R.string.error_passwords_should_match));
             editTextPassword.setError(context.getString(R.string.error_passwords_should_match));
             focusView = editTextPassword;
             cancel = true;
-        }if (cancel) {
+        }
+
+
+        if (cancel) {
             if (focusView != null) {
                 focusView.requestFocus();
             }
@@ -137,19 +158,73 @@ public class RegisterParser {
             imageViewRegister.setClickable(true);
 
 
-        } else { editTextConfimPassWord.setError("Reg Ok");
+        } else {
+            Log.e(LOG_TAG, "tray response ");
 
+            Uri imageViewRegisterTag = (Uri) imageViewRegister.getTag();
+            File file = new File(String.valueOf(imageViewRegisterTag), "u2.jpg");
+            MultipartBody.Part avatar = MultipartBody.Part.create(getImageRequestBody(file));
+
+            progressBarRegister.setVisibility(ProgressBar.VISIBLE);
+
+
+            retrofitClient.serverApi.createNewUser(parseStringIntoRequestBody(userName),
+                    parseStringIntoRequestBody(email),
+                    parseStringIntoRequestBody(password),
+                    avatar).enqueue(new Callback<Response<UserDTO>>() {
+                @Override
+                public void onResponse(Call<Response<UserDTO>> call, Response<Response<UserDTO>> response) {
+                    progressBarRegister.setVisibility(ProgressBar.VISIBLE);
+
+
+                    String title = "New user created";
+                    String message = response.body().toString();
+                    Log.e(LOG_TAG, "reg response " + message);
+
+                    showAlertDialog(supportFragmentManager, title, message);
+                    startLoginAtyvity();
+                    buttonRegistrationSignUp.setClickable(true);
+                    imageViewRegister.setClickable(true);
+                    progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
+
+
+                }
+
+                @Override
+                public void onFailure(Call<Response<UserDTO>> call, Throwable t) {
+                    //TODO  finish the text of an error err connect to internet
+                    String title = t.toString();
+                    String message = "There is no connection to the Internet, please check connection";
+                    showAlertDialog(supportFragmentManager, title, message);
+                    showToastError(context, t.toString());
+                    Log.e(LOG_TAG, "view errorBody: " + t.getMessage());
+                    progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
+
+
+                }
+            });
             Log.d(LOG_TAG, "reg ok");
-            //TODO
         }
     }
 
-    private void resetErrors(EditText editTextEmail, EditText editTexetPassWord, EditText editTextConfimPassWord) {
+    private void startLoginAtyvity() {
+        Intent intent = new Intent(context.getApplicationContext(), Login.class);
+        context.startActivity(intent);
+    }
+
+    private void resetErrors(EditText editTextEmail, EditText editTextPassWord, EditText editTextConfimPassWord) {
         editTextEmail.setError(null);
-        editTexetPassWord.setError(null);
+        editTextPassWord.setError(null);
         editTextConfimPassWord.setError(null);
 
 
+    }
+
+    private void showAlertDialog(FragmentManager supportFragmentManager, String title, String message) {
+        //TODO made res String
+        String yes = "Ok";
+        dialogFragment = new messageAlertDialog(title, message, yes);
+        dialogFragment.show(supportFragmentManager, "dialog");
     }
 
     private boolean isEmailValid(String email) {

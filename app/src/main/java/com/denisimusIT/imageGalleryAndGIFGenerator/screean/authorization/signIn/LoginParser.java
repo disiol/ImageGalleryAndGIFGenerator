@@ -17,7 +17,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
-import com.denisimusIT.imageGalleryAndGIFGenerator.util.ErrorAlertDialog;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
 
 import java.io.IOException;
 
@@ -169,7 +169,7 @@ class LoginParser {
         //TODO made res String
         String message = "There is no connection to the Internet, please check connection";
         String yes = "Ok";
-        dialogFragment = new ErrorAlertDialog(responseLogin, message, yes);
+        dialogFragment = new messageAlertDialog(responseLogin, message, yes);
         dialogFragment.show(supportFragmentManager, "dialog");
     }
 

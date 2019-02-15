@@ -156,10 +156,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.imageViewAvatar:
                 Log.d(LOG_TAG, "imageViewAvatar click");
-                if (textViewUserName.getText().toString().isEmpty()) {
-                    //TODO strat image laiyt if user textViewUserName dint = null
+                if ( imageViewAvatar.getDrawable() == null) {
+
+                    Log.d(LOG_TAG, " imageViewAvatar.getDrawable() == null");
                     Intent intent = new Intent(this, Register.class);
                     startActivity(intent);
+
+                }else{
+                    //TODO strat image laiyt if user textViewUserName dint = null
+                    Log.d(LOG_TAG, "strat image laiyt ");
 
                 }
 
