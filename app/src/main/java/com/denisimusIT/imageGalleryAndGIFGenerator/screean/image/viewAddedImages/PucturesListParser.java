@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.getTokenDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
@@ -23,7 +24,7 @@ public class PucturesListParser {
 
     public void loadAllImages(final Context context) throws IOException {
 
-        String token = null; //TODO get from table user data
+        String token = getTokenDataFromTableLoginData(context); //TODO get from table user data
         retrofitClient.serverApi.getAllUserImages(token).enqueue(new Callback<GetAllUserImages>() {
          @Override
          public void onResponse(Call<GetAllUserImages> call, Response<GetAllUserImages> response) {

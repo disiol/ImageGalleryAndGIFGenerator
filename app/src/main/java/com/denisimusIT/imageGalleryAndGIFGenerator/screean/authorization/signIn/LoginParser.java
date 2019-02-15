@@ -1,6 +1,7 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
 
@@ -102,7 +104,7 @@ class LoginParser {
                         Uri imageURI = Uri.parse(avatarDataFromTableLoginData);
                         getImageForAvatar(imageURI, imageViewAvatar);
                         textViewUserName.setText(getCreationTimeDataFromTableLoginData(context));
-                        //TODO вызвать PicturesList
+                        startPicturesListAtyvity();
                         progressBar.setVisibility(ProgressBar.INVISIBLE);
                         buttonAccept.setClickable(true);
 
@@ -173,5 +175,9 @@ class LoginParser {
         dialogFragment.show(supportFragmentManager, "dialog");
     }
 
+    private void startPicturesListAtyvity() {
+        Intent intent = new Intent(context.getApplicationContext(), PicturesList.class);
+        context.startActivity(intent);
+    }
 
 }

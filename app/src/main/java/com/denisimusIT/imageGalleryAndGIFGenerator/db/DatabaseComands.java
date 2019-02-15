@@ -133,8 +133,8 @@ public class DatabaseComands {
         return null;
     }
 
-    public final static String getTokenDataFromTableLoginData(Context login) {
-        SQLiteDatabase db = connectToDB(login);
+    public final static String getTokenDataFromTableLoginData(Context context) {
+        SQLiteDatabase db = connectToDB(context);
         // создаем объект для данных
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- Rows in mytable: ---");
