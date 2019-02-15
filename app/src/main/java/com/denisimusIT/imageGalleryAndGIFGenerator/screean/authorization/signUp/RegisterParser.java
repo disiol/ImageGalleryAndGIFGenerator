@@ -21,6 +21,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
 
 import java.io.File;
+import java.io.IOException;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -30,7 +31,6 @@ import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getFile;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.getImageRequestBody;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.parseStringIntoRequestBody;
 
@@ -42,6 +42,8 @@ public class RegisterParser {
     private Context context;
     private boolean cancel;
     private String title;
+    private String responseErorrBody;
+    private String responseMessage;
 
 
     public void register(final ImageView imageViewRegister,
@@ -180,7 +182,7 @@ public class RegisterParser {
                 @Override
                 public void onResponse(Call<Response<UserDTO>> call, Response<Response<UserDTO>> response) {
                     progressBarRegister.setVisibility(ProgressBar.VISIBLE);
-
+                    if (response.isSuccessful()) {
 
                     String title = "New user created";
                     Log.e(LOG_TAG, "reg response " + title);
@@ -191,6 +193,25 @@ public class RegisterParser {
                     buttonRegistrationSignUp.setClickable(true);
                     imageViewRegister.setClickable(true);
                     progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
+                    } else {
+                        try {
+
+                            responseErorrBody = response.errorBody().string();
+                            responseMessage = response.message();
+                            //TODO finish the text of an error
+                            Log.e(LOG_TAG, "responseError " + responseErorrBody);
+                            //TODO finish the text of an error
+                            showAlertDialog(supportFragmentManager,responseMessage,responseErorrBody);
+                            cancel = true;
+                            buttonRegistrationSignUp.setClickable(true);
+                            imageViewRegister.setClickable(true);
+                            progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
+
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
 
 
                 }
