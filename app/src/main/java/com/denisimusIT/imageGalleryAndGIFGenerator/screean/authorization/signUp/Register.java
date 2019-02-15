@@ -39,7 +39,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         editTextPassword = findViewById(R.id.et_password);
         editTextConfimPassWord = findViewById(R.id.et_confirm_password);
         buttonRegistrationSignUp = findViewById(R.id.bt_registration_sign_up);
-        progressBarRegister = findViewById(R.id.progressBarLogin);
+        progressBarRegister = findViewById(R.id.progressBarRegister);
 
         imageViewRegister.setOnClickListener(this);
         buttonRegistrationSignUp.setOnClickListener(this);

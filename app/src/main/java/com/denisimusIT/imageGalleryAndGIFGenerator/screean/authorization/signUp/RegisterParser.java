@@ -17,11 +17,13 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn.Login;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
 
 import java.io.File;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -161,9 +163,12 @@ public class RegisterParser {
         } else {
             Log.e(LOG_TAG, "tray response ");
 
+            //TODO
             Uri imageViewRegisterTag = (Uri) imageViewRegister.getTag();
-            File file = new File(String.valueOf(imageViewRegisterTag), "u2.jpg");
-            MultipartBody.Part avatar = MultipartBody.Part.create(getImageRequestBody(file));
+            File imageFile = new File(PathUtil.getPath(context.getApplicationContext(), imageViewRegisterTag));
+            RequestBody avatar = getImageRequestBody(imageFile);
+            MultipartBody.Part avatarBody = (MultipartBody.Part) MultipartBody.Part.createFormData("avatar", imageFile.getName(), avatar);
+
 
             progressBarRegister.setVisibility(ProgressBar.VISIBLE);
 
@@ -171,17 +176,17 @@ public class RegisterParser {
             retrofitClient.serverApi.createNewUser(parseStringIntoRequestBody(userName),
                     parseStringIntoRequestBody(email),
                     parseStringIntoRequestBody(password),
-                    avatar).enqueue(new Callback<Response<UserDTO>>() {
+                    avatarBody).enqueue(new Callback<Response<UserDTO>>() {
                 @Override
                 public void onResponse(Call<Response<UserDTO>> call, Response<Response<UserDTO>> response) {
                     progressBarRegister.setVisibility(ProgressBar.VISIBLE);
 
 
                     String title = "New user created";
-                    String message = response.body().toString();
-                    Log.e(LOG_TAG, "reg response " + message);
+                    Log.e(LOG_TAG, "reg response " + title);
 
-                    showAlertDialog(supportFragmentManager, title, message);
+                    showToastError(context, title);
+
                     startLoginAtyvity();
                     buttonRegistrationSignUp.setClickable(true);
                     imageViewRegister.setClickable(true);
