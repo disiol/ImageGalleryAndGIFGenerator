@@ -22,11 +22,11 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.d(LOG_TAG, " --- ImageGalleryAndGIFGeneratorDbHelper :  onCreate database ---");
 
-        String SQL_CREATE_LOGIN_TABLE = "CREATE TABLE " + LoginContract.LoginData.TABLE_NAME + " ("
-                + LoginContract.LoginData._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + LoginContract.LoginData.COLUMN_AVATAR + " TEXT NOT NULL, "
-                + LoginContract.LoginData.COLUMN_CREATION_TIME + " TEXT NOT NULL, "
-                + LoginContract.LoginData.COLUMN_TOKEN + " TEXT NOT NULL  " + ");";
+        String SQL_CREATE_LOGIN_TABLE = "CREATE TABLE " + ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME + " ("
+                + ImageGalleryAndGIFGeneratorContract.LoginData._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_AVATAR + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_CREATION_TIME + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_TOKEN + " TEXT NOT NULL  " + ");";
 
 
         db.execSQL(SQL_CREATE_LOGIN_TABLE);
@@ -39,7 +39,7 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
         Log.w("SQLite", "We are updated from the version " + oldVersion + " on the version " + newVersion);
 
         // Удаляем старую таблицу и создаём новую
-        db.execSQL("DROP TABLE IF EXISTS " + LoginContract.LoginData.TABLE_NAME );
+        db.execSQL("DROP TABLE IF EXISTS " + ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME );
         // Создаём новую таблицу
         onCreate(db);
 

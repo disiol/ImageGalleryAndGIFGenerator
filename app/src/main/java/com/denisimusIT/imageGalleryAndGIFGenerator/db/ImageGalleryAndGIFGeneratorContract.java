@@ -2,7 +2,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.db;
 
 import android.provider.BaseColumns;
 
-public class LoginContract {
+public class ImageGalleryAndGIFGeneratorContract {
 
     public static final class LoginData {
         public final static String TABLE_NAME = "loginUserInfo";

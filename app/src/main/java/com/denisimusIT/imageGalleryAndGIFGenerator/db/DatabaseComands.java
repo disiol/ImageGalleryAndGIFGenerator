@@ -29,10 +29,10 @@ public class DatabaseComands {
 
         // подготовим данные для вставки в виде пар: наименование столбца - значение
 
-        cv.put(LoginContract.LoginData.COLUMN_AVATAR, avatar);
-        cv.put(LoginContract.LoginData.COLUMN_CREATION_TIME, creationTime);
-        cv.put(LoginContract.LoginData.COLUMN_TOKEN, token);
-        long rowID = db.insert(LoginContract.LoginData.TABLE_NAME, null, cv);
+        cv.put(ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_AVATAR, avatar);
+        cv.put(ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_CREATION_TIME, creationTime);
+        cv.put(ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_TOKEN, token);
+        long rowID = db.insert(ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME, null, cv);
         Log.d(LOG_TAG, "row inserted,ok");
 
         imageGalleryAndGIFGeneratorDbHelper.close();
@@ -44,16 +44,16 @@ public class DatabaseComands {
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- Rows in mytable: ---");
         // делаем запрос всех данных из таблицы mytable, получаем Cursor
-        Cursor c = db.query(LoginContract.LoginData.TABLE_NAME, null, null, null, null, null, null);
+        Cursor c = db.query(ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME, null, null, null, null, null, null);
 
 
         if (c.moveToFirst()) {
 
             // определяем номера столбцов по имени в выборке
-            int idColIndex = c.getColumnIndex(LoginContract.LoginData._ID);
-            int avatarColIndex = c.getColumnIndex(LoginContract.LoginData.COLUMN_AVATAR);
-            int creationTimeColIndex = c.getColumnIndex(LoginContract.LoginData.COLUMN_CREATION_TIME);
-            int tokenColIndex = c.getColumnIndex(LoginContract.LoginData.COLUMN_TOKEN);
+            int idColIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData._ID);
+            int avatarColIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_AVATAR);
+            int creationTimeColIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_CREATION_TIME);
+            int tokenColIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_TOKEN);
 
             do {
                 // получаем значения по номерам столбцов и пишем все в лог
@@ -78,14 +78,14 @@ public class DatabaseComands {
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- Rows in mytable: ---");
         // делаем запрос всех данных из таблицы mytable, получаем Cursor
-        Cursor c = db.query(LoginContract.LoginData.TABLE_NAME, null, null, null, null, null, null);
+        Cursor c = db.query(ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME, null, null, null, null, null, null);
 
 
         if (c.moveToFirst()) {
 
             // определяем номера столбцов по имени в выборке
-            int idColIndex = c.getColumnIndex(LoginContract.LoginData._ID);
-            int avatarColIndex = c.getColumnIndex(LoginContract.LoginData.COLUMN_AVATAR);
+            int idColIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData._ID);
+            int avatarColIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_AVATAR);
             do {
                 // получаем значения по номерам столбцов и пишем все в лог
                 String avatar = c.getString(avatarColIndex);
@@ -108,14 +108,14 @@ public class DatabaseComands {
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- Rows in mytable: ---");
         // делаем запрос всех данных из таблицы mytable, получаем Cursor
-        Cursor c = db.query(LoginContract.LoginData.TABLE_NAME, null, null, null, null, null, null);
+        Cursor c = db.query(ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME, null, null, null, null, null, null);
 
 
         if (c.moveToFirst()) {
 
             // определяем номера столбцов по имени в выборке
-            int idColIndex = c.getColumnIndex(LoginContract.LoginData._ID);
-            int creationTimeColIndex = c.getColumnIndex(LoginContract.LoginData.COLUMN_CREATION_TIME);
+            int idColIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData._ID);
+            int creationTimeColIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_CREATION_TIME);
             do {
                 // получаем значения по номерам столбцов и пишем все в лог
                 String avatar = c.getString(creationTimeColIndex);
@@ -139,14 +139,14 @@ public class DatabaseComands {
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- Rows in mytable: ---");
         // делаем запрос всех данных из таблицы mytable, получаем Cursor
-        Cursor c = db.query(LoginContract.LoginData.TABLE_NAME, null, null, null, null, null, null);
+        Cursor c = db.query(ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME, null, null, null, null, null, null);
 
 
         if (c.moveToFirst()) {
 
             // определяем номера столбцов по имени в выборке
-            int idColIndex = c.getColumnIndex(LoginContract.LoginData._ID);
-            int columnIndex = c.getColumnIndex(LoginContract.LoginData.COLUMN_TOKEN);
+            int idColIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData._ID);
+            int columnIndex = c.getColumnIndex(ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_TOKEN);
             do {
                 // получаем значения по номерам столбцов и пишем все в лог
                 String token = c.getString(columnIndex);
@@ -165,10 +165,10 @@ public class DatabaseComands {
     }
 
     public static void clearTableLoginData(Context context) {
-        Log.d(LOG_TAG, "--- Clear " + LoginContract.LoginData.TABLE_NAME + "---");
+        Log.d(LOG_TAG, "--- Clear " + ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME + "---");
         SQLiteDatabase db = connectToDB(context);
         // удаляем все записи
-        int clearCount = db.delete(LoginContract.LoginData.TABLE_NAME, null, null);
+        int clearCount = db.delete(ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME, null, null);
         Log.d(LOG_TAG, "deleted rows count = " + clearCount);
     }
 
