@@ -28,7 +28,7 @@ public class RetrofitClientImagesTest {
 
     @Test
     public void getAllUserImagesTest() throws IOException {
-        //TODO
+        //TODO moc
         RetrofitClient retrofitClient = new RetrofitClient();
 
         String expected = "GetAllUserImages{imageDTOList=[ImageDTO{id=520, " +
@@ -51,7 +51,7 @@ public class RetrofitClientImagesTest {
     @Test
     public void getGifTest() throws IOException {
         RetrofitClient retrofitClient = new RetrofitClient();
-
+        //TODO moc
         String expected = "GifDTO{gifUrlPath='http://api.doitserver.in.ua/upload/images/gif/92fd93900b776388a0036dbd8a67da07.gif'}";
         String token = "7fb2235a56e9d2da72e3bb0be7743689";
         String actual = retrofitClient.serverApi.getGif(token).execute().body().toString();
