@@ -12,7 +12,7 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "imageGalleryAndGIFGenerator.db";
 
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 7;
 
     public ImageGalleryAndGIFGeneratorDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -22,26 +22,53 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase database) {
         Log.d(LOG_TAG, " --- ImageGalleryAndGIFGeneratorDbHelper :  onCreate database ---");
 
-        String SQL_CREATE_LOGIN_TABLE = "CREATE TABLE " + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME + " ("
+        crateLoginUserInfo(database);
+        crateImageData(database);
+
+
+    }
+
+    public void crateLoginUserInfo(SQLiteDatabase database) {
+        String SQL_CREATE_LOGIN_USER_INFO_TABLE = "CREATE TABLE " + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME + " ("
                 + ImageGalleryAndGIFGeneratorContract.LoginUserInfo._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.COLUMN_AVATAR + " TEXT NOT NULL, "
                 + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.COLUMN_CREATION_TIME + " TEXT NOT NULL, "
                 + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.COLUMN_TOKEN + " TEXT NOT NULL  " + ");";
 
 
-        database.execSQL(SQL_CREATE_LOGIN_TABLE);
+        database.execSQL(SQL_CREATE_LOGIN_USER_INFO_TABLE);
+    }
+
+    public void crateImageData(SQLiteDatabase database) {
+        String SQL_CREATE_IMAGE_DATA = "CREATE TABLE " + ImageGalleryAndGIFGeneratorContract.ImageData.TABLE_NAME + " ("
+                + ImageGalleryAndGIFGeneratorContract.ImageData._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ID + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LONGITUDE + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LATITUDE + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ADDRESS+ " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_WEATHER + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_SMALL_IMAGE_URL_PATH + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_BIG_IMAGE_URL_PATH + " TEXT NOT NULL  " + ");";
 
 
+        database.execSQL(SQL_CREATE_IMAGE_DATA);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         Log.w("SQLite", "We are updated from the version " + oldVersion + " on the version " + newVersion);
 
         // Удаляем старую таблицу и создаём новую
-        db.execSQL("DROP TABLE IF EXISTS " + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME );
-        // Создаём новую таблицу
-        onCreate(db);
+        dropAndCrateTable(sqLiteDatabase, ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME);
 
+        dropAndCrateTable(sqLiteDatabase, ImageGalleryAndGIFGeneratorContract.ImageData.TABLE_NAME);
+
+    }
+
+    public void dropAndCrateTable(SQLiteDatabase sqLiteDatabase, String tableName) {
+        // Удаляем старую таблицу и создаём новую
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + tableName);
+        // Создаём новую таблицу
+        onCreate(sqLiteDatabase);  // Удаляем старую таблицу и создаём новую
     }
 }

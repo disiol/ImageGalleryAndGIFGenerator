@@ -21,6 +21,6 @@ public class ImageGalleryAndGIFGeneratorContract {
         public final static String COLUMN_WEATHER = "weather";
         public final static String COLUMN_LATITUDE = "latitude";
         public final static String COLUMN_SMALL_IMAGE_URL_PATH = "smallImageUrlPath";
-        public final static String BIG_IMAGE_URL_PATH = "bigImageUrlPath";
+        public final static String COLUMN_BIG_IMAGE_URL_PATH = "bigImageUrlPath";
     }
 }
