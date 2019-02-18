@@ -12,24 +12,24 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "imageGalleryAndGIFGenerator.db";
 
 
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     public ImageGalleryAndGIFGeneratorDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase db) {
+    public void onCreate(SQLiteDatabase database) {
         Log.d(LOG_TAG, " --- ImageGalleryAndGIFGeneratorDbHelper :  onCreate database ---");
 
-        String SQL_CREATE_LOGIN_TABLE = "CREATE TABLE " + ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME + " ("
-                + ImageGalleryAndGIFGeneratorContract.LoginData._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_AVATAR + " TEXT NOT NULL, "
-                + ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_CREATION_TIME + " TEXT NOT NULL, "
-                + ImageGalleryAndGIFGeneratorContract.LoginData.COLUMN_TOKEN + " TEXT NOT NULL  " + ");";
+        String SQL_CREATE_LOGIN_TABLE = "CREATE TABLE " + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME + " ("
+                + ImageGalleryAndGIFGeneratorContract.LoginUserInfo._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.COLUMN_AVATAR + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.COLUMN_CREATION_TIME + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.COLUMN_TOKEN + " TEXT NOT NULL  " + ");";
 
 
-        db.execSQL(SQL_CREATE_LOGIN_TABLE);
+        database.execSQL(SQL_CREATE_LOGIN_TABLE);
 
 
     }
@@ -39,7 +39,7 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
         Log.w("SQLite", "We are updated from the version " + oldVersion + " on the version " + newVersion);
 
         // Удаляем старую таблицу и создаём новую
-        db.execSQL("DROP TABLE IF EXISTS " + ImageGalleryAndGIFGeneratorContract.LoginData.TABLE_NAME );
+        db.execSQL("DROP TABLE IF EXISTS " + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME );
         // Создаём новую таблицу
         onCreate(db);
 
