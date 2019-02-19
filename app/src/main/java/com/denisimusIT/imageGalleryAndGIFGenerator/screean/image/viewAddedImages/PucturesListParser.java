@@ -33,7 +33,7 @@ public class PucturesListParser {
             public void onResponse(Call<GetAllUserImages> call, Response<GetAllUserImages> response) {
                 if (response.isSuccessful()) {
                     getImagesResponse = response;
-                    getImagesResponseToDb(context);
+                    addImagesResponseToDb(context);
                     getAllDataFromTableLoginData(context);
 
                     Log.d(LOG_TAG, "load all images getImagesResponse: " + response.body().toString());
@@ -63,17 +63,19 @@ public class PucturesListParser {
 
     }
 
-    public void getImagesResponseToDb(Context context) {
+    public void addImagesResponseToDb(Context context) {
         List<ImageDTO> imageDTOList = getImagesResponse.body().getImageDTOList();
         for (ImageDTO element : imageDTOList) {
-            System.out.println(element.getImageParamsDTO());
             String id = String.valueOf(element.getId());
             String latitude = String.valueOf(element.getImageParamsDTO().getLatitude());
             String longitude = String.valueOf(element.getImageParamsDTO().getLongitude());
+            String address = element.getImageParamsDTO().getAddress();
             String weather = element.getImageParamsDTO().getWeather();
             String smallImageUrlPath = element.getSmallImageUrlPath();
             String bigImageUrlPath = element.getBigImageUrlPath();
-            addDataToTableImageData(context, id, latitude, longitude, weather, smallImageUrlPath, bigImageUrlPath);
+
+
+            addDataToTableImageData(context, id, latitude, longitude, address, weather, smallImageUrlPath, bigImageUrlPath);
 
 
         }

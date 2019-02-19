@@ -31,7 +31,7 @@ public class ImageDataCommands {
         imageGalleryAndGIFGeneratorDbHelper.close();
     }
 
-    public final static void addDataToTableImageData(Context context, String id, String longitude, String latitude, String address, String smallImageUrlPath, String bigImageUrlPath, String weather) {
+    public final static void addDataToTableImageData(Context context, String id, String longitude, String latitude, String address,String weather, String smallImageUrlPath, String bigImageUrlPath) {
         // создаем объект для данных
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- addDataToTableLoginData ---");
@@ -44,7 +44,7 @@ public class ImageDataCommands {
 
         cv.put(columnId, id);
         cv.put(columnLongitude, longitude);
-        cv.put(latitude, latitude);
+        cv.put(columnLatitude, latitude);
         cv.put(columnAddress, address);
         cv.put(columnWeather, weather);
         cv.put(columnSmallImageUrlPath, smallImageUrlPath);
