@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.db;
+package com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,9 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.denisimusIT.imageGalleryAndGIFGenerator.db.ImageGalleryAndGIFGeneratorContract;
+import com.denisimusIT.imageGalleryAndGIFGenerator.db.ImageGalleryAndGIFGeneratorDbHelper;
+
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
-public class DatabaseComands {
+public class LoginDataCommands {
     private static ImageGalleryAndGIFGeneratorDbHelper imageGalleryAndGIFGeneratorDbHelper;
 
     public final static void crateDataBase(Context context) {

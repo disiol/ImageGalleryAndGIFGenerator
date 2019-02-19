@@ -26,7 +26,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseComands.crateDataBase;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.crateDataBase;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
 public class Login extends AppCompatActivity implements View.OnClickListener {
