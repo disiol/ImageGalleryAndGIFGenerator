@@ -12,7 +12,7 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "imageGalleryAndGIFGenerator.db";
 
 
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 10;
 
     public ImageGalleryAndGIFGeneratorDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -45,8 +45,8 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
                 + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ID + " TEXT NOT NULL, "
                 + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LONGITUDE + " TEXT NOT NULL, "
                 + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LATITUDE + " TEXT NOT NULL, "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ADDRESS+ " TEXT NOT NULL, "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_WEATHER + " TEXT NOT NULL, "
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ADDRESS+ " TEXT , "
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_WEATHER + " TEXT , "
                 + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_SMALL_IMAGE_URL_PATH + " TEXT NOT NULL, "
                 + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_BIG_IMAGE_URL_PATH + " TEXT NOT NULL  " + ");";
 
@@ -59,11 +59,16 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
         Log.w("SQLite", "We are updated from the version " + oldVersion + " on the version " + newVersion);
 
         // Удаляем старую таблицу и создаём новую
-        dropAndCrateTable(sqLiteDatabase, ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " +  ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " +  ImageGalleryAndGIFGeneratorContract.ImageData.TABLE_NAME);
+        // Создаём новую таблицу
+        onCreate(sqLiteDatabase);  // Удаляем старую таблицу и создаём новую
 
-        dropAndCrateTable(sqLiteDatabase, ImageGalleryAndGIFGeneratorContract.ImageData.TABLE_NAME);
+
 
     }
+
+
 
     public void dropAndCrateTable(SQLiteDatabase sqLiteDatabase, String tableName) {
         // Удаляем старую таблицу и создаём новую
