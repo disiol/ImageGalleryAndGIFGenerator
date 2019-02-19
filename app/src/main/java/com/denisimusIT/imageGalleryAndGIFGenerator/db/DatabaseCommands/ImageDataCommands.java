@@ -17,6 +17,7 @@ public class ImageDataCommands {
     private static String columnId = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ID;
     private static String columnLongitude = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LONGITUDE;
     private static String columnLatitude = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LATITUDE;
+    private static String columnAddress = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ADDRESS;
     private static String columnWeather = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_WEATHER;
     private static String columnSmallImageUrlPath = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_SMALL_IMAGE_URL_PATH;
     private static String columnBigImageUrlPath = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_BIG_IMAGE_URL_PATH;
@@ -30,7 +31,7 @@ public class ImageDataCommands {
         imageGalleryAndGIFGeneratorDbHelper.close();
     }
 
-    public final static void addDataToTableImageData(Context context, String id, String longitude, String latitude, String weather, String smallImageUrlPath, String bigImageUrlPath) {
+    public final static void addDataToTableImageData(Context context, String id, String longitude, String latitude, String address, String smallImageUrlPath, String bigImageUrlPath, String weather) {
         // создаем объект для данных
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- addDataToTableLoginData ---");
@@ -43,7 +44,8 @@ public class ImageDataCommands {
 
         cv.put(columnId, id);
         cv.put(columnLongitude, longitude);
-        cv.put(columnLatitude, latitude);
+        cv.put(latitude, latitude);
+        cv.put(columnAddress, address);
         cv.put(columnWeather, weather);
         cv.put(columnSmallImageUrlPath, smallImageUrlPath);
         cv.put(columnBigImageUrlPath, bigImageUrlPath);
@@ -71,6 +73,7 @@ public class ImageDataCommands {
             int columnIndexId = c.getColumnIndex(columnId);
             int columnLongitudeIndex = c.getColumnIndex(columnLongitude);
             int columnLatitudeIndex = c.getColumnIndex(columnLatitude);
+            int columnAddressIndex = c.getColumnIndex(columnAddress);
             int columnWeatherIndex = c.getColumnIndex(columnWeather);
             int columnSmallImageUrlPathIndex = c.getColumnIndex(columnSmallImageUrlPath);
             int columnBigImageUrlPathIndex = c.getColumnIndex(columnBigImageUrlPath);
@@ -82,6 +85,7 @@ public class ImageDataCommands {
                         columnId + "=" + c.getString(columnIndexId) + "\n" +
                         columnLongitude + "=" + c.getString(columnLongitudeIndex) + "\n" +
                         columnLatitude + " = " + c.getString(columnLatitudeIndex) + "\n" +
+                        columnAddress + " = " + c.getString(columnAddressIndex) + "\n" +
                         columnWeather + " = " + c.getString(columnWeatherIndex) + "\n" +
                         columnSmallImageUrlPath + " = " + c.getString(columnSmallImageUrlPathIndex) + "\n" +
                         columnBigImageUrlPath + " = " + c.getString(columnBigImageUrlPathIndex)
@@ -95,7 +99,7 @@ public class ImageDataCommands {
 
 
     public static void clearTableLoginData(Context context) {
-        Log.d(LOG_TAG, "--- Clear " + tableName+ "---");
+        Log.d(LOG_TAG, "--- Clear " + tableName + "---");
         SQLiteDatabase db = connectToDB(context);
         // удаляем все записи
         int clearCount = db.delete(tableName, null, null);
