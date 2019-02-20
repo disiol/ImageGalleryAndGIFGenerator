@@ -12,7 +12,7 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "imageGalleryAndGIFGenerator.db";
 
 
-    private static final int DATABASE_VERSION = 11;
+    private static final int DATABASE_VERSION = 12;
 
     public ImageGalleryAndGIFGeneratorDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
