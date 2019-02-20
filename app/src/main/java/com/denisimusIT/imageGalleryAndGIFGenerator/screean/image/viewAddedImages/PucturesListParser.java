@@ -8,6 +8,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GetAllUserImag
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.ImageDTO;
 
 import java.io.IOException;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import retrofit2.Call;
@@ -15,6 +16,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.ImageDataCommands.addDataToTableImageData;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.ImageDataCommands.clearTableImageData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.ImageDataCommands.getAllDataFromTableImageData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getTokenDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils.showToastError;
@@ -27,14 +29,22 @@ public class PucturesListParser {
 
     public void loadAllImages(final Context context) throws IOException {
         //TODO add loidig indecator
+
         String token = getTokenDataFromTableLoginData(context);
         retrofitClient.serverApi.getAllUserImages(token).enqueue(new Callback<GetAllUserImages>() {
             @Override
             public void onResponse(Call<GetAllUserImages> call, Response<GetAllUserImages> response) {
                 if (response.isSuccessful()) {
+                    clearTableImageData(context);
+
                     getImagesResponse = response;
                     addImagesResponseToDb(context);
-                    getAllDataFromTableImageData(context);
+                    LinkedHashSet<ImageDTO> allDataFromTableImageData = getAllDataFromTableImageData(context);
+                    for (ImageDTO element : allDataFromTableImageData) {
+                        Log.e(LOG_TAG, "lallDataFromTableImageData" + allDataFromTableImageData.toString());
+
+
+                    }
 
                     Log.d(LOG_TAG, "load all images getImagesResponse: " + response.body().toString());
 

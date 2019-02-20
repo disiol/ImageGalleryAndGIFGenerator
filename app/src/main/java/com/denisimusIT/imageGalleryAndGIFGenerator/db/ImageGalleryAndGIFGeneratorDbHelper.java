@@ -12,7 +12,7 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "imageGalleryAndGIFGenerator.db";
 
 
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
 
     public ImageGalleryAndGIFGeneratorDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,7 +42,8 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     public void crateImageData(SQLiteDatabase database) {
         String SQL_CREATE_IMAGE_DATA = "CREATE TABLE " + ImageGalleryAndGIFGeneratorContract.ImageData.TABLE_NAME + " ("
                 + ImageGalleryAndGIFGeneratorContract.ImageData._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_IMAGES_RESPONSE + " TEXT NOT NULL  " + ");";
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_IMAGE_DTO + " TEXT NOT NULL ,"
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_IMAGE_PARAMS_DTO + " TEXT NOT NULL  " + ");";
 
 
         database.execSQL(SQL_CREATE_IMAGE_DATA);
