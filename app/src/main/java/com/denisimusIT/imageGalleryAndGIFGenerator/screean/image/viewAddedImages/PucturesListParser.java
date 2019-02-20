@@ -15,7 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.ImageDataCommands.addDataToTableImageData;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.ImageDataCommands.getAllDataFromTableLoginData;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.ImageDataCommands.getAllDataFromTableImageData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getTokenDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
@@ -34,7 +34,7 @@ public class PucturesListParser {
                 if (response.isSuccessful()) {
                     getImagesResponse = response;
                     addImagesResponseToDb(context);
-                    getAllDataFromTableLoginData(context);
+                    getAllDataFromTableImageData(context);
 
                     Log.d(LOG_TAG, "load all images getImagesResponse: " + response.body().toString());
 
@@ -56,9 +56,10 @@ public class PucturesListParser {
 
             @Override
             public void onFailure(Call<GetAllUserImages> call, Throwable t) {
+                //TODO
 
             }
-        });//TODO
+        });
 
 
     }
@@ -66,22 +67,12 @@ public class PucturesListParser {
     public void addImagesResponseToDb(Context context) {
         List<ImageDTO> imageDTOList = getImagesResponse.body().getImageDTOList();
         for (ImageDTO element : imageDTOList) {
-            String id = String.valueOf(element.getId());
-            String latitude = String.valueOf(element.getImageParamsDTO().getLatitude());
-            String longitude = String.valueOf(element.getImageParamsDTO().getLongitude());
-            String address = element.getImageParamsDTO().getAddress();
-            String weather = element.getImageParamsDTO().getWeather();
-            String smallImageUrlPath = element.getSmallImageUrlPath();
-            String bigImageUrlPath = element.getBigImageUrlPath();
 
-
-            addDataToTableImageData(context, id, latitude, longitude, address, weather, smallImageUrlPath, bigImageUrlPath);
+            addDataToTableImageData(context, imageDTOList.toString());
 
 
         }
     }
 
-    public Response<GetAllUserImages> getLoadAllImagesFortest() {
-        return getImagesResponse;
-    }
+
 }

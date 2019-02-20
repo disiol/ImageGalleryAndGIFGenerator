@@ -9,18 +9,14 @@ import android.util.Log;
 import com.denisimusIT.imageGalleryAndGIFGenerator.db.ImageGalleryAndGIFGeneratorContract;
 import com.denisimusIT.imageGalleryAndGIFGenerator.db.ImageGalleryAndGIFGeneratorDbHelper;
 
+import java.util.LinkedHashMap;
+
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
 public class ImageDataCommands {
     private static ImageGalleryAndGIFGeneratorDbHelper imageGalleryAndGIFGeneratorDbHelper;
 
-    private static String columnId = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ID;
-    private static String columnLongitude = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LONGITUDE;
-    private static String columnLatitude = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LATITUDE;
-    private static String columnAddress = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ADDRESS;
-    private static String columnWeather = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_WEATHER;
-    private static String columnSmallImageUrlPath = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_SMALL_IMAGE_URL_PATH;
-    private static String columnBigImageUrlPath = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_BIG_IMAGE_URL_PATH;
+    private static String columnImagesResponse = ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_IMAGES_RESPONSE;
     private static String tableName = ImageGalleryAndGIFGeneratorContract.ImageData.TABLE_NAME;
     private static String id;
 
@@ -31,7 +27,7 @@ public class ImageDataCommands {
         imageGalleryAndGIFGeneratorDbHelper.close();
     }
 
-    public final static void addDataToTableImageData(Context context, String id, String longitude, String latitude, String address,String weather, String smallImageUrlPath, String bigImageUrlPath) {
+    public final static void addDataToTableImageData(Context context, String imagesResponse) {
         // создаем объект для данных
         ContentValues cv = new ContentValues();
         Log.d(LOG_TAG, "--- addDataToTableLoginData ---");
@@ -41,21 +37,16 @@ public class ImageDataCommands {
         Log.d(LOG_TAG, "--- Insert in table LoginData  ---");
 
         // подготовим данные для вставки в виде пар: наименование столбца - значение
-
-        cv.put(columnId, id);
-        cv.put(columnLongitude, longitude);
-        cv.put(columnLatitude, latitude);
-        cv.put(columnAddress, address);
-        cv.put(columnWeather, weather);
-        cv.put(columnSmallImageUrlPath, smallImageUrlPath);
-        cv.put(columnBigImageUrlPath, bigImageUrlPath);
+        cv.put(columnImagesResponse, imagesResponse);
         long rowID = db.insert(tableName, null, cv);
         Log.d(LOG_TAG, "row inserted,ok");
 
         imageGalleryAndGIFGeneratorDbHelper.close();
     }
 
-    public final static void getAllDataFromTableLoginData(Context context) {
+    public final static LinkedHashMap<String, String> getAllDataFromTableImageData(Context context) {
+        LinkedHashMap<String, String> linkedHashMapImage = new LinkedHashMap<>();
+
         SQLiteDatabase db = connectToDB(context);
         // создаем объект для данных
         ContentValues cv = new ContentValues();
@@ -70,31 +61,26 @@ public class ImageDataCommands {
             id = ImageGalleryAndGIFGeneratorContract.ImageData._ID;
 
             int idColIndex = c.getColumnIndex(id);
-            int columnIndexId = c.getColumnIndex(columnId);
-            int columnLongitudeIndex = c.getColumnIndex(columnLongitude);
-            int columnLatitudeIndex = c.getColumnIndex(columnLatitude);
-            int columnAddressIndex = c.getColumnIndex(columnAddress);
-            int columnWeatherIndex = c.getColumnIndex(columnWeather);
-            int columnSmallImageUrlPathIndex = c.getColumnIndex(columnSmallImageUrlPath);
-            int columnBigImageUrlPathIndex = c.getColumnIndex(columnBigImageUrlPath);
+            int columnImagesResponseIndex = c.getColumnIndex(columnImagesResponse);
 
             do {
                 // получаем значения по номерам столбцов и пишем все в лог
-                Log.d(LOG_TAG, "--- getAllDataFromTableLoginData ---" +
+                Log.d(LOG_TAG, "--- getAllDataFromTableImageData ---" +
                         id + " = " + c.getInt(idColIndex) + "\n" +
-                        columnId + "=" + c.getString(columnIndexId) + "\n" +
-                        columnLongitude + "=" + c.getString(columnLongitudeIndex) + "\n" +
-                        columnLatitude + " = " + c.getString(columnLatitudeIndex) + "\n" +
-                        columnAddress + " = " + c.getString(columnAddressIndex) + "\n" +
-                        columnWeather + " = " + c.getString(columnWeatherIndex) + "\n" +
-                        columnSmallImageUrlPath + " = " + c.getString(columnSmallImageUrlPathIndex) + "\n" +
-                        columnBigImageUrlPath + " = " + c.getString(columnBigImageUrlPathIndex)
+                        columnImagesResponse + " = " + c.getString(columnImagesResponseIndex)
                 );
+
+//                linkedHashMapImage.put()
+
+
             } while (c.moveToNext());
-        } else
+        } else {
             Log.d(LOG_TAG, "0 rows");
+        }
         c.close();
         imageGalleryAndGIFGeneratorDbHelper.close();
+
+        return linkedHashMapImage;
     }
 
 

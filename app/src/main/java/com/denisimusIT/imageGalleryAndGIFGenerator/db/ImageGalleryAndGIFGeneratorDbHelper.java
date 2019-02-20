@@ -12,7 +12,7 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "imageGalleryAndGIFGenerator.db";
 
 
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
 
     public ImageGalleryAndGIFGeneratorDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,13 +42,7 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
     public void crateImageData(SQLiteDatabase database) {
         String SQL_CREATE_IMAGE_DATA = "CREATE TABLE " + ImageGalleryAndGIFGeneratorContract.ImageData.TABLE_NAME + " ("
                 + ImageGalleryAndGIFGeneratorContract.ImageData._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ID + " TEXT NOT NULL, "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LONGITUDE + " TEXT NOT NULL, "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_LATITUDE + " TEXT NOT NULL, "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_ADDRESS+ " TEXT , "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_WEATHER + " TEXT , "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_SMALL_IMAGE_URL_PATH + " TEXT NOT NULL, "
-                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_BIG_IMAGE_URL_PATH + " TEXT NOT NULL  " + ");";
+                + ImageGalleryAndGIFGeneratorContract.ImageData.COLUMN_IMAGES_RESPONSE + " TEXT NOT NULL  " + ");";
 
 
         database.execSQL(SQL_CREATE_IMAGE_DATA);

@@ -15,12 +15,7 @@ public class ImageGalleryAndGIFGeneratorContract {
     public static final class ImageData {
         public final static String TABLE_NAME = "imageData";
         public final static String _ID = BaseColumns._ID;
-        public final static String COLUMN_ID = "id";
-        public final static String COLUMN_LONGITUDE = "longitude";
-        public final static String COLUMN_ADDRESS = "address";
-        public final static String COLUMN_WEATHER = "weather";
-        public final static String COLUMN_LATITUDE = "latitude";
-        public final static String COLUMN_SMALL_IMAGE_URL_PATH = "smallImageUrlPath";
-        public final static String COLUMN_BIG_IMAGE_URL_PATH = "bigImageUrlPath";
+        public final static String COLUMN_IMAGES_RESPONSE = "imagesResponse";
+
     }
 }
