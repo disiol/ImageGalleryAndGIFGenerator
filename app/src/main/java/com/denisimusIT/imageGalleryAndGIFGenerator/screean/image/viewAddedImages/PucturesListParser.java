@@ -41,7 +41,13 @@ public class PucturesListParser {
                     Log.d(LOG_TAG, "load all images getImagesResponse: " + response.body().toString());
                     imageDTOList = response.body().getImageDTOList();//TODO передать в адаптер
 
-                    createListOfImages(recyclerView, context);
+                    int numberOfColumns = 2;
+                    //Создадим адаптер
+                    PicturesListItemAdapter picturesListItemAdapter = new PicturesListItemAdapter(imageDTOList);
+                    //Применим наш адаптер к RecyclerView
+                    recyclerView.setAdapter(picturesListItemAdapter);
+                    //И установим LayoutManager
+                    recyclerView.setLayoutManager(new GridLayoutManager(context,numberOfColumns));
 
 
                     Log.d(LOG_TAG, "imageDTOList " + imageDTOList.toString());
@@ -71,19 +77,12 @@ public class PucturesListParser {
 
     }
 
-    public void createListOfImages(RecyclerView recyclerView, Context context) {
-        int numberOfColumns = 2;
-        //Создадим адаптер
-        PicturesListItemAdapter picturesListItemAdapter = new PicturesListItemAdapter(imageDTOList);
-        //Применим наш адаптер к RecyclerView
-        recyclerView.setAdapter(picturesListItemAdapter);
-        //И установим LayoutManager
-        recyclerView.setLayoutManager(new GridLayoutManager(context,numberOfColumns));
-    }
-
     public List<ImageDTO> getImageDTOList() {
         return imageDTOList;
     }
 
 
+    public Response getLoadAllImagesFortest() {
+        return getImagesResponse;
+    }
 }

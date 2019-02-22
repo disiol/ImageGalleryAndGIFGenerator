@@ -42,11 +42,11 @@ public class FileUtils {
         Picasso.get()
                 .load(imageURI)
                 .placeholder(R.drawable.default_image_background)
-                .error(R.drawable.default_image_background)//TODO eror pitche
+                .error(R.drawable.eror)//TODO eror pitche
                 .fit()
                 .centerCrop()
                 .into(imageView);
-        Log.d(LOG_TAG, "FileUtils getImageForAvatar: " + imageURI);
+        Log.d(LOG_TAG, "FileUtils setImage: " + imageURI);
 
 
     }

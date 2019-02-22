@@ -4,6 +4,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImage
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil;
 
 import java.util.List;
 
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setImage;
 
 public class PicturesListItemAdapter extends RecyclerView.Adapter<PicturesListItemAdapter.ViewHolder> {
@@ -39,6 +41,7 @@ public class PicturesListItemAdapter extends RecyclerView.Adapter<PicturesListIt
         String address = imageParamsDTO.getAddress();
         String weather = imageParamsDTO.getWeather();
         String smallImageUrlPath = imageDTO.getSmallImageUrlPath();
+        String bigImageUrlPath = imageDTO.getBigImageUrlPath();
 
 
         if (AppUtil.isStringNotEmpty(address)) {
@@ -51,7 +54,8 @@ public class PicturesListItemAdapter extends RecyclerView.Adapter<PicturesListIt
             holder.weatherTextView.setText(weather);
         }
 
-        setImage(smallImageUrlPath, holder.dashboardImageView); //TODO
+        setImage(smallImageUrlPath, holder.dashboardImageView);
+        holder.dashboardImageView.setTag(smallImageUrlPath);
 
     }
 
@@ -73,7 +77,7 @@ public class PicturesListItemAdapter extends RecyclerView.Adapter<PicturesListIt
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private ImageView dashboardImageView;
 
@@ -86,7 +90,7 @@ public class PicturesListItemAdapter extends RecyclerView.Adapter<PicturesListIt
 
         ViewHolder(View itemView) {
             super(itemView);
-            this.context = context;
+            context = itemView.getContext();
 
             dashboardImageView = itemView.findViewById(R.id.iv_dashboard_image);
             addressTextView = itemView.findViewById(R.id.tv_dashboard_address);
@@ -97,11 +101,16 @@ public class PicturesListItemAdapter extends RecyclerView.Adapter<PicturesListIt
         }
 
         public void onClick(View v) {
-           startBigPicherActivity();
+            startBigImageActivity();
         }
 
-        private void startBigPicherActivity() {
+        private void startBigImageActivity() {
             Intent intent = new Intent(context.getApplicationContext(), BigPicherActivity.class);
+            String dashboardImageViewTag = dashboardImageView.getTag().toString();
+
+            Log.d(LOG_TAG, "dashboardImageViewTag:  " + dashboardImageViewTag);
+
+            intent.putExtra("bigImageUrlPath", dashboardImageViewTag);
             context.startActivity(intent);
         }
     }
