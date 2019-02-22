@@ -1,6 +1,8 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages;
 
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +17,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil;
 
 import java.util.List;
 
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImage;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setImage;
 
 public class PicturesListItemAdapter extends RecyclerView.Adapter<PicturesListItemAdapter.ViewHolder> {
 
@@ -49,7 +51,7 @@ public class PicturesListItemAdapter extends RecyclerView.Adapter<PicturesListIt
             holder.weatherTextView.setText(weather);
         }
 
-        getImage(smallImageUrlPath, holder.dashboardImageView); //TODO
+        setImage(smallImageUrlPath, holder.dashboardImageView); //TODO
 
     }
 
@@ -71,21 +73,36 @@ public class PicturesListItemAdapter extends RecyclerView.Adapter<PicturesListIt
     }
 
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public ImageView dashboardImageView;
+        private ImageView dashboardImageView;
 
-        public TextView addressTextView;
+        private TextView addressTextView;
 
-        public TextView weatherTextView;
+        private TextView weatherTextView;
+
+        private Context context;
+
 
         ViewHolder(View itemView) {
             super(itemView);
+            this.context = context;
 
             dashboardImageView = itemView.findViewById(R.id.iv_dashboard_image);
             addressTextView = itemView.findViewById(R.id.tv_dashboard_address);
             weatherTextView = itemView.findViewById(R.id.tv_dashboard_weather);
 
+            dashboardImageView.setOnClickListener(this);
+
+        }
+
+        public void onClick(View v) {
+           startBigPicherActivity();
+        }
+
+        private void startBigPicherActivity() {
+            Intent intent = new Intent(context.getApplicationContext(), BigPicherActivity.class);
+            context.startActivity(intent);
         }
     }
 

@@ -37,7 +37,7 @@ public class FileUtils {
 
     }
 
-    public final static void getImage(String imageURI, ImageView imageView) {
+    public final static void setImage(String imageURI, ImageView imageView) {
         int radius = 0;
         Picasso.get()
                 .load(imageURI)
