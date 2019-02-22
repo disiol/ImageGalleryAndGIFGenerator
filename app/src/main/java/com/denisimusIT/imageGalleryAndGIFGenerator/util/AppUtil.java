@@ -12,7 +12,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class ApiUtils extends DialogFragment {
+public class AppUtil extends DialogFragment {
     public static void showToastError(Context context, String errorText) {
         Toast toast = Toast.makeText(context, errorText, Toast.LENGTH_LONG);
         toast.show();
@@ -31,5 +31,9 @@ public class ApiUtils extends DialogFragment {
 
         // MultipartBody.Part is used to send also the actual file name
         return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
+    }
+
+    public static boolean isStringNotEmpty(String string){
+        return string != null && string.length() > 0;
     }
 }

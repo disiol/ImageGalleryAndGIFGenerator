@@ -143,6 +143,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         supportFragmentManager = getSupportFragmentManager();
 
         loginParser = new LoginParser();
+        //TODO hedge orentahen
 
 
     }

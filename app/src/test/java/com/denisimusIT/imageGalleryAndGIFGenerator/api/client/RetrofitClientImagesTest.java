@@ -1,7 +1,7 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PucturesListParser;
-import com.denisimusIT.imageGalleryAndGIFGenerator.util.ApiUtils;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil;
 
 import org.junit.Test;
 
@@ -82,7 +82,7 @@ public class RetrofitClientImagesTest {
         RetrofitClient retrofitClient = new RetrofitClient();
         String path = "/home/denis/IT/AndroidStudioProjects/Portfolio/toMarcet/ImageGalleryAndGIFGenerator/app/src/main/res/";
         File file = new File(path, "u2.jpg");
-        MultipartBody.Part image = ApiUtils.prepareFilePart("image", file);
+        MultipartBody.Part image = AppUtil.prepareFilePart("image", file);
         RequestBody description = parseStringIntoRequestBody("");
         RequestBody hashtag = parseStringIntoRequestBody("den");
         RequestBody latitude = parseStringIntoRequestBody("1");
