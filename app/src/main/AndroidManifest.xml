@@ -12,10 +12,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
+        android:theme="@style/FullScreen"
         android:usesCleartextTraffic="true">
         <activity android:name=".screean.image.viewAddedImages.BigPicherActivity"></activity>
-        <activity android:name=".screean.image.viewAddedImages.PicturesList" />
+        <activity
+            android:name=".screean.image.viewAddedImages.PicturesList"
+            android:theme="@style/ActionBar" />
         <activity android:name=".screean.authorization.signUp.Register" />
         <activity android:name=".screean.image.generateGIF.GIFImagesGeneration" />
         <activity android:name=".screean.image.addNewImage.UploadNewPicture" />
