@@ -1,6 +1,5 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
@@ -54,7 +53,12 @@ public class FileUtils {
     }
 
     public final static void setGif(Context context, String imageURI, ImageView imageView) {
-        Glide.with(context).asGif().load(imageURI).into(imageView);
+        Glide.with(context)
+                .asGif()
+                .load(imageURI).error(R.drawable.gif_default)
+                .centerCrop()
+                .override(imageView.getWidth(), imageView.getHeight())
+                .into(imageView);
         Log.d(LOG_TAG, "FileUtils setImage: " + imageURI);
 
     }

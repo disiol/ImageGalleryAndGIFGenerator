@@ -19,9 +19,6 @@
             android:name=".screean.image.viewAddedImages.PicturesList"
             android:theme="@style/ActionBar" />
         <activity android:name=".screean.authorization.signUp.Register" />
-        <activity
-            android:name=".screean.image.generateGIF.GIFImagesGeneration"
-            android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".screean.image.addNewImage.UploadNewPicture" />
         <activity android:name=".screean.authorization.signIn.Login">
             <intent-filter>

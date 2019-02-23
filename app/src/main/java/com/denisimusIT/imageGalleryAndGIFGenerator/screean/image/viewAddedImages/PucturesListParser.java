@@ -2,7 +2,6 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImage
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
@@ -27,7 +26,7 @@ public class PucturesListParser {
     List<ImageDTO> imageDTOList;
 
 
-    public void loadAllImages(final Context context, final RecyclerView recyclerView) throws IOException {
+    public void loadAllImages(final Context context, final RecyclerView recyclerView) {
         //TODO add loidig indecator
 
 
@@ -47,7 +46,7 @@ public class PucturesListParser {
                     //Применим наш адаптер к RecyclerView
                     recyclerView.setAdapter(picturesListItemAdapter);
                     //И установим LayoutManager
-                    recyclerView.setLayoutManager(new GridLayoutManager(context,numberOfColumns));
+                    recyclerView.setLayoutManager(new GridLayoutManager(context, numberOfColumns));
 
 
                     Log.d(LOG_TAG, "imageDTOList " + imageDTOList.toString());

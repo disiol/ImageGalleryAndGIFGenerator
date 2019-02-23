@@ -31,7 +31,7 @@ public class GIFImagesGenerationParser  {
     private RetrofitClient retrofitClient = new RetrofitClient();
     private Response<GifDTO> getGif;
 
-    public void loadGIF(final Context context, final ImageView imageViewGiff, final ProgressBar progressBar){
+    public void loadGIF(final Context context, final ImageView imageViewGiff){
         //TODO add loidig indecator
 
 
@@ -44,7 +44,6 @@ public class GIFImagesGenerationParser  {
                 Log.d(LOG_TAG, "imageURIGiff: " + imageURI);
 
                 setGif(context,imageURI,imageViewGiff);
-                progressBar.setVisibility(View.INVISIBLE);
 
             }
 

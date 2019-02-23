@@ -4,6 +4,7 @@
     <style name="ActionBar" parent="@style/Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowContentOverlay">@null</item>
+
         <!--TODO del Title -->
 
     </style>
@@ -15,6 +16,8 @@
         <item name="android:windowContentOverlay">@null</item>
     </style>
 
+    <style name="Dialog" parent="Theme.AppCompat.Light.Dialog">
+    </style>
 
 
 </resources>
