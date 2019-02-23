@@ -1,9 +1,12 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.util;
 
+import android.app.Activity;
+import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.squareup.picasso.Picasso;
 
@@ -48,7 +51,13 @@ public class FileUtils {
                 .into(imageView);
         Log.d(LOG_TAG, "FileUtils setImage: " + imageURI);
 
+    }
+
+    public final static void setGif(Context context, String imageURI, ImageView imageView) {
+        Glide.with(context).asGif().load(imageURI).into(imageView);
+        Log.d(LOG_TAG, "FileUtils setImage: " + imageURI);
 
     }
+
 
 }

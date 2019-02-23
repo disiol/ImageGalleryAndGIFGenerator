@@ -57,5 +57,7 @@
     <string name="dashboard_weather">Sunny weather</string>
     <string name="dashboard_address">Sample St,8a, Kyiv, Ukraine</string>
 
+    <string name="add_Image">Add image</string>
+    <string name="generate_gif">generate gif</string>
 
 </resources>
