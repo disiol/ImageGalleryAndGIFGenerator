@@ -7,7 +7,6 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
@@ -25,7 +24,7 @@ public class GifFragmentDialog extends DialogFragment {
 
         ImageView gifImageView = (ImageView) gifFragmentDialog.findViewById(R.id.iv_gif_animation);
 
-        GIFImagesGenerationParser gifImagesGenerationParser = new GIFImagesGenerationParser();
+        GifFragmentDialogParser gifImagesGenerationParser = new GifFragmentDialogParser();
         gifImagesGenerationParser.loadGIF(this.getContext(),gifImageView);
 
         return gifFragmentDialog;

@@ -26,7 +26,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setGif;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setImage;
 ;
 
-public class GIFImagesGenerationParser  {
+public class GifFragmentDialogParser {
 
     private RetrofitClient retrofitClient = new RetrofitClient();
     private Response<GifDTO> getGif;
