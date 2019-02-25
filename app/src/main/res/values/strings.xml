@@ -60,4 +60,12 @@
     <string name="add_Image">Add image</string>
     <string name="generate_gif">generate gif</string>
 
+
+
+    <!--Upload Image Activity-->
+    <string name="hash_tag">#hashtag</string>
+    <string name="description">description</string>
+    <string name="upload_start">uploading...</string>
+
+
 </resources>

@@ -23,8 +23,7 @@ import retrofit2.Response;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getTokenDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setGif;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setImage;
-;
+
 
 public class GifFragmentDialogParser {
 
@@ -44,6 +43,8 @@ public class GifFragmentDialogParser {
                 Log.d(LOG_TAG, "imageURIGiff: " + imageURI);
 
                 setGif(context,imageURI,imageViewGiff);
+
+                //TODO проверка Response
 
             }
 
