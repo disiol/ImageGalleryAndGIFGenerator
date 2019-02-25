@@ -105,6 +105,7 @@ public class LoginDataCommands {
         imageGalleryAndGIFGeneratorDbHelper.close();
         return null;
     }
+
     public final static String getCreationTimeDataFromTableLoginData(Context context) {
         SQLiteDatabase db = connectToDB(context);
         // создаем объект для данных

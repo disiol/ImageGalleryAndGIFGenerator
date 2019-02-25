@@ -2,19 +2,11 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.generateGIF;
 
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GetAllUserImages;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GifDTO;
-import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesListItemAdapter;
-
-import java.io.IOException;
+import com.denisimusIT.imageGalleryAndGIFGenerator.dto.GifDTO;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,7 +22,7 @@ public class GifFragmentDialogParser {
     private RetrofitClient retrofitClient = new RetrofitClient();
     private Response<GifDTO> getGif;
 
-    public void loadGIF(final Context context, final ImageView imageViewGiff){
+    public void loadGIF(final Context context, final ImageView imageViewGiff) {
         //TODO add loidig indecator
 
 
@@ -42,7 +34,7 @@ public class GifFragmentDialogParser {
                 String imageURI = response.body().getGifUrlPath();
                 Log.d(LOG_TAG, "imageURIGiff: " + imageURI);
 
-                setGif(context,imageURI,imageViewGiff);
+                setGif(context, imageURI, imageViewGiff);
 
                 //TODO проверка Response
 
@@ -50,6 +42,7 @@ public class GifFragmentDialogParser {
 
             @Override
             public void onFailure(Call<GifDTO> call, Throwable t) {
+
 
             }
         });

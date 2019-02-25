@@ -20,7 +20,7 @@ public class CircularTransformation implements Transformation {
 
     @Override
     public Bitmap transform(Bitmap source) {
-        Bitmap output = Bitmap.createBitmap(source.getWidth(), source.getHeight(), 
+        Bitmap output = Bitmap.createBitmap(source.getWidth(), source.getHeight(),
                 Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
 
@@ -36,10 +36,10 @@ public class CircularTransformation implements Transformation {
         paint.setColor(Color.parseColor("#BAB399"));
 
         if (mRadius == 0) {
-            canvas.drawCircle(source.getWidth() / 2 + 0.7f, source.getHeight() / 2 + 0.7f, 
+            canvas.drawCircle(source.getWidth() / 2 + 0.7f, source.getHeight() / 2 + 0.7f,
                     source.getWidth() / 2 - 1.1f, paint);
         } else {
-            canvas.drawCircle(source.getWidth() / 2 + 0.7f, source.getHeight() / 2 + 0.7f, 
+            canvas.drawCircle(source.getWidth() / 2 + 0.7f, source.getHeight() / 2 + 0.7f,
                     mRadius, paint);
         }
 

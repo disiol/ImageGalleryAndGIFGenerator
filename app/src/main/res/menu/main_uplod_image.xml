@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/bt_up_lod_image"
-        android:icon="@android:drawable/checkbox_on_background"
+        android:icon="@drawable/check_icon"
         android:title="@string/add_Image"
         app:showAsAction="always"></item>
 

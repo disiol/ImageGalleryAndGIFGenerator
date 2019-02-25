@@ -25,7 +25,7 @@ public class GifFragmentDialog extends DialogFragment {
         ImageView gifImageView = (ImageView) gifFragmentDialog.findViewById(R.id.iv_gif_animation);
 
         GifFragmentDialogParser gifImagesGenerationParser = new GifFragmentDialogParser();
-        gifImagesGenerationParser.loadGIF(this.getContext(),gifImageView);
+        gifImagesGenerationParser.loadGIF(this.getContext(), gifImageView);
 
         return gifFragmentDialog;
     }

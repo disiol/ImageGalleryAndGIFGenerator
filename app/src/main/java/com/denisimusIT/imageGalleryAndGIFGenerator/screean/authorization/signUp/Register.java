@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,7 +14,6 @@ import android.widget.ProgressBar;
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.IMAGE_MEDIA_TYPE;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.SELECT_PICTURE;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
@@ -55,7 +53,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         switch (v.getId()) {
             case R.id.bt_registration_sign_up:
                 registerParser.register(imageViewRegister, editTextUserName, editTextEmail, editTextPassword,
-                        editTextConfimPassWord, buttonRegistrationSignUp,progressBarRegister, v,supportFragmentManager);
+                        editTextConfimPassWord, buttonRegistrationSignUp, progressBarRegister, v, supportFragmentManager);
                 break;
             case R.id.imageView_sign_up:
                 selectImage();

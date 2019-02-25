@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
@@ -155,7 +155,6 @@ class LoginParser {
     private boolean isEmailValid(String email) {
         return email.contains("@");
     }
-
 
 
     private void showCreateTheNewUserAlertDialog(FragmentManager supportFragmentManager) {

@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.GetAllUserImages;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.ImageDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.dto.GetAllUserImages;
+import com.denisimusIT.imageGalleryAndGIFGenerator.dto.ImageDTO;
 
 import java.io.IOException;
 import java.util.List;

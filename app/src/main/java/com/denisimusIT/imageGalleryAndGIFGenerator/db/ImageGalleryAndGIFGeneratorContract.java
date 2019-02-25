@@ -11,7 +11,8 @@ public class ImageGalleryAndGIFGeneratorContract {
         public final static String COLUMN_AVATAR = "avatar";
         public final static String COLUMN_CREATION_TIME = "creationTime";
     }
-//TODO
+
+    //TODO
     public static final class ImageData {
         public final static String TABLE_NAME = "imageData";
         public final static String _ID = BaseColumns._ID;

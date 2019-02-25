@@ -43,15 +43,13 @@ public class ImageGalleryAndGIFGeneratorDbHelper extends SQLiteOpenHelper {
         Log.w("SQLite", "We are updated from the version " + oldVersion + " on the version " + newVersion);
 
         // Удаляем старую таблицу и создаём новую
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " +  ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME);
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " +  ImageGalleryAndGIFGeneratorContract.ImageData.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ImageGalleryAndGIFGeneratorContract.LoginUserInfo.TABLE_NAME);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + ImageGalleryAndGIFGeneratorContract.ImageData.TABLE_NAME);
         // Создаём новую таблицу
         onCreate(sqLiteDatabase);  // Удаляем старую таблицу и создаём новую
 
 
-
     }
-
 
 
     public void dropAndCrateTable(SQLiteDatabase sqLiteDatabase, String tableName) {

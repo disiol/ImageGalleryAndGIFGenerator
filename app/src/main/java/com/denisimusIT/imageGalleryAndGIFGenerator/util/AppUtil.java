@@ -38,11 +38,11 @@ public class AppUtil extends DialogFragment {
         return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
     }
 
-    public static boolean isStringNotEmpty(String string){
+    public static boolean isStringNotEmpty(String string) {
         return string != null && string.length() > 0;
     }
 
-    public static boolean checkIfEditTextAndHideKeyboard(Activity activity , MotionEvent motionEvent , boolean ret) {
+    public static boolean checkIfEditTextAndHideKeyboard(Activity activity, MotionEvent motionEvent, boolean ret) {
         View view = activity.getCurrentFocus();
 
         if (view instanceof EditText) {

@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto;
+package com.denisimusIT.imageGalleryAndGIFGenerator.dto;
 
 
 import com.google.gson.annotations.Expose;

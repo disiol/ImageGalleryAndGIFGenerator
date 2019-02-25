@@ -58,6 +58,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     }
 
 
+    //TODO вынести в отдельный класс
+
     private static final int PERMISSION_REQUEST_CODE = 200;
 
     private boolean checkPermission() {
@@ -158,12 +160,12 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 break;
             case R.id.imageViewAvatar:
                 Log.d(LOG_TAG, "imageViewAvatar click");
-                if ( imageViewAvatar.getDrawable() == null) {
+                if (imageViewAvatar.getDrawable() == null) {
 
                     Log.d(LOG_TAG, " imageViewAvatar.getDrawable() == null");
                     startActivityRegister();
 
-                }else{
+                } else {
 
                     startPicturesListAtyvity();
                     Log.d(LOG_TAG, "strat image laiyt ");
@@ -183,7 +185,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
     private void startPicturesListAtyvity() {
         Intent intent = new Intent(this.getApplicationContext(), PicturesList.class);
-       startActivity(intent);
+        startActivity(intent);
     }
 
 }

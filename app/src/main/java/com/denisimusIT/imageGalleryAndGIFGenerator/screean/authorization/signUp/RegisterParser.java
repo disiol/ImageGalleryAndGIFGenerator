@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn.Login;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
@@ -184,15 +184,15 @@ public class RegisterParser {
                     progressBarRegister.setVisibility(ProgressBar.VISIBLE);
                     if (response.isSuccessful()) {
 
-                    String title = "New user created";
-                    Log.e(LOG_TAG, "reg response " + title);
+                        String title = "New user created";
+                        Log.e(LOG_TAG, "reg response " + title);
 
-                    showToastError(context, title);
+                        showToastError(context, title);
 
-                    startLoginAtyvity();
-                    buttonRegistrationSignUp.setClickable(true);
-                    imageViewRegister.setClickable(true);
-                    progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
+                        startLoginAtyvity();
+                        buttonRegistrationSignUp.setClickable(true);
+                        imageViewRegister.setClickable(true);
+                        progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
                     } else {
                         try {
 
@@ -201,7 +201,7 @@ public class RegisterParser {
                             //TODO finish the text of an error
                             Log.e(LOG_TAG, "responseError " + responseErorrBody);
                             //TODO finish the text of an error
-                            showAlertDialog(supportFragmentManager,responseMessage,responseErorrBody);
+                            showAlertDialog(supportFragmentManager, responseMessage, responseErorrBody);
                             cancel = true;
                             buttonRegistrationSignUp.setClickable(true);
                             imageViewRegister.setClickable(true);

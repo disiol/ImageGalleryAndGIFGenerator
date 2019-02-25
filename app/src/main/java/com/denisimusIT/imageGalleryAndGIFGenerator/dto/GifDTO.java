@@ -1,12 +1,12 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api.client.dto;
+package com.denisimusIT.imageGalleryAndGIFGenerator.dto;
 
 import com.google.gson.annotations.SerializedName;
 
 
-
 public class GifDTO {
-//TODO
-    public GifDTO(){}
+    //TODO
+    public GifDTO() {
+    }
 
     @SerializedName("gif")
     private String gifUrlPath;
