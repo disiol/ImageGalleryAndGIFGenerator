@@ -59,7 +59,7 @@ public class UploadNewPicture extends AppCompatActivity implements View.OnClickL
         editTextHashTag = findViewById(R.id.et_hash_tag);
 
         imageViewUploadImage.setOnClickListener(this);
-
+        context = this;
     }
 
     @Override

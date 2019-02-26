@@ -67,6 +67,7 @@
     <string name="description">description</string>
     <string name="upload_start">uploading...</string>
     <string name="up_lod_image">up lod image</string>
+    <string name="pick_up_image_error">Oops. Please choose image and press up lod image</string>
 
 
 </resources>
