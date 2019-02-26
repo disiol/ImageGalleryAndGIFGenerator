@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
+import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
 
@@ -77,7 +78,9 @@ public class UploadNewPictureParser {
 
                     if (response.isSuccessful()) {
                         Log.d(LOG_TAG, "responseAddImage: " + response.toString());
-                        progressBarUploadimage.setVisibility(View.VISIBLE);
+                        progressBarUploadimage.setVisibility(View.INVISIBLE);
+                        applicationContext.startActivity(new Intent(applicationContext, PicturesList.class));
+
 
                     } else {
                         try {
