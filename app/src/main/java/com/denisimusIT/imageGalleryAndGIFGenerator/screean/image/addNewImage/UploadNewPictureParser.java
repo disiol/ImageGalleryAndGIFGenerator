@@ -1,8 +1,8 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.addNewImage;
 
 
-import android.app.MediaRouteButton;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +25,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getTokenDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.isStringNotEmpty;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
@@ -40,8 +41,8 @@ public class UploadNewPictureParser {
 
     public void addImage(final ImageView imageViewUploadImage, final ProgressBar progressBarUploadimage,
                          final EditText editTextDescription, final EditText editTextHashTag, String latitudeText, String longitudeText) {
-        
-        progressBar =progressBarUploadimage;
+
+        progressBar = progressBarUploadimage;
 
         applicationContext = UploadNewPicture.getContext();
 
@@ -76,7 +77,7 @@ public class UploadNewPictureParser {
 
                     if (response.isSuccessful()) {
                         Log.d(LOG_TAG, "responseAddImage: " + response.toString());
-                        progressBarUploadimage.setVisibility(View.INVISIBLE);
+                        progressBarUploadimage.setVisibility(View.VISIBLE);
 
                     } else {
                         try {
@@ -139,7 +140,7 @@ public class UploadNewPictureParser {
 
 
     private void progressBar(ImageView imageViewUploadImage, EditText editTextDescription,
-                               EditText editTextHashTag, ProgressBar progressBarUploadImage) {
+                             EditText editTextHashTag, ProgressBar progressBarUploadImage) {
         imageViewUploadImage.setEnabled(false);
         editTextDescription.setEnabled(false);
         editTextHashTag.setEnabled(false);
@@ -153,7 +154,6 @@ public class UploadNewPictureParser {
         editTextHashTag.setEnabled(true);
         progressBarUploadImage.setVisibility(View.INVISIBLE);
     }
-
 
 
 }
