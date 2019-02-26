@@ -2,6 +2,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.dto.GetAllUserImages;
 import com.denisimusIT.imageGalleryAndGIFGenerator.dto.GifDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.dto.ImageParamsDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.dto.UserDTO;
 
 import okhttp3.MultipartBody;
@@ -39,12 +40,11 @@ public interface ServerApi {
 
     @Multipart
     @POST("image")
-        //TODO
     Call<ResponseBody> addImage(@Header("token") String token,
-                                @Part MultipartBody.Part image,
-                                @Part("description") RequestBody description,
-                                @Part("hashtag") RequestBody hashtag,
-                                @Part("latitude") RequestBody latitude,
-                                @Part("longitude") RequestBody longitude);
+                                            @Part MultipartBody.Part image,
+                                            @Part("description") RequestBody description,
+                                            @Part("hashtag") RequestBody hashtag,
+                                            @Part("latitude") RequestBody latitude,
+                                            @Part("longitude") RequestBody longitude);
 
 }

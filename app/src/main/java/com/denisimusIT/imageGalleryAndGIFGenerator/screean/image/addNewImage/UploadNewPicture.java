@@ -1,6 +1,7 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.addNewImage;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -8,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +25,7 @@ import com.google.android.gms.location.LocationServices;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.IMAGE_MEDIA_TYPE;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.SELECT_PICTURE;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setImage;
 
@@ -39,6 +42,7 @@ public class UploadNewPicture extends AppCompatActivity implements View.OnClickL
     private String longitude;
     private Location lastLocation;
     private Uri selectedImageData;
+    private static Context context;
 
 
     @Override
@@ -55,13 +59,14 @@ public class UploadNewPicture extends AppCompatActivity implements View.OnClickL
         editTextHashTag = findViewById(R.id.et_hash_tag);
 
         imageViewUploadImage.setOnClickListener(this);
-        //TODO проверку на зполненость обязательніх полей и вод ошибок
 
     }
 
     @Override
     public void onClick(View v) {
         selectImage();
+        context = v.getContext();
+
     }
 
     @Override
@@ -72,17 +77,23 @@ public class UploadNewPicture extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        disableInputs();
 
-        getCoordinates();
+        if (item.getItemId() == R.id.bt_up_lod_image) {
+            Log.d(LOG_TAG, "ad_image_view");
+
+            disableInputs();
+            getCoordinates();
 
 
-        uploadNewPictureParser.addImage(this, imageViewUploadImage, progressBarUploadImage,
-                editTextDescription, editTextHashTag, latitude, longitude);
+            uploadNewPictureParser.addImage(imageViewUploadImage, progressBarUploadImage,
+                    editTextDescription, editTextHashTag, latitude, longitude);
+            return true;
+        }
 
 
-        return true;
+        return super.onOptionsItemSelected(item);
     }
+
 
 
     @Override
@@ -164,5 +175,9 @@ public class UploadNewPicture extends AppCompatActivity implements View.OnClickL
         editTextHashTag.setEnabled(false);
         progressBarUploadImage.setVisibility(View.VISIBLE);
         showToastError(this, getString(R.string.upload_start));
+    }
+
+    public static Context getContext() {
+        return context;
     }
 }

@@ -5,7 +5,7 @@
     <item
         android:id="@+id/bt_up_lod_image"
         android:icon="@drawable/check_icon"
-        android:title="@string/add_Image"
+        android:title="@string/up_lod_image"
         app:showAsAction="always"></item>
 
 </menu>

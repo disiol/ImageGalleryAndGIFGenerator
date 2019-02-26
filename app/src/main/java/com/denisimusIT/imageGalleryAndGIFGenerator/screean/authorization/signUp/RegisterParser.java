@@ -146,7 +146,6 @@ public class RegisterParser {
             focusView = editTextEmail;
             cancel = true;
         } else if (!password.equals(confirmPassWord)) {
-            //TODO
             editTextConfimPassWord.setError(context.getString(R.string.error_passwords_should_match));
             editTextPassword.setError(context.getString(R.string.error_passwords_should_match));
             focusView = editTextPassword;

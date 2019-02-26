@@ -4,6 +4,7 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.addNewImage;
 import android.content.Context;
 import android.net.Uri;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,25 +34,30 @@ public class UploadNewPictureParser {
     private RetrofitClient retrofitClient = new RetrofitClient();
     private Context applicationContext;
 
-    public void addImage(final Context context, ImageView imageViewUploadImage, final ProgressBar progressBarUploadimage,
-                         EditText editTextDescription, EditText editTextHashTag, String latitudeText, String longitudeText) {
+    public void addImage(final ImageView imageViewUploadImage, final ProgressBar progressBarUploadimage,
+                         final EditText editTextDescription, final EditText editTextHashTag, String latitudeText, String longitudeText) {
 
+              applicationContext = UploadNewPicture.getContext();
 
-        applicationContext = context;
+        //TODO проверку на зполненость обязательніх полей и вод ошибок
 
 
         progressBarUploadimage.setVisibility(View.VISIBLE);
 
         String token = getTokenDataFromTableLoginData(applicationContext);
 
+
         Uri imageViewUploadImageTag = (Uri) imageViewUploadImage.getTag();
-        File imageFile = new File(PathUtil.getPath(applicationContext, imageViewUploadImageTag));
-        RequestBody imageRequestBody = getImageRequestBody(imageFile);
-        MultipartBody.Part imageBody = (MultipartBody.Part) MultipartBody.Part.createFormData("imageRequestBody", imageFile.getName(), imageRequestBody);
+        final File imageFile = new File(PathUtil.getPath(applicationContext, imageViewUploadImageTag));
+        RequestBody uplodImage = getImageRequestBody(imageFile);
+        MultipartBody.Part imageBody = (MultipartBody.Part) MultipartBody.Part.createFormData("image", imageFile.getName(), uplodImage);//TODO
 
 
-        RequestBody description = parseStringIntoRequestBody(editTextDescription.getText().toString());
-        RequestBody hashTag = parseStringIntoRequestBody(editTextHashTag.getText().toString());
+        String desciptionText = editTextDescription.getText().toString();
+        RequestBody description = parseStringIntoRequestBody(desciptionText);
+        String hashTagText = editTextHashTag.getText().toString();
+
+        RequestBody hashTag = parseStringIntoRequestBody(hashTagText);
         RequestBody latitude = parseStringIntoRequestBody(latitudeText);
         RequestBody longitude = parseStringIntoRequestBody(longitudeText);
 
@@ -66,22 +72,45 @@ public class UploadNewPictureParser {
                 } else {
                     try {
                         String errorBody = response.errorBody().string();
-                        Log.d(LOG_TAG, "responseAddImageEror: " + errorBody);
+                        Log.e(LOG_TAG, "responseAddImageEror: " + errorBody);
                         AppUtil.showToastError(applicationContext, errorBody);
+                        enableInputs(imageViewUploadImage, editTextDescription, editTextHashTag, progressBarUploadimage);
+                        progressBarUploadimage.setVisibility(View.INVISIBLE);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    ;
+
                 }
             }
 
             @Override
             public void onFailure(Call<ResponseBody> call, Throwable t) {
                 //TODO
+                Log.e(LOG_TAG, "responseAddImageEror: " + t.toString());
+                enableInputs(imageViewUploadImage, editTextDescription, editTextHashTag, progressBarUploadimage);
 
             }
+
+
         });
 
+    }
+
+    private void disableInputs(ImageView imageViewUploadImage, EditText editTextDescription,
+                               EditText editTextHashTag, ProgressBar progressBarUploadImage) {
+        imageViewUploadImage.setEnabled(false);
+        editTextDescription.setEnabled(false);
+        editTextHashTag.setEnabled(false);
+        progressBarUploadImage.setVisibility(View.VISIBLE);
+    }
+
+    private void enableInputs(ImageView imageViewUploadImage, EditText editTextDescription,
+                              EditText editTextHashTag, ProgressBar progressBarUploadImage) {
+        imageViewUploadImage.setEnabled(true);
+        editTextDescription.setEnabled(true);
+        editTextHashTag.setEnabled(true);
+        progressBarUploadImage.setVisibility(View.VISIBLE);
     }
 
 

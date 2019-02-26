@@ -39,6 +39,17 @@ public class FileUtils {
 
     }
 
+    public final static void getImage(Uri imageURI, ImageView imageView) {
+        int radius = 0;
+        Picasso.get()
+                .load(imageURI)
+                .centerCrop()
+                .into(imageView);
+        Log.d(LOG_TAG, "FileUtils getImageForAvatar: " + imageURI);
+
+
+    }
+
     public final static void setImage(String imageURI, ImageView imageView) {
         int radius = 0;
         Picasso.get()

@@ -66,6 +66,7 @@
     <string name="hash_tag">#hashtag</string>
     <string name="description">description</string>
     <string name="upload_start">uploading...</string>
+    <string name="up_lod_image">up lod image</string>
 
 
 </resources>
