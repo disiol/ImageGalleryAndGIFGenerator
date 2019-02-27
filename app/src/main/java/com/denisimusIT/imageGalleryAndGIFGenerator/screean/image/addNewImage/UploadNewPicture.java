@@ -113,12 +113,12 @@ public class UploadNewPicture extends AppCompatActivity implements View.OnClickL
     private void selectImage() {
         //TODO refactoring
         //TODO add select avatar frm camera
-        Intent intent = new Intent();
+
+        Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType(IMAGE_MEDIA_TYPE);
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,
-                "Select Picture"), SELECT_PICTURE);
-        startActivity(intent);
+        startActivityForResult(intent, SELECT_PICTURE);
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

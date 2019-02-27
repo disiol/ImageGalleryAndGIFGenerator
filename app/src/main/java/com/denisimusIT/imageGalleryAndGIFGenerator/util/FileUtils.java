@@ -70,7 +70,7 @@ public class FileUtils {
                 .centerCrop()
                 .override(imageView.getWidth(), imageView.getHeight())
                 .into(imageView);
-        Log.d(LOG_TAG, "FileUtils setImage: " + imageURI);
+        Log.d(LOG_TAG, "FileUtils setGif: " + imageURI);
 
     }
 
