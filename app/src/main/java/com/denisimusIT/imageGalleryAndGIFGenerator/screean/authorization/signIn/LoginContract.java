@@ -20,6 +20,7 @@ public class LoginContract {
 
     interface LoginModel {
         void setLoginData();
+        void getData();
         //TODO
 
     }
