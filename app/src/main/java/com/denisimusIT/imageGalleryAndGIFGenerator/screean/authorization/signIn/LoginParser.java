@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
-import com.denisimusIT.imageGalleryAndGIFGenerator.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
@@ -35,7 +35,8 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToast
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
-class LoginParser {
+class LoginParser implements LoginContract.LoginPresenter{
+    //TODO silgenton
     private RetrofitClient retrofitClient = new RetrofitClient();
 
     private String responseLogin;
@@ -93,6 +94,8 @@ class LoginParser {
                         responseLogin = response.body().toString();
                         Log.d(LOG_TAG, "view response: " + responseLogin);
 
+
+                        //TODO выести в модель
                         String avatarImageLink = response.body().getAvatarImageLink();
                         String creationTime = response.body().getCreationTime();
                         String token = response.body().getToken();
@@ -147,6 +150,32 @@ class LoginParser {
 
     }
 
+
+    @Override
+    public void loginValidator() {
+
+    }
+
+    @Override
+    public void onButtonWasClicked() {
+
+    }
+
+    @Override
+    public void getDataFromModel() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+/** TODO освободить ресурсы
+ * Если бы мы работали например с RxJava, в этом классе стоило бы отписываться от подписок
+ * Кроме того, при работе с другими методами асинхронного андроида,здесь мы боремся с утечкой контекста
+ */
+
+        Log.d(LOG_TAG, "onDestroy()");
+    }
+
     private void resetErrors(EditText emailLogin, EditText passwordLogin) {
         emailLogin.setError(null);
         passwordLogin.setError(null);
@@ -178,5 +207,7 @@ class LoginParser {
         Intent intent = new Intent(context.getApplicationContext(), PicturesList.class);
         context.startActivity(intent);
     }
+
+
 
 }

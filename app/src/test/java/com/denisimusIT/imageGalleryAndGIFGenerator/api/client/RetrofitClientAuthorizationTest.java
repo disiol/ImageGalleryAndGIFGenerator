@@ -1,6 +1,6 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
 
 import org.junit.Test;
 
