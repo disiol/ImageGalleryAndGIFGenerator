@@ -30,7 +30,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.crateDataBase;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
-public class Login extends AppCompatActivity implements View.OnClickListener {
+public class Login extends AppCompatActivity implements View.OnClickListener, LoginContract.LoginView {
 
     private EditText emailLogin;
     private EditText passwordLogin;
@@ -154,9 +154,6 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         loginParser = new LoginParser();
 
 
-
-
-
     }
 
 
@@ -164,28 +161,41 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_accept:
-                loginParser.login(emailLogin, passwordLogin, imageViewAvatar, textViewUserName,
-                        view, buttonAccept, progressBar, supportFragmentManager);
+                buttonAcceptClick(view);
+
                 break;
             case R.id.imageViewAvatar:
                 Log.d(LOG_TAG, "imageViewAvatar click");
-                if (imageViewAvatar.getDrawable() == null) {
-
-                    Log.d(LOG_TAG, " imageViewAvatar.getDrawable() == null");
-                    startActivityRegister();
-
-                } else {
-
-                    startPicturesListAtyvity();
-                    Log.d(LOG_TAG, "strat image laiyt ");
-
-                }
-
+                imageViewAvatarClick();
                 break;
 
         }
 
     }
+
+    @Override
+    public void buttonAcceptClick(View view) {
+        loginParser.login(emailLogin, passwordLogin, imageViewAvatar, textViewUserName,
+                view, buttonAccept, progressBar, supportFragmentManager);
+    }
+
+
+    @Override
+    public void imageViewAvatarClick() {
+        if (imageViewAvatar.getDrawable() == null) {
+
+            Log.d(LOG_TAG, " imageViewAvatar.getDrawable() == null");
+            startActivityRegister();
+
+        } else {
+
+            startPicturesListAtyvity();
+            Log.d(LOG_TAG, "strat image laiyt ");
+
+        }
+    }
+
+
 
     private void startActivityRegister() {
         Intent intent = new Intent(this, Register.class);
