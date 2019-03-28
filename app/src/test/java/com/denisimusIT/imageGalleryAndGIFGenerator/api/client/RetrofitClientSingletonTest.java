@@ -6,12 +6,12 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
-public class ConnectToClientSingletonTest {
+public class RetrofitClientSingletonTest {
 
 
-    private ConnectToClientSingleton singleton1 = ConnectToClientSingleton.getInstance();
-    private ConnectToClientSingleton singleton2 = ConnectToClientSingleton.getInstance();
-    private ConnectToClientSingleton singleton3 = ConnectToClientSingleton.getInstance();
+    private RetrofitClient singleton1 = ConnectToClientSingleton.getInstance();
+    private RetrofitClient singleton2 = ConnectToClientSingleton.getInstance();
+    private RetrofitClient singleton3 = ConnectToClientSingleton.getInstance();
 
 
     @Test

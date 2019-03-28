@@ -16,7 +16,7 @@ public class LoginContract {
         void onDestroy();
     }
 
-    interface LoginModel {
+    public interface LoginModel {
         void setLoginDataToAPI();
         void getDataFromAPI();
         //TODO
