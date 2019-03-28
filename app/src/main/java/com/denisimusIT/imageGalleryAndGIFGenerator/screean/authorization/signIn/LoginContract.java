@@ -11,10 +11,16 @@ public class LoginContract {
 
     interface LoginPresenter {
         void onButtonWasClicked();
+        void loginValidator();
+        void getDataFromAPI();
+
         void onDestroy();
+        //TODO
     }
 
     interface LoginModel {
-        String loadMessage();
+        void setLoginData();
+        //TODO
+
     }
 }
