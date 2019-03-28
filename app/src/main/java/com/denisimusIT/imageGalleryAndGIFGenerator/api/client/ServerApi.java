@@ -1,9 +1,8 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.dto.GetAllUserImages;
-import com.denisimusIT.imageGalleryAndGIFGenerator.dto.GifDTO;
-import com.denisimusIT.imageGalleryAndGIFGenerator.dto.ImageParamsDTO;
-import com.denisimusIT.imageGalleryAndGIFGenerator.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.GetAllUserImagesDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.GifDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -33,7 +32,7 @@ public interface ServerApi {
 
     //Image
     @GET("all")
-    Call<GetAllUserImages> getAllUserImages(@Header("token") String token);
+    Call<GetAllUserImagesDTO> getAllUserImages(@Header("token") String token);
 
     @GET("gif")
     Call<GifDTO> getGif(@Header("token") String token);

@@ -1,12 +1,12 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.dto;
+package com.denisimusIT.imageGalleryAndGIFGenerator.api.dto;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 
-public class GetAllUserImages {
-    public GetAllUserImages() {
+public class GetAllUserImagesDTO {
+    public GetAllUserImagesDTO() {
     }
 
     @SerializedName("images")

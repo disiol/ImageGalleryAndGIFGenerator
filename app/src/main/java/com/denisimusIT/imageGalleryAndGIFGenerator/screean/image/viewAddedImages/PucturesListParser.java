@@ -6,8 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
-import com.denisimusIT.imageGalleryAndGIFGenerator.dto.GetAllUserImages;
-import com.denisimusIT.imageGalleryAndGIFGenerator.dto.ImageDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.GetAllUserImagesDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.ImageDTO;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,7 +22,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG
 
 public class PucturesListParser {
     private RetrofitClient retrofitClient = new RetrofitClient();
-    private Response<GetAllUserImages> getImagesResponse;
+    private Response<GetAllUserImagesDTO> getImagesResponse;
     List<ImageDTO> imageDTOList;
 
 
@@ -31,9 +31,9 @@ public class PucturesListParser {
 
 
         String token = getTokenDataFromTableLoginData(context);
-        retrofitClient.serverApi.getAllUserImages(token).enqueue(new Callback<GetAllUserImages>() {
+        retrofitClient.serverApi.getAllUserImages(token).enqueue(new Callback<GetAllUserImagesDTO>() {
             @Override
-            public void onResponse(Call<GetAllUserImages> call, Response<GetAllUserImages> response) {
+            public void onResponse(Call<GetAllUserImagesDTO> call, Response<GetAllUserImagesDTO> response) {
                 if (response.isSuccessful()) {
 
                     getImagesResponse = response;
@@ -67,7 +67,7 @@ public class PucturesListParser {
             }
 
             @Override
-            public void onFailure(Call<GetAllUserImages> call, Throwable t) {
+            public void onFailure(Call<GetAllUserImagesDTO> call, Throwable t) {
                 //TODO
 
             }

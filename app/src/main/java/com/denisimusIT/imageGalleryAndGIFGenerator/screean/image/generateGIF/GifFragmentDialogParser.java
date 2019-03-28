@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
-import com.denisimusIT.imageGalleryAndGIFGenerator.dto.GifDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.GifDTO;
 
 import retrofit2.Call;
 import retrofit2.Callback;
