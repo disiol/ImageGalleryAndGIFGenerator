@@ -14,7 +14,7 @@ import okhttp3.RequestBody;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.parseStringIntoRequestBody;
 import static org.junit.Assert.assertEquals;
 
-public class RetrofitClientImagesTest {
+public class RetrofitClientmagesTest {
     PucturesListParser pucturesListParser = new PucturesListParser();
 
     @Test

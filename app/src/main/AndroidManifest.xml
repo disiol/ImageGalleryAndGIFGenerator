@@ -15,6 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".api.client.ClientApp"
         android:theme="@style/FullScreen"
         android:usesCleartextTraffic="true">
         <activity android:name=".screean.image.viewAddedImages.BigPicherActivity"></activity>

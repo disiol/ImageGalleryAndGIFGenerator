@@ -1,12 +1,14 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
+package com.denisimusIT.imageGalleryAndGIFGenerator.api;
 
+
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.ServerApi;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.BASE_API_URL;
 
-public class RetrofitClient {
+public class RetrofitClientForTest {
 
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_API_URL)

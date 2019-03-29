@@ -1,6 +1,6 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.ConnectToClientSingleton;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.RetrofitClientForTest;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
 
 import org.junit.Ignore;
@@ -18,7 +18,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.*;
 import static org.junit.Assert.assertEquals;
 
 public class RetrofitClientAuthorizationTest {
-    private RetrofitClient retrofitClient = ConnectToClientSingleton.getInstance();
+    private RetrofitClientForTest retrofitClientForTest = new RetrofitClientForTest();
 
     @Test
     public void CrateNewUserErrorEmptyFieldsTest() throws IOException {
@@ -32,7 +32,7 @@ public class RetrofitClientAuthorizationTest {
                 "\"email\":{\"errors\":[\"This value should not be blank.\"]}," +
                 "\"password\":{\"errors\":[\"This value should not be blank.\"]}," +
                 "\"avatar\":{\"errors\":[\"Please, upload the profile avatar picture.\"]}}}";
-        Response<Response<UserDTO>> createNewUserDTOResponse = retrofitClient.serverApi.createNewUser(username, email, password, avatar).execute();
+        Response<Response<UserDTO>> createNewUserDTOResponse = retrofitClientForTest.serverApi.createNewUser(username, email, password, avatar).execute();
         String actual = createNewUserDTOResponse.errorBody().string();
         assertEquals("CrateNewUserErrorEmptyFields", expected, actual);
     }
@@ -50,7 +50,7 @@ public class RetrofitClientAuthorizationTest {
                 "\"email\":{\"errors\":[\"This value should not be blank.\"]}," +
                 "\"password\":{\"errors\":[\"This value should not be blank.\"]}," +
                 "\"avatar\":{\"errors\":[\"Please, upload the profile avatar picture.\"]}}}";
-        Response<Response<UserDTO>> createNewUserDTOResponse = retrofitClient.serverApi.createNewUser(username, email, password, avatar).execute();
+        Response<Response<UserDTO>> createNewUserDTOResponse = retrofitClientForTest.serverApi.createNewUser(username, email, password, avatar).execute();
         String actual = createNewUserDTOResponse.errorBody().string();
         assertEquals("CrateNewUserErrorEmptyFields_Email_password_avatar_Test", expected, actual);
     }
@@ -67,7 +67,7 @@ public class RetrofitClientAuthorizationTest {
                 "\"password\":{\"errors\":[\"This value should not be blank.\"]}," +
                 "\"avatar\":{\"errors\":[\"Please, upload the profile avatar picture.\"]}}}";
 
-        Response<Response<UserDTO>> createNewUserDTOResponse = retrofitClient.serverApi.createNewUser(username, email, password, avatar).execute();
+        Response<Response<UserDTO>> createNewUserDTOResponse = retrofitClientForTest.serverApi.createNewUser(username, email, password, avatar).execute();
         String actual = createNewUserDTOResponse.errorBody().string();
         assertEquals("CrateNewUserErrorEmptyFields_password_avatar_Test", expected, actual);
     }
@@ -84,7 +84,7 @@ public class RetrofitClientAuthorizationTest {
 
         String expected = "{\"error\":\"Incorrect email or password\"}";
 
-        Call<UserDTO> login = retrofitClient.serverApi.login(email, password);
+        Call<UserDTO> login = retrofitClientForTest.serverApi.login(email, password);
 
         String actual = login.execute().errorBody().string();
         assertEquals("Login_Incorrect_email_or_password_test", expected, actual);
@@ -101,7 +101,7 @@ public class RetrofitClientAuthorizationTest {
 
         String email = "denisimus_games@ukr.net";
         String password = "password";
-        Call<UserDTO> login = retrofitClient.serverApi.login(email, password);
+        Call<UserDTO> login = retrofitClientForTest.serverApi.login(email, password);
 
         String actual = login.execute().body().toString();
         assertEquals("Login_Ok_test", expected, actual);
@@ -126,7 +126,7 @@ public class RetrofitClientAuthorizationTest {
 
         String expected = "{\"children\":{\"username\":{},\"email\":{\"errors\":[\"This value is already used.\"]},\"password\":{},\"avatar\":{}}}";
 
-        Response<Response<UserDTO>> createNewUserDTOResponse = retrofitClient.serverApi.createNewUser(username, email, password, avatar).execute();
+        Response<Response<UserDTO>> createNewUserDTOResponse = retrofitClientForTest.serverApi.createNewUser(username, email, password, avatar).execute();
         String actual = createNewUserDTOResponse.errorBody().string();
         assertEquals("This value is already used", expected, actual);
     }
