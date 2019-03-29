@@ -4,14 +4,15 @@ import org.junit.Test;
 
 import retrofit2.Retrofit;
 
+import static com.denisimusIT.imageGalleryAndGIFGenerator.api.client.ClientApp.getApi;
 import static org.junit.Assert.assertTrue;
 
 public class RetrofitClientAppSingletonTest {
 
 
-    private ServerApi singleton1 =  ClientApp.getApi();
-    private ServerApi singleton2 =  ClientApp.getApi();;
-    private ServerApi singleton3 =  ClientApp.getApi();;
+    private ServerApi singleton1 =  getApi();
+    private ServerApi singleton2 =  getApi();
+    private ServerApi singleton3 =  getApi();
 
 
     @Test
