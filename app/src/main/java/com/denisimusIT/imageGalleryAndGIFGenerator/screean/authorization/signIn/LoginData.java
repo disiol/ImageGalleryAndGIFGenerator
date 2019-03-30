@@ -3,24 +3,44 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 class LoginData {
 
     private String emailLogin;
     private String passwordLogin;
-    private String textViewUserName;
+    private TextView textViewUserName;
     private Button buttonAccept;
     private ImageView imageViewAvatar;
     private ProgressBar progressBar;
 
-    public LoginData(String emailLogin, String passwordLogin, String textViewUserName, Button buttonAccept, ImageView imageViewAvatar, ProgressBar progressBar) {
+
+
+    public void setEmailLogin(String emailLogin) {
         this.emailLogin = emailLogin;
+    }
+
+    public void setPasswordLogin(String passwordLogin) {
         this.passwordLogin = passwordLogin;
+    }
+
+    public void setTextViewUserName(TextView textViewUserName) {
         this.textViewUserName = textViewUserName;
+    }
+
+    public void setButtonAccept(Button buttonAccept) {
         this.buttonAccept = buttonAccept;
+    }
+
+    public void setImageViewAvatar(ImageView imageViewAvatar) {
         this.imageViewAvatar = imageViewAvatar;
+    }
+
+    public void setProgressBar(ProgressBar progressBar) {
         this.progressBar = progressBar;
     }
+
+
 
     public String getEmailLogin() {
         return emailLogin;
@@ -44,5 +64,17 @@ class LoginData {
 
     public ProgressBar getProgressBar() {
         return progressBar;
+    }
+
+    @Override
+    public String toString() {
+        return "LoginData{" +
+                "emailLogin='" + emailLogin + '\'' +
+                ", passwordLogin='" + passwordLogin + '\'' +
+                ", textViewUserName='" + textViewUserName + '\'' +
+                ", buttonAccept=" + buttonAccept +
+                ", imageViewAvatar=" + imageViewAvatar +
+                ", progressBar=" + progressBar +
+                '}';
     }
 }
