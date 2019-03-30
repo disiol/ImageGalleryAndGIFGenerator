@@ -2,14 +2,15 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn
 
 import android.content.Context;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 class LoginData {
 
-    private String emailLogin;
-    private String passwordLogin;
+    private EditText emailLogin;
+    private EditText passwordLogin;
     private TextView textViewUserName;
     private Button buttonAccept;
     private ImageView imageViewAvatar;
@@ -17,11 +18,11 @@ class LoginData {
     private Context loginActivityContext;
 
 
-    public void setEmailLogin(String emailLogin) {
+    public void setEmailLogin(EditText emailLogin) {
         this.emailLogin = emailLogin;
     }
 
-    public void setPasswordLogin(String passwordLogin) {
+    public void setPasswordLogin(EditText passwordLogin) {
         this.passwordLogin = passwordLogin;
     }
 
@@ -47,11 +48,11 @@ class LoginData {
     }
 
 
-    public String getEmailLogin() {
+    public EditText getEmailLogin() {
         return emailLogin;
     }
 
-    public String getPasswordLogin() {
+    public EditText getPasswordLogin() {
         return passwordLogin;
     }
 
@@ -76,11 +77,10 @@ class LoginData {
     }
 
     @Override
-
     public String toString() {
         return "LoginData{" +
-                "emailLogin='" + emailLogin + '\'' +
-                ", passwordLogin='" + passwordLogin + '\'' +
+                "emailLogin=" + emailLogin +
+                ", passwordLogin=" + passwordLogin +
                 ", textViewUserName=" + textViewUserName +
                 ", buttonAccept=" + buttonAccept +
                 ", imageViewAvatar=" + imageViewAvatar +
