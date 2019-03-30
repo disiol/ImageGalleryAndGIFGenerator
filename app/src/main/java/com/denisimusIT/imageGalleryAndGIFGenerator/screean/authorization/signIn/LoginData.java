@@ -1,5 +1,6 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn;
 
+import android.content.Context;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -13,7 +14,7 @@ class LoginData {
     private Button buttonAccept;
     private ImageView imageViewAvatar;
     private ProgressBar progressBar;
-
+    private Context loginActivityContext;
 
 
     public void setEmailLogin(String emailLogin) {
@@ -40,6 +41,10 @@ class LoginData {
         this.progressBar = progressBar;
     }
 
+    public void setContext(Context loginActivityContext) {
+        this.loginActivityContext = loginActivityContext;
+
+    }
 
 
     public String getEmailLogin() {
@@ -66,15 +71,21 @@ class LoginData {
         return progressBar;
     }
 
+    public Context getContext() {
+        return loginActivityContext;
+    }
+
     @Override
+
     public String toString() {
         return "LoginData{" +
                 "emailLogin='" + emailLogin + '\'' +
                 ", passwordLogin='" + passwordLogin + '\'' +
-                ", textViewUserName='" + textViewUserName + '\'' +
+                ", textViewUserName=" + textViewUserName +
                 ", buttonAccept=" + buttonAccept +
                 ", imageViewAvatar=" + imageViewAvatar +
                 ", progressBar=" + progressBar +
+                ", loginActivityContext=" + loginActivityContext +
                 '}';
     }
 }
