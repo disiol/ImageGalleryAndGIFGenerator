@@ -50,7 +50,7 @@ class LoginData {
         return passwordLogin;
     }
 
-    public String getTextViewUserName() {
+    public TextView getTextViewUserName() {
         return textViewUserName;
     }
 
