@@ -79,11 +79,6 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     public void onDestroy() {
         detachView();
         loginActivityView = null;
-/** TODO освободить ресурсы
- * Если бы мы работали например с RxJava, в этом классе стоило бы отписываться от подписок
- * Кроме того, при работе с другими методами асинхронного андроида,здесь мы боремся с утечкой контекста
- */
-
         Log.d(LOG_TAG, "onDestroy() LoginPresenter");
     }
 
