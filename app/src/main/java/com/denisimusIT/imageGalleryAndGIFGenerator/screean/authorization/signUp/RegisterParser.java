@@ -16,7 +16,7 @@ import android.widget.ProgressBar;
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
-import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn.Login;
+import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn.LoginActivity;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
 
@@ -233,7 +233,7 @@ public class RegisterParser {
     }
 
     private void startLoginAtyvity() {
-        Intent intent = new Intent(context.getApplicationContext(), Login.class);
+        Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
         context.startActivity(intent);
     }
 

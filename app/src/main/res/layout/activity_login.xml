@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sidebar_login"
-    tools:context=".screean.authorization.signIn.Login">
+    tools:context=".screean.authorization.signIn.LoginActivity">
 
     <ImageView
         android:id="@+id/imageViewAvatar"
@@ -54,6 +54,7 @@
         android:background="@color/gray_tint"
         android:drawableLeft="@drawable/user"
         android:hint="@string/ent_mail"
+        android:text="denisimus_games@ukr.net"
         android:inputType="textEmailAddress"
         android:textColor="@color/white"
         android:textColorHint="@color/orange_dark"
@@ -72,6 +73,7 @@
         android:layout_marginRight="8dp"
         android:background="@color/gray_tint"
         android:drawableLeft="@drawable/lock"
+        android:text="password"
         android:hint="@string/ent_pass"
         android:inputType="textPassword"
         android:textColor="@color/white"

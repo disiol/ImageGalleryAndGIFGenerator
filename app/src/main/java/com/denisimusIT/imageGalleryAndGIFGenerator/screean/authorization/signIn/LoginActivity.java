@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.authorization.signIn.LoginModel;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.Register;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 
@@ -30,16 +31,19 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.crateDataBase;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
-public class Login extends AppCompatActivity implements View.OnClickListener, LoginContract.LoginView {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoginContract.LoginView {
 
     private EditText emailLogin;
     private EditText passwordLogin;
     private TextView textViewUserName;
     private Button buttonAccept;
-    private LoginParser loginParser;
     private ImageView imageViewAvatar;
     private ProgressBar progressBar;
+
     private FragmentManager supportFragmentManager;
+
+    private LoginPresenter loginParser;
+
 
 
     @Override
@@ -89,7 +93,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 alertBuilder.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     public void onClick(DialogInterface dialog, int which) {
-                        ActivityCompat.requestPermissions(Login.this, new String[]{WRITE_EXTERNAL_STORAGE
+                        ActivityCompat.requestPermissions(LoginActivity.this, new String[]{WRITE_EXTERNAL_STORAGE
                                 , READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
                     }
                 });
@@ -97,7 +101,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
                 alert.show();
                 Log.e("", "permission denied, show dialog");
             } else {
-                ActivityCompat.requestPermissions(Login.this, new String[]{WRITE_EXTERNAL_STORAGE,
+                ActivityCompat.requestPermissions(LoginActivity.this, new String[]{WRITE_EXTERNAL_STORAGE,
                         READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
             }
         } else {
@@ -145,13 +149,15 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
         imageViewAvatar.setOnClickListener(this);
 
         progressBar.setVisibility(ProgressBar.VISIBLE);
-        // we create an object for creation and version control of a DB
+
         crateDataBase(this);
         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
         supportFragmentManager = getSupportFragmentManager();
 
-        loginParser = new LoginParser();
+        LoginModel loginModel = new LoginModel();
+        loginParser = new LoginPresenter(loginModel);
+        loginParser.attachView(this);
 
 
     }
@@ -161,7 +167,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button_accept:
-                buttonAcceptClick(view);
+                buttonAcceptClick();
 
                 break;
             case R.id.imageViewAvatar:
@@ -174,9 +180,9 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
     }
 
     @Override
-    public void buttonAcceptClick(View view) {
-        loginParser.login(emailLogin, passwordLogin, imageViewAvatar, textViewUserName,
-                view, buttonAccept, progressBar, supportFragmentManager);
+    public void buttonAcceptClick() {
+        loginParser.onButtonWasClicked();
+
     }
 
 
@@ -189,23 +195,36 @@ public class Login extends AppCompatActivity implements View.OnClickListener, Lo
 
         } else {
 
-            startPicturesListAtyvity();
+            startPicturesListActivity();
             Log.d(LOG_TAG, "strat image laiyt ");
 
         }
     }
 
+    @Override
+    public LoginData getLoginData() {
+        LoginData loginData = new LoginData();
+        loginData.setEmailLogin(emailLogin);
+        loginData.setPasswordLogin(passwordLogin);
+        loginData.setTextViewUserName(textViewUserName);
+        loginData.setButtonAccept(buttonAccept);
+        loginData.setImageViewAvatar(imageViewAvatar);
+        loginData.setProgressBar(progressBar);
+        loginData.setFragmentManager(supportFragmentManager);
+        loginData.setContext(this.getApplicationContext());
 
+        return loginData;
+    }
 
     private void startActivityRegister() {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
     }
 
-    private void startPicturesListAtyvity() {
+    private void startPicturesListActivity() {
         Intent intent = new Intent(this.getApplicationContext(), PicturesList.class);
         startActivity(intent);
     }
-
+   //TODO destoid
 }
 
