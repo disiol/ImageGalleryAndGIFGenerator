@@ -22,7 +22,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.model.authorization.signIn.LoginModel;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.Register;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 
@@ -155,8 +154,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         supportFragmentManager = getSupportFragmentManager();
 
-        LoginModel loginModel = new LoginModel();
-        loginParser = new LoginPresenter(loginModel);
+        loginParser = new LoginPresenter();
         loginParser.attachView(this);
 
 

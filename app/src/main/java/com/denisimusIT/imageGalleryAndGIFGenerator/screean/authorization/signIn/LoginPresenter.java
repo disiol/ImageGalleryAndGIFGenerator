@@ -3,20 +3,30 @@ package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.model.authorization.signIn.LoginModel;
+import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
 
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.denisimusIT.imageGalleryAndGIFGenerator.api.client.ClientApp.getApi;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.addDataToTableLoginData;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.clearTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getAvatarDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getCreationTimeDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToastError;
@@ -27,15 +37,12 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     private LoginActivity loginActivityView;
     private LoginData loginData;
 
-    private final LoginModel loginModel;
-
     private Context context;
     private boolean cancel;
+    private Response<UserDTO> responseLogin;
+    private DialogFragment dialogFragment;
+    private String responseLoginErorText;
 
-
-    public LoginPresenter(LoginModel loginModel) {
-        this.loginModel = loginModel;
-    }
 
     public void attachView(LoginActivity loginActivity) {
         loginActivityView = loginActivity;
@@ -53,27 +60,13 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         context = loginData.getContext();
         if (context != null) {
 
-            loginValidator(loginData.getEmailLogin(), loginData.getPasswordLogin(),
-                    loginData.getButtonAccept(), loginData.getImageViewAvatar(), loginData.getTextViewUserName(),
-                    loginData.getProgressBar(), loginData.getFragmentManager());
+            loginValidator(loginData.getEmailLogin(), loginData.getPasswordLogin(), loginData.getButtonAccept(),
+                    loginData.getFragmentManager(), loginData.getProgressBar());
         }
 
 
     }
 
-    @Override
-    public void getDataFromModel() {
-        //TODO
-        String avatarDataFromTableLoginData = getAvatarDataFromTableLoginData(context);
-
-        Uri imageURI = Uri.parse(avatarDataFromTableLoginData);
-        getImageForAvatar(imageURI, loginData.getImageViewAvatar());
-        loginData.getTextViewUserName().setText(getCreationTimeDataFromTableLoginData(context));
-        loginData.getProgressBar().setVisibility(ProgressBar.INVISIBLE);
-        loginData.getButtonAccept().setClickable(true);
-
-
-    }
 
     @Override
     public void onDestroy() {
@@ -83,9 +76,9 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     }
 
 
-    @Override
-    public void loginValidator(EditText emailLogin, EditText passwordLogin, Button buttonAccept, ImageView imageViewAvatar,
-                               TextView textViewUserName, ProgressBar progressBar, FragmentManager fragmentManager) {
+
+    private void loginValidator(EditText emailLogin, EditText passwordLogin, Button buttonAccept,
+                               FragmentManager fragmentManager, ProgressBar progressBar) {
 
         String email = emailLogin.getText().toString();
         String password = passwordLogin.getText().toString();
@@ -119,24 +112,108 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
             buttonAccept.setClickable(true);
 
         } else {
-            setLoginDataToAPI(emailLogin, passwordLogin, buttonAccept, imageViewAvatar, textViewUserName,
-                    progressBar, fragmentManager);
+            setLoginDataToAPI(emailLogin, passwordLogin, buttonAccept, progressBar, fragmentManager);
         }
     }
 
 
-    private void setLoginDataToAPI(EditText emailLogin, EditText passwordLogin, Button buttonAccept,
-                                   ImageView imageViewAvatar, TextView textViewUserName,
-                                   ProgressBar progressBar, FragmentManager fragmentManager) {
+    private void setLoginDataToAPI(EditText emailLogin, EditText passwordLogin, final Button buttonAccept,
+                                   final ProgressBar progressBar, final FragmentManager supportFragmentManager) {
 
 
-        loginModel.setLoginDataToAPI(emailLogin, passwordLogin, imageViewAvatar, textViewUserName,
-                loginActivityView, buttonAccept, progressBar, fragmentManager);
+        String email = emailLogin.getText().toString();
+        String password = passwordLogin.getText().toString();
+        progressBar.setVisibility(ProgressBar.VISIBLE);
+        getApi().login(email, password).enqueue(new Callback<UserDTO>() {
+            @Override
+            public void onResponse(Call<UserDTO> call, Response<UserDTO> response) {
+                if (response.isSuccessful()) {
+                    clearTableLoginData(context);
 
-        getDataFromModel();
-        startPicturesListActivity();
+                    progressBar.setVisibility(ProgressBar.VISIBLE);
+                    clearTableLoginData(context);
+                    responseLogin = response;
+                    Log.d(LOG_TAG, "view response: " + responseLogin);
+                    getDataFromAPI(responseLogin.body());
+                    startPicturesListActivity();
+                    progressBar.setVisibility(ProgressBar.INVISIBLE);
+                    buttonAccept.setClickable(true);
+
+                } else {
+                    try {
+
+                        responseLoginErorText = response.errorBody().string();
+                        //TODO finish the text of an error
+                        showCreateTheNewUserAlertDialog(supportFragmentManager);
+                        Log.e(LOG_TAG, "view errorBody: " + responseLogin);
+                        progressBar.setVisibility(ProgressBar.INVISIBLE);
+                        buttonAccept.setClickable(true);
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<UserDTO> call, Throwable t) {
+                //TODO  finish the text of an error err connect to internet
+                showErrorAlertDialog(supportFragmentManager);
+                showToastError(context, t.toString());
+                Log.e(LOG_TAG, "view errorBody: " + t.getMessage());
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
+                buttonAccept.setClickable(true);
+
+
+            }
+
+        });
+    }
+
+
+    private void getDataFromAPI(UserDTO responseLoginBody) {
+        //TODO
+        String avatarImageLink = responseLoginBody.getAvatarImageLink();
+        String creationTime = responseLoginBody.getCreationTime();
+        String token = responseLoginBody.getToken();
+        addDataToTableLoginData(context, avatarImageLink, creationTime, token);
+
+    }
+
+    @Override
+    public void getAvatarData() {
+        //TODO
+        String avatarDataFromTableLoginData = getAvatarDataFromTableLoginData(context);
+        Uri imageURI = Uri.parse(avatarDataFromTableLoginData);
+        getImageForAvatar(imageURI, loginData.getImageViewAvatar());
+        loginData.getTextViewUserName().setText(getCreationTimeDataFromTableLoginData(context));
         loginData.getProgressBar().setVisibility(ProgressBar.INVISIBLE);
+        loginData.getButtonAccept().setClickable(true);
 
+
+    }
+
+
+    //TODO
+    private void showErrorAlertDialog(FragmentManager supportFragmentManager) {
+        //TODO made res String
+        String message = "There is no connection to the Internet, please check connection";
+        String yes = "Ok";
+        dialogFragment = new messageAlertDialog(responseLoginErorText, message, yes);
+        dialogFragment.show(supportFragmentManager, "dialog");
+    }
+
+
+    private void showCreateTheNewUserAlertDialog(FragmentManager supportFragmentManager) {
+        //TODO made res String
+        String message = "Create the new user?";
+        String yes = "Yes";
+        String no = "No";
+        dialogFragment = new CreateTheNewUserAlertDialog(responseLoginErorText, message, yes, no, context);
+        dialogFragment.show(supportFragmentManager, "dialog");
     }
 
 
