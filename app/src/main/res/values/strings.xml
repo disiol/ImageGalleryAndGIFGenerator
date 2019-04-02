@@ -67,6 +67,8 @@
     <string name="upload_start">uploading...</string>
     <string name="up_lod_image">up lod image</string>
     <string name="pick_up_image_error">Oops. Please choose image and press up lod image</string>
+    <string name="eror_no_internet_conect">There is no connection to the Internet, please check connection</string>
+    <string name="Ok">Ok</string>
 
 
 </resources>

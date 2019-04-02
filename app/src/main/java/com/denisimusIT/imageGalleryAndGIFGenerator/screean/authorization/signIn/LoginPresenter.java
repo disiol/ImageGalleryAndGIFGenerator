@@ -71,7 +71,6 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     @Override
     public void onDestroy() {
         detachView();
-        loginActivityView = null;
         Log.d(LOG_TAG, "onDestroy() LoginPresenter");
     }
 
@@ -199,9 +198,8 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
 
     //TODO
     private void showErrorAlertDialog(FragmentManager supportFragmentManager) {
-        //TODO made res String
-        String message = "There is no connection to the Internet, please check connection";
-        String ok = "Ok";
+        String message = loginActivityView.getString(R.string.eror_no_internet_conect);
+        String ok = loginActivityView.getString(R.string.Ok);
         dialogFragment = new messageAlertDialog(responseLoginErorText, message, ok);
         dialogFragment.show(supportFragmentManager, "dialog");
     }

@@ -155,7 +155,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         supportFragmentManager = getSupportFragmentManager();
 
         loginParser = new LoginPresenter();
-        loginParser.attachView(this);
+
 
 
     }
@@ -179,7 +179,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void buttonAcceptClick() {
+        loginParser.attachView(this);
         loginParser.onButtonWasClicked();
+        loginParser.getAvatarData();
 
     }
 
@@ -197,6 +199,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Log.d(LOG_TAG, "strat image laiyt ");
 
         }
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseOfResources();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        releaseOfResources();
     }
 
     @Override
@@ -224,5 +240,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
    //TODO destoid
+
+
+
+    private void releaseOfResources() {
+        loginParser.onDestroy();
+    }
+
+
+
 }
 
