@@ -5,7 +5,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.GetAllUserImagesDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.ImageDTO;
 
@@ -17,11 +16,11 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getTokenDataFromTableLoginData;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.ClientApp.getApi;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
 public class PucturesListParser {
-    private RetrofitClient retrofitClient = new RetrofitClient();
     private Response<GetAllUserImagesDTO> getImagesResponse;
     List<ImageDTO> imageDTOList;
 
@@ -31,7 +30,7 @@ public class PucturesListParser {
 
 
         String token = getTokenDataFromTableLoginData(context);
-        retrofitClient.serverApi.getAllUserImages(token).enqueue(new Callback<GetAllUserImagesDTO>() {
+        getApi().getAllUserImages(token).enqueue(new Callback<GetAllUserImagesDTO>() {
             @Override
             public void onResponse(Call<GetAllUserImagesDTO> call, Response<GetAllUserImagesDTO> response) {
                 if (response.isSuccessful()) {

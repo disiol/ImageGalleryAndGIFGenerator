@@ -5,7 +5,6 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.GifDTO;
 
 import retrofit2.Call;
@@ -13,13 +12,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getTokenDataFromTableLoginData;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.ClientApp.getApi;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setGif;
 
 
 public class GifFragmentDialogParser {
 
-    private RetrofitClient retrofitClient = new RetrofitClient();
     private Response<GifDTO> getGif;
 
     public void loadGIF(final Context context, final ImageView imageViewGiff) {
@@ -27,7 +26,7 @@ public class GifFragmentDialogParser {
 
 
         String token = getTokenDataFromTableLoginData(context);
-        retrofitClient.serverApi.getGif(token).enqueue(new Callback<GifDTO>() {
+        getApi().getGif(token).enqueue(new Callback<GifDTO>() {
             @Override
             public void onResponse(Call<GifDTO> call, Response<GifDTO> response) {
                 getGif = response;

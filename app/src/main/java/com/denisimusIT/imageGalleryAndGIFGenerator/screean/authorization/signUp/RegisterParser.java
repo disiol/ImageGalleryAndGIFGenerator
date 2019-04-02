@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn.LoginActivity;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
@@ -29,14 +28,15 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.ClientApp.getApi;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.getImageRequestBody;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.parseStringIntoRequestBody;
 
+
 public class RegisterParser {
 
-    private RetrofitClient retrofitClient = new RetrofitClient();
 
     private DialogFragment dialogFragment;
     private Context context;
@@ -174,7 +174,7 @@ public class RegisterParser {
             progressBarRegister.setVisibility(ProgressBar.VISIBLE);
 
 
-            retrofitClient.serverApi.createNewUser(parseStringIntoRequestBody(userName),
+            getApi().createNewUser(parseStringIntoRequestBody(userName),
                     parseStringIntoRequestBody(email),
                     parseStringIntoRequestBody(password),
                     avatarBody).enqueue(new Callback<Response<UserDTO>>() {

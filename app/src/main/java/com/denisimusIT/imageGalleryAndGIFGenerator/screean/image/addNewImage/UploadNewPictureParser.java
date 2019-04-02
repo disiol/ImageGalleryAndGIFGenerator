@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
@@ -27,6 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getTokenDataFromTableLoginData;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.ClientApp.getApi;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.isStringNotEmpty;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.getImageRequestBody;
@@ -34,7 +34,6 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.pa
 
 public class UploadNewPictureParser {
 
-    private RetrofitClient retrofitClient = new RetrofitClient();
     private Context applicationContext;
     private ProgressBar progressBar;
     private MultipartBody.Part image;
@@ -71,7 +70,7 @@ public class UploadNewPictureParser {
             RequestBody latitude = parseStringIntoRequestBody(latitudeText);
             RequestBody longitude = parseStringIntoRequestBody(longitudeText);
 
-            retrofitClient.serverApi.addImage(token, imageBody, description, hashTag, latitude, longitude).enqueue(new Callback<ResponseBody>() {
+            getApi().addImage(token, imageBody, description, hashTag, latitude, longitude).enqueue(new Callback<ResponseBody>() {
                 @Override
                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
