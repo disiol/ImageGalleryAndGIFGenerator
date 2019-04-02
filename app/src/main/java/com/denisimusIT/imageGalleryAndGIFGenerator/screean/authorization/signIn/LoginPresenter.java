@@ -201,8 +201,8 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     private void showErrorAlertDialog(FragmentManager supportFragmentManager) {
         //TODO made res String
         String message = "There is no connection to the Internet, please check connection";
-        String yes = "Ok";
-        dialogFragment = new messageAlertDialog(responseLoginErorText, message, yes);
+        String ok = "Ok";
+        dialogFragment = new messageAlertDialog(responseLoginErorText, message, ok);
         dialogFragment.show(supportFragmentManager, "dialog");
     }
 
