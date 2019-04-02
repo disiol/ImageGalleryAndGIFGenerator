@@ -5,9 +5,9 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.GetAllUserImagesDTO;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.ImageDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.RetrofitClient;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.GetAllUserImagesDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.ImageDTO;
 
 import java.io.IOException;
 import java.util.List;

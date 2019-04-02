@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
+package com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PucturesListParser;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil;

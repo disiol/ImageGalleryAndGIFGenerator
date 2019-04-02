@@ -1,7 +1,7 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
+package com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.RetrofitClientForTest;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.RetrofitClientForTest;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.UserDTO;
 
 import org.junit.Ignore;
 import org.junit.Test;

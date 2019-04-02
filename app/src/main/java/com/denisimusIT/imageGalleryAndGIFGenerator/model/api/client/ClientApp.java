@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
+package com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client;
 
 import android.app.Application;
 

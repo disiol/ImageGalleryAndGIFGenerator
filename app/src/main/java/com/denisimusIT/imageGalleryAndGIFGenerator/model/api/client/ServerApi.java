@@ -1,8 +1,8 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
+package com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.GetAllUserImagesDTO;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.GifDTO;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.GetAllUserImagesDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.GifDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.UserDTO;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;

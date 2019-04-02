@@ -14,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.RetrofitClient;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn.LoginActivity;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;

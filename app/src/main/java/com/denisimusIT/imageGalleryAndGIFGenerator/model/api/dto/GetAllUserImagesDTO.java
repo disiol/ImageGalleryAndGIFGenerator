@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api.dto;
+package com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto;
 
 import com.google.gson.annotations.SerializedName;
 

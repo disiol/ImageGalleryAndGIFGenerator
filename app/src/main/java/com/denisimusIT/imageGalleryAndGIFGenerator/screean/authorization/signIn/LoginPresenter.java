@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.UserDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
@@ -24,7 +24,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.denisimusIT.imageGalleryAndGIFGenerator.api.client.ClientApp.getApi;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.ClientApp.getApi;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.addDataToTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.clearTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getAvatarDataFromTableLoginData;

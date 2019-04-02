@@ -1,10 +1,8 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.api.client;
+package com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client;
 
 import org.junit.Test;
 
-import retrofit2.Retrofit;
-
-import static com.denisimusIT.imageGalleryAndGIFGenerator.api.client.ClientApp.getApi;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.ClientApp.getApi;
 import static org.junit.Assert.assertTrue;
 
 public class RetrofitClientAppSingletonTest {

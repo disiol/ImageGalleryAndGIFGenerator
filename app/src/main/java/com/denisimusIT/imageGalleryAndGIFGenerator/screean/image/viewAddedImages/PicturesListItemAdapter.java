@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.ImageDTO;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.dto.ImageParamsDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.ImageDTO;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.ImageParamsDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil;
 
 import java.util.List;

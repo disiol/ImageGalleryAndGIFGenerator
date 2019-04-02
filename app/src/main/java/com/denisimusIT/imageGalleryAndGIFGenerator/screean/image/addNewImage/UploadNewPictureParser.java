@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.api.client.RetrofitClient;
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.RetrofitClient;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
@@ -26,7 +26,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.app.Activity.RESULT_OK;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getTokenDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.isStringNotEmpty;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
