@@ -158,6 +158,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+
     }
 
 
@@ -181,7 +182,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void buttonAcceptClick() {
         loginParser.attachView(this);
         loginParser.onButtonWasClicked();
-        loginParser.getAvatarData();
+
 
     }
 

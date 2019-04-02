@@ -130,11 +130,14 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
                     clearTableLoginData(context);
 
                     progressBar.setVisibility(ProgressBar.VISIBLE);
-                    clearTableLoginData(context);
                     responseLogin = response;
                     Log.d(LOG_TAG, "view response: " + responseLogin);
+
                     getDataFromAPI(responseLogin.body());
+                    getAvatarData();
+
                     startPicturesListActivity();
+
                     progressBar.setVisibility(ProgressBar.INVISIBLE);
                     buttonAccept.setClickable(true);
 
