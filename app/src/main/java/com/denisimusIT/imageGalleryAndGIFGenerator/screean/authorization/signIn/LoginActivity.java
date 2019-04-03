@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private LoginPresenter loginParser;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -158,8 +157,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         loginParser = new LoginPresenter();
 
 
-
-
     }
 
 
@@ -241,8 +238,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent(this.getApplicationContext(), PicturesList.class);
         startActivity(intent);
     }
-   //TODO destoid
-
+    //TODO destoid
 
 
     private void releaseOfResources() {
@@ -250,14 +246,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-
     @Override
     public void onBackPressed() {
         Intent intent = new Intent(LoginActivity.this, ExitActivity.class);
         startActivity(intent);
+
     }
-
-
 
 
 }

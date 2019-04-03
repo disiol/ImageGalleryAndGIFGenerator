@@ -60,9 +60,9 @@ public class ExitActivity extends AppCompatActivity implements View.OnClickListe
 
     private void exitAndLogOut() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            finishAffinity();
+           this.finishAffinity();
         }else{
-            finish();
+            this.finish();
         }
     }
 

@@ -17,7 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/FullScreen"
         android:usesCleartextTraffic="true">
-        <activity android:name=".screean.ExitActivity"></activity>
+        <activity
+            android:name=".screean.ExitActivity"
+            android:theme="@style/Dialog"></activity>
         <activity android:name=".screean.image.viewAddedImages.BigPicherActivity" />
         <activity
             android:name=".screean.image.viewAddedImages.PicturesList"

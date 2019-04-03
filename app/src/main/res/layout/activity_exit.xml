@@ -1,52 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@drawable/sidebar_login"
+    android:orientation="vertical"
     tools:context=".screean.ExitActivity">
 
     <TextView
         android:id="@+id/massage_textView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_border"
         android:gravity="center"
         android:padding="@dimen/padding_inside_textview_exit"
         android:text="@string/massage_textView_text"
-        android:textSize="@dimen/text_size_exit_textView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@color/orange_dark"
+        android:textSize="@dimen/text_size_exit_textView" />
 
     <TextView
         android:id="@+id/exit_and_save_session_textView"
-        android:layout_width="240dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_border"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:padding="@dimen/padding_inside_textview_exit"
         android:text="@string/exit_and_save_session_textView_text"
-        android:textSize="@dimen/text_size_exit_textView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/massage_textView"/>
+        android:textColor="@color/orange_dark"
+        android:textSize="@dimen/text_size_exit_textView" />
+
 
     <TextView
         android:id="@+id/exit_and_log_out_textView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/custom_border"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:padding="@dimen/padding_inside_textview_exit"
         android:text="@string/exit_and_log_out_textView_text"
-        android:textSize="@dimen/text_size_exit_textView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.464"
-        app:layout_constraintStart_toEndOf="@+id/exit_and_save_session_textView"
-        app:layout_constraintTop_toBottomOf="@+id/massage_textView" />
+        android:textColor="@color/orange_dark"
+        android:textSize="@dimen/text_size_exit_textView" />
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
