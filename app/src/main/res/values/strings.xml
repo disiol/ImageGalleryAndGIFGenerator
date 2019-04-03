@@ -69,6 +69,9 @@
     <string name="pick_up_image_error">Oops. Please choose image and press up lod image</string>
     <string name="eror_no_internet_conect">There is no connection to the Internet, please check connection</string>
     <string name="Ok">Ok</string>
+    <string name="massage_textView_text">You are sure that you want to exit?</string>
+    <string name="exit_and_save_session_textView_text">exit and save session</string>
+    <string name="exit_and_log_out_textView_text">exit and log out</string>
 
 
 </resources>

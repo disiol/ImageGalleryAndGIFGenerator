@@ -22,6 +22,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
+import com.denisimusIT.imageGalleryAndGIFGenerator.screean.ExitActivity;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.Register;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 
@@ -247,6 +248,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void releaseOfResources() {
         loginParser.onDestroy();
     }
+
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(LoginActivity.this, ExitActivity.class);
+        startActivity(intent);
+    }
+
 
 
 
