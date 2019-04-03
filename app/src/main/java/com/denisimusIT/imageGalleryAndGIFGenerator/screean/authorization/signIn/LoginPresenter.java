@@ -122,6 +122,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
 
         String email = emailLogin.getText().toString();
         String password = passwordLogin.getText().toString();
+
         progressBar.setVisibility(ProgressBar.VISIBLE);
         getApi().login(email, password).enqueue(new Callback<UserDTO>() {
             @Override
