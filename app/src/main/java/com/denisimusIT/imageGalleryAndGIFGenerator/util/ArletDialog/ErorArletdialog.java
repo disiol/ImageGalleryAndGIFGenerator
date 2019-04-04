@@ -10,11 +10,10 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
 public class ErorArletdialog {
     private static DialogFragment dialogFragment;
     //TODO
-    public static void showErrorAlertDialog(FragmentManager supportFragmentManager, Context context,
-                                      String errorMessage) {
-        String message = context.getString(R.string.eror_no_internet_conect);
+    public static void showErrorAlertDialogNoInternetConnect(FragmentManager supportFragmentManager, Context context) {
+        String message = context.getString(R.string.eror_no_internet_connect);
         String ok = context.getString(R.string.Ok);
-        dialogFragment = new messageAlertDialog(errorMessage, message, ok);
+        dialogFragment = new messageAlertDialog(message, "", ok);
         dialogFragment.show(supportFragmentManager, "dialog");
     }
 

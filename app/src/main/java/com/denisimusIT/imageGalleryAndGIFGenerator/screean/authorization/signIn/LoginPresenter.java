@@ -16,7 +16,6 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
-import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
 
 import java.io.IOException;
 
@@ -30,7 +29,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.Lo
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getAvatarDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getCreationTimeDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToastError;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog.ErorArletdialog.showErrorAlertDialog;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog.ErorArletdialog.showErrorAlertDialogNoInternetConnect;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
@@ -43,6 +42,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     private Response<UserDTO> responseLogin;
     private DialogFragment dialogFragment;
     private String responseLoginErorText;
+
 
 
     public void attachView(LoginActivity loginActivity) {
@@ -164,9 +164,9 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
-                String errorMessage = t.getMessage();
-                Log.e(LOG_TAG, "view errorBody: " + errorMessage);
-                showErrorAlertDialog(supportFragmentManager,context,errorMessage);
+                String messageEror = t.getMessage();
+                Log.e(LOG_TAG, "view errorBody: " + messageEror);
+                showErrorAlertDialogNoInternetConnect(supportFragmentManager,context);
                 progressBar.setVisibility(ProgressBar.INVISIBLE);
                 buttonAccept.setClickable(true);
 
