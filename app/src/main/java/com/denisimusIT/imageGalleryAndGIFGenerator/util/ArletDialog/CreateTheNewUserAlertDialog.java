@@ -1,4 +1,4 @@
-package com.denisimusIT.imageGalleryAndGIFGenerator.util;
+package com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;

@@ -8,14 +8,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
-import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
-
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 
 public class ExitActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView exitAndSaveSessionTextView, exitAndLogOutTextView;
-    private CreateTheNewUserAlertDialog dialogFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

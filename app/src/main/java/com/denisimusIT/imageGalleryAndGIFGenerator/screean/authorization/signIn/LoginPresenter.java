@@ -15,7 +15,7 @@ import android.widget.ProgressBar;
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
-import com.denisimusIT.imageGalleryAndGIFGenerator.util.CreateTheNewUserAlertDialog;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog.CreateTheNewUserAlertDialog;
 
 import java.io.IOException;
 
