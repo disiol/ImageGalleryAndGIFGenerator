@@ -30,6 +30,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.Lo
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getAvatarDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getCreationTimeDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToastError;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog.ErorArletdialog.showErrorAlertDialog;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
@@ -163,10 +164,9 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
 
             @Override
             public void onFailure(Call<UserDTO> call, Throwable t) {
-                //TODO  finish the text of an error err connect to internet
-                showErrorAlertDialog(supportFragmentManager);
-                showToastError(context, t.toString());
-                Log.e(LOG_TAG, "view errorBody: " + t.getMessage());
+                String errorMessage = t.getMessage();
+                Log.e(LOG_TAG, "view errorBody: " + errorMessage);
+                showErrorAlertDialog(supportFragmentManager,context,errorMessage);
                 progressBar.setVisibility(ProgressBar.INVISIBLE);
                 buttonAccept.setClickable(true);
 
@@ -200,13 +200,6 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     }
 
 
-    //TODO
-    private void showErrorAlertDialog(FragmentManager supportFragmentManager) {
-        String message = loginActivityView.getString(R.string.eror_no_internet_conect);
-        String ok = loginActivityView.getString(R.string.Ok);
-        dialogFragment = new messageAlertDialog(responseLoginErorText, message, ok);
-        dialogFragment.show(supportFragmentManager, "dialog");
-    }
 
 
     private void showCreateTheNewUserAlertDialog(FragmentManager supportFragmentManager) {
