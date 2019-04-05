@@ -29,7 +29,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.Lo
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getAvatarDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.LoginDataCommands.getCreationTimeDataFromTableLoginData;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToastError;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog.ErorArletdialog.showErrorAlertDialogNoInternetConnect;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog.ErrorAlertDialog.showErrorAlertDialogNoInternetConnect;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 

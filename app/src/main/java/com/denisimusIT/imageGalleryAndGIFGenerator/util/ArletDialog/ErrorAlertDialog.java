@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
 
-public class ErorArletdialog {
+public class ErrorAlertDialog {
     private static DialogFragment dialogFragment;
     //TODO
     public static void showErrorAlertDialogNoInternetConnect(FragmentManager supportFragmentManager, Context context) {
