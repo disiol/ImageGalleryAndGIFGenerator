@@ -17,7 +17,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.IMAGE_M
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.SELECT_PICTURE;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
-public class Register extends AppCompatActivity implements View.OnClickListener {
+public class RegisterView extends AppCompatActivity implements View.OnClickListener, RegisterContract.RegisterView {
     private EditText editTextUserName, editTextEmail, editTextPassword, editTextConfimPassWord;
     private ImageView imageViewRegister;
     private Button buttonRegistrationSignUp;
@@ -52,16 +52,34 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         switch (v.getId()) {
             case R.id.bt_registration_sign_up:
-                registerParser.register(imageViewRegister, editTextUserName, editTextEmail, editTextPassword,
-                        editTextConfimPassWord, buttonRegistrationSignUp, progressBarRegister, v, supportFragmentManager);
+                buttonRegistrationSignUpClick();
                 break;
             case R.id.imageView_sign_up:
-                selectImage();
+                imageViewRegisterClick();
 
                 break;
 
         }
 
+    }
+
+
+    @Override
+    public void buttonRegistrationSignUpClick() {
+        //TODO
+        registerParser.register(imageViewRegister, editTextUserName, editTextEmail, editTextPassword,
+                editTextConfimPassWord, buttonRegistrationSignUp, progressBarRegister, v, supportFragmentManager);
+    }
+
+    @Override
+    public void imageViewRegisterClick() {
+        selectImage();
+    }
+
+    @Override
+    public RegisterData getRegisterData() {
+        //TODO
+        return null;
     }
 
 

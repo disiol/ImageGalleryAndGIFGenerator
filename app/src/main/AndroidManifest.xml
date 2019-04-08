@@ -24,7 +24,7 @@
         <activity
             android:name=".screean.image.viewAddedImages.PicturesList"
             android:theme="@style/ActionBar" />
-        <activity android:name=".screean.authorization.signUp.Register" />
+        <activity android:name=".screean.authorization.signUp.RegisterView" />
         <activity
             android:name=".screean.image.addNewImage.UploadNewPicture"
             android:theme="@style/ActionBar" />

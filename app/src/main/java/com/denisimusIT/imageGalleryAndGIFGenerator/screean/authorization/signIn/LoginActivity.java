@@ -23,7 +23,7 @@ import android.widget.TextView;
 
 import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.ExitActivity;
-import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.Register;
+import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.RegisterView;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PicturesList;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
@@ -230,7 +230,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void startActivityRegister() {
-        Intent intent = new Intent(this, Register.class);
+        Intent intent = new Intent(this, RegisterView.class);
         startActivity(intent);
     }
 
