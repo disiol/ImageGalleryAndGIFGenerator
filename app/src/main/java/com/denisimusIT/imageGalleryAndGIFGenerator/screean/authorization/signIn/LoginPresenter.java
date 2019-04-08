@@ -76,7 +76,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
     }
 
 
-
+//TODO refacroring
     private void loginValidator(EditText emailLogin, EditText passwordLogin, Button buttonAccept,
                                FragmentManager fragmentManager, ProgressBar progressBar) {
 
