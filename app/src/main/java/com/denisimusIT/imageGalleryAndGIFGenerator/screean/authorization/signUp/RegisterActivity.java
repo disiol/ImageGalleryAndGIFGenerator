@@ -67,8 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void buttonRegistrationSignUpClick() {
         //TODO
-        registerParser.register(imageViewRegister, editTextUserName, editTextEmail, editTextPassword,
-                editTextConfimPassWord, buttonRegistrationSignUp, progressBarRegister, v, supportFragmentManager);
+        registerParser.attachView(this);
     }
 
     @Override
