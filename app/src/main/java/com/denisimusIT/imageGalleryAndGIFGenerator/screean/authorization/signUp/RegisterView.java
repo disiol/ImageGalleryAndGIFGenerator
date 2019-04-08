@@ -79,6 +79,16 @@ public class RegisterView extends AppCompatActivity implements View.OnClickListe
     @Override
     public RegisterData getRegisterData() {
         //TODO
+        RegisterData registerData = new RegisterData();
+        registerData.setEditTextUserName(editTextUserName);
+        registerData.setEditTextPassword(editTextPassword);
+        registerData.setEditTextConfimPassWord(editTextConfimPassWord);
+        registerData.setEditTextEmail(editTextEmail);
+        registerData.setImageViewRegister(imageViewRegister);
+        registerData.setButtonRegistrationSignUp(buttonRegistrationSignUp);
+        registerData.setProgressBarRegister(progressBarRegister);
+        registerData.setApplicationContext(this.getApplicationContext());
+
         return null;
     }
 
