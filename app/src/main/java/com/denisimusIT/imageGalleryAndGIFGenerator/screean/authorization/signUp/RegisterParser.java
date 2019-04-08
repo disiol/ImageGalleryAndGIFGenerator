@@ -30,6 +30,7 @@ import retrofit2.Response;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client.ClientApp.getApi;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToastError;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog.ErrorAlertDialog.showErrorAlertDialogNoInternetConnect;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.getImageRequestBody;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.parseStringIntoRequestBody;
@@ -51,7 +52,6 @@ public class RegisterParser implements RegisterContract.RegisterPresenter {
     private String password;
     private String confirmPassWord;
 
-    private View view;
     private ImageView imageViewRegister;
     private EditText editTextUserName;
     private EditText editTextEmail;
@@ -75,11 +75,25 @@ public class RegisterParser implements RegisterContract.RegisterPresenter {
     @Override
     public void onButtonRegistrationSignUpWasClicked() {
         //TODO
+        getRegistrationData();
+        register();
     }
 
 
     private void getRegistrationData() {
         //TODO dell metod?
+        RegisterData registerData = registerActivityView.getRegisterData();
+
+        if (registerData != null) {
+            imageViewRegister = registerData.getImageViewRegister();
+            editTextUserName = registerData.getEditTextUserName();
+            editTextEmail = registerData.getEditTextEmail();
+            editTextPassword = registerData.getEditTextPassword();
+            editTextConfimPassWord = registerData.getEditTextConfimPassWord();
+            buttonRegistrationSignUp = registerData.getButtonRegistrationSignUp();
+            progressBarRegister = registerData.getProgressBarRegister();
+            supportFragmentManager = registerData.getFragmentManager();
+        }
 
 
     }
@@ -95,7 +109,7 @@ public class RegisterParser implements RegisterContract.RegisterPresenter {
     public void register() {
 
         boolean registerValidator = registorValidator(imageViewRegister, editTextUserName, editTextEmail,
-                editTextPassword, editTextConfimPassWord, buttonRegistrationSignUp, view);
+                editTextPassword, editTextConfimPassWord, buttonRegistrationSignUp, registerActivityView);
 
         if (registerValidator) {
             setDataToAPI(imageViewRegister, buttonRegistrationSignUp, progressBarRegister, supportFragmentManager);
@@ -106,8 +120,14 @@ public class RegisterParser implements RegisterContract.RegisterPresenter {
     }
 
 
-    private boolean registorValidator(ImageView imageViewRegister, EditText editTextUserName, EditText editTextEmail, EditText editTextPassword, EditText editTextConfimPassWord, Button buttonRegistrationSignUp, View view) {
-        context = view.getContext();
+    private boolean registorValidator(ImageView imageViewRegister,
+                                      EditText editTextUserName, EditText editTextEmail,
+                                      EditText editTextPassword, EditText editTextConfimPassWord,
+                                      Button buttonRegistrationSignUp, RegisterActivity registerActivity) {
+
+        context = registerActivity.getApplicationContext();
+
+        //TODO refactoring
         cancel = false;
         buttonRegistrationSignUp.setClickable(false);
         imageViewRegister.setClickable(false);
@@ -220,40 +240,47 @@ public class RegisterParser implements RegisterContract.RegisterPresenter {
     }
 
 
-    private void setDataToAPI(final ImageView imageViewRegister, final Button buttonRegistrationSignUp, final ProgressBar progressBarRegister, final FragmentManager supportFragmentManager) {
+    private void setDataToAPI(final ImageView imageViewRegister,
+                              final Button buttonRegistrationSignUp,
+                              final ProgressBar progressBarRegister,
+                              final FragmentManager supportFragmentManager) {
+
         Log.e(LOG_TAG, "tray response ");
 
         //TODO
         Uri imageViewRegisterTag = (Uri) imageViewRegister.getTag();
-        File imageFile = new File(PathUtil.getPath(context.getApplicationContext(), imageViewRegisterTag));
+        File imageFile = new File(PathUtil.getPath(registerActivityView, imageViewRegisterTag));
         RequestBody avatar = getImageRequestBody(imageFile);
-        MultipartBody.Part avatarBody = (MultipartBody.Part) MultipartBody.Part.createFormData("avatar", imageFile.getName(), avatar);
+        MultipartBody.Part avatarBody = MultipartBody.Part.createFormData("avatar", imageFile.getName(), avatar);
 
 
         progressBarRegister.setVisibility(ProgressBar.VISIBLE);
 
 
-        getApi().createNewUser(parseStringIntoRequestBody(userName),
-                parseStringIntoRequestBody(email),
-                parseStringIntoRequestBody(password),
+        getApi().createNewUser(parseStringIntoRequestBody(this.userName),
+                parseStringIntoRequestBody(this.email),
+                parseStringIntoRequestBody(this.password),
                 avatarBody).enqueue(new Callback<Response<UserDTO>>() {
             @Override
             public void onResponse(Call<Response<UserDTO>> call, Response<Response<UserDTO>> response) {
-                progressBarRegister.setVisibility(ProgressBar.VISIBLE);
-                if (response.isSuccessful()) {
 
+                progressBarRegister.setVisibility(ProgressBar.VISIBLE);
+
+                if (response.isSuccessful()) {
+                    //TODO refactoring
                     String title = "New user created";
                     Log.e(LOG_TAG, "reg response " + title);
-
                     showToastError(context, title);
 
                     startLoginAtyvity();
+                    //TODO refactoring
                     buttonRegistrationSignUp.setClickable(true);
                     imageViewRegister.setClickable(true);
                     progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
                 } else {
-                    try {
 
+
+                    try {
                         responseErorrBody = response.errorBody().string();
                         responseMessage = response.message();
                         //TODO finish the text of an error
@@ -265,34 +292,40 @@ public class RegisterParser implements RegisterContract.RegisterPresenter {
                         imageViewRegister.setClickable(true);
                         progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
 
-
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }
 
+
+
+                }
 
             }
 
             @Override
             public void onFailure(Call<Response<UserDTO>> call, Throwable t) {
-                //TODO  finish the text of an error err connect to internet
-                String title = t.toString();
-                String message = "There is no connection to the Internet, please check connection";
-                showAlertDialog(supportFragmentManager, title, message);
-                showToastError(context, t.toString());
-                Log.e(LOG_TAG, "view errorBody: " + t.getMessage());
-                progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
 
+                String messageEror = t.getMessage();
+                Log.e(LOG_TAG, "view errorBody: " + messageEror);
+                showErrorAlertDialogNoInternetConnect(supportFragmentManager,context);
+
+                //TODO refactoring
+                buttonRegistrationSignUp.setClickable(true);
+                imageViewRegister.setClickable(true);
+                progressBarRegister.setVisibility(ProgressBar.INVISIBLE);
 
             }
         });
+
+
         Log.d(LOG_TAG, "reg ok");
+
     }
 
 
     private void startLoginAtyvity() {
         Intent intent = new Intent(context.getApplicationContext(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
     }
 
