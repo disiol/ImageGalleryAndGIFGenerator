@@ -68,6 +68,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     public void buttonRegistrationSignUpClick() {
         //TODO
         registerParser.attachView(this);
+        registerParser.onButtonRegistrationSignUpWasClicked();
     }
 
     @Override
@@ -89,7 +90,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         registerData.setFragmentManager(supportFragmentManager);
         registerData.setApplicationContext(this.getApplicationContext());
 
-        return null;
+        return registerData;
     }
 
 

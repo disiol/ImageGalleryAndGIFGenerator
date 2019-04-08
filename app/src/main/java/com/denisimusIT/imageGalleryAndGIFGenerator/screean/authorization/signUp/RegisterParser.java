@@ -45,6 +45,7 @@ public class RegisterParser implements RegisterContract.RegisterPresenter{
     private String responseErorrBody;
     private String responseMessage;
     private RegisterActivity registerActivityView;
+    private RegisterData registerData;
 
 
     public void attachView(RegisterActivity registerActivity) {
@@ -54,6 +55,28 @@ public class RegisterParser implements RegisterContract.RegisterPresenter{
     private void detachView() {
         registerActivityView = null;
         this.context = null;
+    }
+
+
+
+    @Override
+    public void onButtonRegistrationSignUpWasClicked() {
+        //TODO
+    }
+
+    @Override
+    public void getRegistrationData() {
+        //TODO
+        registerData = registerActivityView.getRegisterData();
+
+
+    }
+
+    @Override
+    public void onDestroy() {
+        //TODO  disroed usedge resursers
+
+        detachView();
     }
 
 
@@ -267,22 +290,6 @@ public class RegisterParser implements RegisterContract.RegisterPresenter{
         return email.contains("@");
     }
 
-    @Override
-    public void onButtonRegistrationSignUpWasClicked() {
-        //TODO
-    }
 
-    @Override
-    public void getRegistrationData() {
-        //TODO
-
-    }
-
-    @Override
-    public void onDestroy() {
-      //TODO  disroed usedge resursers
-
-        detachView();
-    }
 }
 
