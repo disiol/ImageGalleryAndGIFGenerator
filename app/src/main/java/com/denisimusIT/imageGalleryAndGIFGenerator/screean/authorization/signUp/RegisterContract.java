@@ -13,9 +13,6 @@ public class RegisterContract {
 
     interface RegisterPresenter {
         void onButtonRegistrationSignUpWasClicked();
-
-        void getRegistrationData();
-
         void onDestroy();
     }
 
