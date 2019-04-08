@@ -76,6 +76,21 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         selectImage();
     }
 
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseOfResources();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        releaseOfResources();
+    }
+
+
     @Override
     public RegisterData getRegisterData() {
         //TODO
@@ -93,6 +108,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         return registerData;
     }
 
+    private void releaseOfResources() {
+        registerParser.onDestroy();
+    }
 
     private void selectImage() {
         //TODO refactoring
