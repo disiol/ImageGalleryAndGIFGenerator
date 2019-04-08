@@ -86,6 +86,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         registerData.setImageViewRegister(imageViewRegister);
         registerData.setButtonRegistrationSignUp(buttonRegistrationSignUp);
         registerData.setProgressBarRegister(progressBarRegister);
+        registerData.setFragmentManager(supportFragmentManager);
         registerData.setApplicationContext(this.getApplicationContext());
 
         return null;

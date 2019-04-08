@@ -35,7 +35,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.ge
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.parseStringIntoRequestBody;
 
 
-public class RegisterParser {
+public class RegisterParser implements RegisterContract.RegisterPresenter{
 
 
     private DialogFragment dialogFragment;
@@ -44,6 +44,17 @@ public class RegisterParser {
     private String title;
     private String responseErorrBody;
     private String responseMessage;
+    private RegisterActivity registerActivityView;
+
+
+    public void attachView(RegisterActivity registerActivity) {
+        registerActivityView = registerActivity;
+    }
+
+    private void detachView() {
+        registerActivityView = null;
+        this.context = null;
+    }
 
 
     public void register(final ImageView imageViewRegister,
@@ -254,6 +265,24 @@ public class RegisterParser {
 
     private boolean isEmailValid(String email) {
         return email.contains("@");
+    }
+
+    @Override
+    public void onButtonRegistrationSignUpWasClicked() {
+        //TODO
+    }
+
+    @Override
+    public void getRegistrationData() {
+        //TODO
+
+    }
+
+    @Override
+    public void onDestroy() {
+      //TODO  disroed usedge resursers
+
+        detachView();
     }
 }
 
