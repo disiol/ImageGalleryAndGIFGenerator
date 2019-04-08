@@ -1,5 +1,6 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp;
 
+import android.content.Context;
 import android.support.v4.app.FragmentManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ class RegisterData {
     private Button buttonRegistrationSignUp;
     private ProgressBar progressBarRegister;
     private FragmentManager fragmentManager;
+    private Context applicationContext;
 
 
     public EditText getEditTextUserName() {
@@ -79,6 +81,14 @@ class RegisterData {
         this.fragmentManager = fragmentManager;
     }
 
+    public Context getApplicationContext() {
+        return applicationContext;
+    }
+
+    public void setApplicationContext(Context applicationContext) {
+        this.applicationContext = applicationContext;
+    }
+
     @Override
     public String toString() {
         return "RegisterData{" +
@@ -90,6 +100,7 @@ class RegisterData {
                 ", buttonRegistrationSignUp=" + buttonRegistrationSignUp +
                 ", progressBarRegister=" + progressBarRegister +
                 ", fragmentManager=" + fragmentManager +
+                ", applicationContext=" + applicationContext +
                 '}';
     }
 }
