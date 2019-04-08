@@ -5,6 +5,7 @@ public class LoginContract {
 
      interface LoginView {
         void buttonAcceptClick();
+        //TODO rename
         void imageViewAvatarClick();
         LoginData getLoginData();
     }

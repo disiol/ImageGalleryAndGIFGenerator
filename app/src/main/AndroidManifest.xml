@@ -19,12 +19,12 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".screean.ExitActivity"
-            android:theme="@style/Dialog"></activity>
+            android:theme="@style/Dialog" />
         <activity android:name=".screean.image.viewAddedImages.BigPicherActivity" />
         <activity
             android:name=".screean.image.viewAddedImages.PicturesList"
             android:theme="@style/ActionBar" />
-        <activity android:name=".screean.authorization.signUp.RegisterView" />
+        <activity android:name=".screean.authorization.signUp.RegisterActivity" />
         <activity
             android:name=".screean.image.addNewImage.UploadNewPicture"
             android:theme="@style/ActionBar" />

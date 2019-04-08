@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
-import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.Register;
+import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signUp.RegisterActivity;
 
 @SuppressLint("ValidFragment")
 public class CreateTheNewUserAlertDialog extends DialogFragment {
@@ -42,7 +42,7 @@ public class CreateTheNewUserAlertDialog extends DialogFragment {
         builder.setMessage(message);
         builder.setPositiveButton(setPositiveButtonText, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                intent = new Intent(context, Register.class);
+                intent = new Intent(context, RegisterActivity.class);
                 startActivity(intent);
 
             }

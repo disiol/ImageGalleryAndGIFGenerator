@@ -17,7 +17,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.IMAGE_M
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.SELECT_PICTURE;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
 
-public class RegisterView extends AppCompatActivity implements View.OnClickListener, RegisterContract.RegisterView {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, RegisterContract.RegisterView {
     private EditText editTextUserName, editTextEmail, editTextPassword, editTextConfimPassWord;
     private ImageView imageViewRegister;
     private Button buttonRegistrationSignUp;

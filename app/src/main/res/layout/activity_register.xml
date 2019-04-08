@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sidebar_login"
-    tools:context=".screean.authorization.signUp.RegisterView">
+    tools:context=".screean.authorization.signUp.RegisterActivity">
 
 
     <android.support.constraint.ConstraintLayout
