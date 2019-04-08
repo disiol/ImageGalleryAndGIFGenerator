@@ -1,5 +1,6 @@
 package com.denisimusIT.imageGalleryAndGIFGenerator.model.api.client;
 
+import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.RetrofitClientForTest;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.image.viewAddedImages.PucturesListParser;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil;
 
@@ -14,7 +15,11 @@ import okhttp3.RequestBody;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.RecvestsParser.parseStringIntoRequestBody;
 import static org.junit.Assert.assertEquals;
 
+
+
 public class RetrofitClientmagesTest {
+    RetrofitClientForTest retrofitClient = new RetrofitClientForTest();
+
     PucturesListParser pucturesListParser = new PucturesListParser();
 
     @Test
@@ -29,7 +34,6 @@ public class RetrofitClientmagesTest {
     @Test
     public void getAllUserImagesTest() throws IOException {
         //TODO moc
-        RetrofitClient retrofitClient = new RetrofitClient();
 
         String expected = "GetAllUserImages{imageDTOList=[ImageDTO{id=520, " +
                 "imageParamsDTO=ImageParamsDTO{longitude=90.0, latitude=90.0, address='null', weather='Clouds'}, " +
@@ -50,7 +54,6 @@ public class RetrofitClientmagesTest {
 
     @Test
     public void getGifTest() throws IOException {
-        RetrofitClient retrofitClient = new RetrofitClient();
         //TODO moc
         String expected = "GifDTO{gifUrlPath='http://api.doitserver.in.ua/upload/images/gif/92fd93900b776388a0036dbd8a67da07.gif'}";
         String token = "7fb2235a56e9d2da72e3bb0be7743689";
@@ -61,7 +64,6 @@ public class RetrofitClientmagesTest {
 
     @Test
     public void addImageTestErrorInvalid_access_token() throws IOException {
-        RetrofitClient retrofitClient = new RetrofitClient();
         MultipartBody.Part image = null;
         RequestBody description = parseStringIntoRequestBody("");
         RequestBody hashtag = parseStringIntoRequestBody("");
@@ -79,7 +81,6 @@ public class RetrofitClientmagesTest {
     @Test
     public void addImageTestErrorInvalid_This_value_should_not_be_blank() throws IOException {
         //TODO add fake recvest moko
-        RetrofitClient retrofitClient = new RetrofitClient();
         String path = "/home/denis/IT/AndroidStudioProjects/Portfolio/toMarcet/ImageGalleryAndGIFGenerator/app/src/main/res/";
         File file = new File(path, "u2.jpg");
         MultipartBody.Part image = AppUtil.prepareFilePart("image", file);
