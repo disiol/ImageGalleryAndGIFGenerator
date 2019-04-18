@@ -9,7 +9,7 @@ android {
         minSdkVersion 14
         targetSdkVersion 28
         versionCode 5
-        versionName "5.1"
+        versionName "5.2"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -19,7 +19,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            versionNameSuffix '1.1'
+            versionNameSuffix '5.2'
         }
     }
     buildToolsVersion '28.0.3'

@@ -17,7 +17,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 import com.denisimusIT.imageGalleryAndGIFGenerator.model.api.dto.UserDTO;
 import com.denisimusIT.imageGalleryAndGIFGenerator.screean.authorization.signIn.LoginActivity;
 import com.denisimusIT.imageGalleryAndGIFGenerator.util.PathUtil;
-import com.denisimusIT.imageGalleryAndGIFGenerator.util.messageAlertDialog;
+import com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog.messageAlertDialog;
 
 import java.io.File;
 import java.io.IOException;

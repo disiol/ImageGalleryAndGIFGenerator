@@ -31,7 +31,7 @@ import static com.denisimusIT.imageGalleryAndGIFGenerator.db.DatabaseCommands.Lo
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.AppUtil.showToastError;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.ArletDialog.ErrorAlertDialog.showErrorAlertDialogNoInternetConnect;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.LOG_TAG;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setImageForAvatar;
 
 public class LoginPresenter implements LoginContract.LoginPresenter {
     private LoginActivity loginActivityView;
@@ -191,7 +191,7 @@ public class LoginPresenter implements LoginContract.LoginPresenter {
         //TODO
         String avatarDataFromTableLoginData = getAvatarDataFromTableLoginData(context);
         Uri imageURI = Uri.parse(avatarDataFromTableLoginData);
-        getImageForAvatar(imageURI, loginData.getImageViewAvatar());
+        setImageForAvatar(imageURI, loginData.getImageViewAvatar());
         loginData.getTextViewUserName().setText(getCreationTimeDataFromTableLoginData(context));
         loginData.getProgressBar().setVisibility(ProgressBar.INVISIBLE);
         loginData.getButtonAccept().setClickable(true);

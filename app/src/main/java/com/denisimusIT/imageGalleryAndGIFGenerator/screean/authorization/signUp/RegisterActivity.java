@@ -15,7 +15,7 @@ import com.denisimusIT.imageGalleryAndGIFGenerator.R;
 
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.IMAGE_MEDIA_TYPE;
 import static com.denisimusIT.imageGalleryAndGIFGenerator.util.Constants.SELECT_PICTURE;
-import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.getImageForAvatar;
+import static com.denisimusIT.imageGalleryAndGIFGenerator.util.FileUtils.setImageForAvatar;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener, RegisterContract.RegisterView {
     private EditText editTextUserName, editTextEmail, editTextPassword, editTextConfimPassWord;
@@ -126,7 +126,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
                 Uri selectedImageUri = data.getData();
-                getImageForAvatar(selectedImageUri, imageViewRegister);
+                setImageForAvatar(selectedImageUri, imageViewRegister);
                 imageViewRegister.setTag(selectedImageUri);
 
 

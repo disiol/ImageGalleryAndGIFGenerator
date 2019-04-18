@@ -28,13 +28,13 @@ public class FileUtils {
         return FilePath;
     }
 
-    public final static void getImageForAvatar(Uri imageURI, ImageView imageView) {
+    public final static void setImageForAvatar(Uri imageURI, ImageView imageView) {
         int radius = 0;
         Picasso.get()
                 .load(imageURI)
                 .transform(new CircularTransformation(radius))
                 .into(imageView);
-        Log.d(LOG_TAG, "FileUtils getImageForAvatar: " + imageURI);
+        Log.d(LOG_TAG, "FileUtils setImageForAvatar: " + imageURI);
 
 
     }
@@ -45,7 +45,7 @@ public class FileUtils {
                 .load(imageURI)
                 .centerCrop()
                 .into(imageView);
-        Log.d(LOG_TAG, "FileUtils getImageForAvatar: " + imageURI);
+        Log.d(LOG_TAG, "FileUtils setImageForAvatar: " + imageURI);
 
 
     }
