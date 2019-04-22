@@ -55,10 +55,6 @@ public class ExitActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void exitAndLogOut() {
-        xitFromApp();
-    }
-
-    private void xitFromApp() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
            this.finishAffinity();
         }else{
